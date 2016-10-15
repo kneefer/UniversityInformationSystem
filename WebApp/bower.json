@@ -2,8 +2,9 @@
   "name": "asp.net",
   "private": true,
   "dependencies": {
-    "angular-seed": "",
     "angular": "1.5.5",
+    "angular-route": "~1.5.0",
+    "angular-loader": "~1.5.0",
     "bootstrap": "3.3.6",
     "jquery-mobile": "1.4.5"
   },
