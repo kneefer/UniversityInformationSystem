@@ -240,11 +240,10 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-/MobileApp/plugins/cordova-plugin-splashscreen
-/MobileApp/plugins/cordova-plugin-file-transfer
-/MobileApp/plugins/cordova-plugin-file
-/MobileApp/plugins/cordova-plugin-dialogs
-/MobileApp/plugins/cordova-plugin-compat
-/MobileApp/www/lib
-/WebApp/lib
-/WebApp/Scripts
+
+MobileApp/[Pp]lugins
+MobileApp/[Pp]latforms/
+MobileApp/www/lib
+
+WebApp/lib
+WebApp/Scripts
