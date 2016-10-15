@@ -1,7 +1,14 @@
 {
-	"name": "asp.net",
-	"private": true,
+  "name": "asp.net",
+  "private": true,
   "dependencies": {
-    "angular": ""
+    "angular-seed": "",
+    "angular": "1.5.5",
+    "bootstrap": "3.3.6",
+    "jquery-mobile": "1.4.5"
+  },
+  "resolutions": {
+    "jquery": "1.9.1 - 2",
+    "angular": "1.5.8"
   }
 }

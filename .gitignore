@@ -246,3 +246,5 @@ ModelManifest.xml
 /MobileApp/plugins/cordova-plugin-dialogs
 /MobileApp/plugins/cordova-plugin-compat
 /MobileApp/www/lib
+/WebApp/lib
+/WebApp/Scripts
