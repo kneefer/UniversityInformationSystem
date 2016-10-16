@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("UniversityInformationSystem.Storage.MongoDbDAL")]
+[assembly: AssemblyTitle("UniversityInformationSystem.Common")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UniversityInformationSystem.Storage.MongoDbDAL")]
+[assembly: AssemblyProduct("UniversityInformationSystem.Common")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,6 +19,6 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b137e551-b48e-4c21-b93d-1af3741fa27e")]
+[assembly: Guid("4f357055-e33e-4da7-bfd1-0c924d8f1bf4")]
 
 [assembly: AssemblyVersion("1.0.*")]
