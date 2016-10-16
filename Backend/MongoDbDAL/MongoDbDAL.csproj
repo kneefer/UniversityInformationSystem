@@ -56,6 +56,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{4f357055-e33e-4da7-bfd1-0c924d8f1bf4}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DALInterfaces\DALInterfaces.csproj">
       <Project>{9e0a11c4-ba46-4213-b3bd-3119081c5588}</Project>
       <Name>DALInterfaces</Name>
