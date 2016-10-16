@@ -15,6 +15,11 @@ Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "MobileApp", "MobileApp\Mobi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{F2FDFC29-41E9-45B2-93D1-11D103828237}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2E3F9486-20B2-4FDA-90F6-3DEA098FE51F}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Android = Debug|Android
