@@ -1,5 +1,5 @@
 {
-  "name": "asp.net",
+  "name": "universityinformationsystem.webapp",
   "private": true,
   "dependencies": {
     "angular": "1.5.5",

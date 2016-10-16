@@ -1,127 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D6DADD1F-504C-43FE-8BD9-2BC71D3C7ACF}</ProjectGuid>
+    <ProjectGuid>{F2FDFC29-41E9-45B2-93D1-11D103828237}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UniversityInformationSystem.WebApp</RootNamespace>
-    <AssemblyName>WebApp</AssemblyName>
+    <OutputPath>bin</OutputPath>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
-    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Xml.Linq" />
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="appcompiled\app.js" />
+    <Content Include="appcompiled\views\adminMain\adminMain.controller.js" />
+    <Content Include="appcompiled\views\tabletMain\tabletMain.controller.js" />
+    <Content Include="app\app.css" />
     <Content Include="app\views\adminMain\adminMain.view.html" />
     <Content Include="app\views\tabletMain\tabletMain.view.html" />
-    <Content Include="app\app.css" />
     <Content Include="index.html" />
     <Content Include="lib\angular-loader\angular-loader.js" />
     <Content Include="lib\angular-loader\angular-loader.min.js" />
     <Content Include="lib\angular-route\angular-route.js" />
     <Content Include="lib\angular-route\angular-route.min.js" />
     <Content Include="lib\angular-route\index.js" />
-    <Content Include="lib\angular\.bower.json" />
     <Content Include="lib\angular\angular-csp.css" />
     <Content Include="lib\angular\angular.js" />
     <Content Include="lib\angular\angular.min.js" />
-    <Content Include="lib\angular\angular.min.js.gzip" />
-    <Content Include="lib\angular\angular.min.js.map" />
-    <Content Include="lib\angular\bower.json" />
     <Content Include="lib\angular\index.js" />
-    <Content Include="lib\angular\LICENSE.md" />
-    <Content Include="lib\angular\package.json" />
-    <Content Include="lib\angular\README.md" />
-    <Content Include="lib\bootstrap\.bower.json" />
-    <Content Include="lib\bootstrap\bower.json" />
-    <Content Include="lib\bootstrap\CHANGELOG.md" />
     <Content Include="lib\bootstrap\dist\css\bootstrap-theme.css" />
-    <Content Include="lib\bootstrap\dist\css\bootstrap-theme.css.map" />
     <Content Include="lib\bootstrap\dist\css\bootstrap-theme.min.css" />
-    <Content Include="lib\bootstrap\dist\css\bootstrap-theme.min.css.map" />
     <Content Include="lib\bootstrap\dist\css\bootstrap.css" />
-    <Content Include="lib\bootstrap\dist\css\bootstrap.css.map" />
     <Content Include="lib\bootstrap\dist\css\bootstrap.min.css" />
-    <Content Include="lib\bootstrap\dist\css\bootstrap.min.css.map" />
-    <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="lib\bootstrap\dist\js\bootstrap.js" />
     <Content Include="lib\bootstrap\dist\js\bootstrap.min.js" />
     <Content Include="lib\bootstrap\dist\js\npm.js" />
-    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="lib\bootstrap\Gruntfile.js" />
-    <Content Include="lib\bootstrap\grunt\.jshintrc" />
     <Content Include="lib\bootstrap\grunt\bs-commonjs-generator.js" />
     <Content Include="lib\bootstrap\grunt\bs-glyphicons-data-generator.js" />
     <Content Include="lib\bootstrap\grunt\bs-lessdoc-parser.js" />
     <Content Include="lib\bootstrap\grunt\bs-raw-files-generator.js" />
-    <Content Include="lib\bootstrap\grunt\configBridge.json" />
-    <Content Include="lib\bootstrap\grunt\sauce_browsers.yml" />
-    <Content Include="lib\bootstrap\js\.jscsrc" />
-    <Content Include="lib\bootstrap\js\.jshintrc" />
     <Content Include="lib\bootstrap\js\affix.js" />
     <Content Include="lib\bootstrap\js\alert.js" />
     <Content Include="lib\bootstrap\js\button.js" />
@@ -134,87 +65,7 @@
     <Content Include="lib\bootstrap\js\tab.js" />
     <Content Include="lib\bootstrap\js\tooltip.js" />
     <Content Include="lib\bootstrap\js\transition.js" />
-    <Content Include="lib\bootstrap\less\.csscomb.json" />
-    <Content Include="lib\bootstrap\less\.csslintrc" />
-    <Content Include="lib\bootstrap\less\alerts.less" />
-    <Content Include="lib\bootstrap\less\badges.less" />
-    <Content Include="lib\bootstrap\less\bootstrap.less" />
-    <Content Include="lib\bootstrap\less\breadcrumbs.less" />
-    <Content Include="lib\bootstrap\less\button-groups.less" />
-    <Content Include="lib\bootstrap\less\buttons.less" />
-    <Content Include="lib\bootstrap\less\carousel.less" />
-    <Content Include="lib\bootstrap\less\close.less" />
-    <Content Include="lib\bootstrap\less\code.less" />
-    <Content Include="lib\bootstrap\less\component-animations.less" />
-    <Content Include="lib\bootstrap\less\dropdowns.less" />
-    <Content Include="lib\bootstrap\less\forms.less" />
-    <Content Include="lib\bootstrap\less\glyphicons.less" />
-    <Content Include="lib\bootstrap\less\grid.less" />
-    <Content Include="lib\bootstrap\less\input-groups.less" />
-    <Content Include="lib\bootstrap\less\jumbotron.less" />
-    <Content Include="lib\bootstrap\less\labels.less" />
-    <Content Include="lib\bootstrap\less\list-group.less" />
-    <Content Include="lib\bootstrap\less\media.less" />
-    <Content Include="lib\bootstrap\less\mixins.less" />
-    <Content Include="lib\bootstrap\less\mixins\alerts.less" />
-    <Content Include="lib\bootstrap\less\mixins\background-variant.less" />
-    <Content Include="lib\bootstrap\less\mixins\border-radius.less" />
-    <Content Include="lib\bootstrap\less\mixins\buttons.less" />
-    <Content Include="lib\bootstrap\less\mixins\center-block.less" />
-    <Content Include="lib\bootstrap\less\mixins\clearfix.less" />
-    <Content Include="lib\bootstrap\less\mixins\forms.less" />
-    <Content Include="lib\bootstrap\less\mixins\gradients.less" />
-    <Content Include="lib\bootstrap\less\mixins\grid-framework.less" />
-    <Content Include="lib\bootstrap\less\mixins\grid.less" />
-    <Content Include="lib\bootstrap\less\mixins\hide-text.less" />
-    <Content Include="lib\bootstrap\less\mixins\image.less" />
-    <Content Include="lib\bootstrap\less\mixins\labels.less" />
-    <Content Include="lib\bootstrap\less\mixins\list-group.less" />
-    <Content Include="lib\bootstrap\less\mixins\nav-divider.less" />
-    <Content Include="lib\bootstrap\less\mixins\nav-vertical-align.less" />
-    <Content Include="lib\bootstrap\less\mixins\opacity.less" />
-    <Content Include="lib\bootstrap\less\mixins\pagination.less" />
-    <Content Include="lib\bootstrap\less\mixins\panels.less" />
-    <Content Include="lib\bootstrap\less\mixins\progress-bar.less" />
-    <Content Include="lib\bootstrap\less\mixins\reset-filter.less" />
-    <Content Include="lib\bootstrap\less\mixins\reset-text.less" />
-    <Content Include="lib\bootstrap\less\mixins\resize.less" />
-    <Content Include="lib\bootstrap\less\mixins\responsive-visibility.less" />
-    <Content Include="lib\bootstrap\less\mixins\size.less" />
-    <Content Include="lib\bootstrap\less\mixins\tab-focus.less" />
-    <Content Include="lib\bootstrap\less\mixins\table-row.less" />
-    <Content Include="lib\bootstrap\less\mixins\text-emphasis.less" />
-    <Content Include="lib\bootstrap\less\mixins\text-overflow.less" />
-    <Content Include="lib\bootstrap\less\mixins\vendor-prefixes.less" />
-    <Content Include="lib\bootstrap\less\modals.less" />
-    <Content Include="lib\bootstrap\less\navbar.less" />
-    <Content Include="lib\bootstrap\less\navs.less" />
-    <Content Include="lib\bootstrap\less\normalize.less" />
-    <Content Include="lib\bootstrap\less\pager.less" />
-    <Content Include="lib\bootstrap\less\pagination.less" />
-    <Content Include="lib\bootstrap\less\panels.less" />
-    <Content Include="lib\bootstrap\less\popovers.less" />
-    <Content Include="lib\bootstrap\less\print.less" />
-    <Content Include="lib\bootstrap\less\progress-bars.less" />
-    <Content Include="lib\bootstrap\less\responsive-embed.less" />
-    <Content Include="lib\bootstrap\less\responsive-utilities.less" />
-    <Content Include="lib\bootstrap\less\scaffolding.less" />
-    <Content Include="lib\bootstrap\less\tables.less" />
-    <Content Include="lib\bootstrap\less\theme.less" />
-    <Content Include="lib\bootstrap\less\thumbnails.less" />
-    <Content Include="lib\bootstrap\less\tooltip.less" />
-    <Content Include="lib\bootstrap\less\type.less" />
-    <Content Include="lib\bootstrap\less\utilities.less" />
-    <Content Include="lib\bootstrap\less\variables.less" />
-    <Content Include="lib\bootstrap\less\wells.less" />
-    <Content Include="lib\bootstrap\LICENSE" />
-    <Content Include="lib\bootstrap\nuget\bootstrap.less.nuspec" />
-    <Content Include="lib\bootstrap\nuget\bootstrap.nuspec" />
-    <Content Include="lib\bootstrap\nuget\MyGet.ps1" />
     <Content Include="lib\bootstrap\package.js" />
-    <Content Include="lib\bootstrap\package.json" />
-    <Content Include="lib\bootstrap\README.md" />
-    <Content Include="lib\jquery-hashchange\.bower.json" />
     <Content Include="lib\jquery-hashchange\docs\files\jquery-ba-hashchange-js.html" />
     <Content Include="lib\jquery-hashchange\docs\index.html" />
     <Content Include="lib\jquery-hashchange\docs\index\Events.html" />
@@ -224,15 +75,6 @@
     <Content Include="lib\jquery-hashchange\docs\index\Properties.html" />
     <Content Include="lib\jquery-hashchange\docs\javascript\main.js" />
     <Content Include="lib\jquery-hashchange\docs\javascript\searchdata.js" />
-    <Content Include="lib\jquery-hashchange\docs\nd\Data\ClassHierarchy.nd" />
-    <Content Include="lib\jquery-hashchange\docs\nd\Data\ConfigFileInfo.nd" />
-    <Content Include="lib\jquery-hashchange\docs\nd\Data\FileInfo.nd" />
-    <Content Include="lib\jquery-hashchange\docs\nd\Data\ImageFileInfo.nd" />
-    <Content Include="lib\jquery-hashchange\docs\nd\Data\ImageReferenceTable.nd" />
-    <Content Include="lib\jquery-hashchange\docs\nd\Data\IndexInfo.nd" />
-    <Content Include="lib\jquery-hashchange\docs\nd\Data\PreviousMenuState.nd" />
-    <Content Include="lib\jquery-hashchange\docs\nd\Data\PreviousSettings.nd" />
-    <Content Include="lib\jquery-hashchange\docs\nd\Data\SymbolTable.nd" />
     <Content Include="lib\jquery-hashchange\docs\nd\Languages.txt" />
     <Content Include="lib\jquery-hashchange\docs\nd\Menu.txt" />
     <Content Include="lib\jquery-hashchange\docs\nd\Topics.txt" />
@@ -269,9 +111,6 @@
     <Content Include="lib\jquery-hashchange\examples\index.php" />
     <Content Include="lib\jquery-hashchange\jquery.ba-hashchange.js" />
     <Content Include="lib\jquery-hashchange\jquery.ba-hashchange.min.js" />
-    <Content Include="lib\jquery-hashchange\LICENSE-GPL" />
-    <Content Include="lib\jquery-hashchange\LICENSE-MIT" />
-    <Content Include="lib\jquery-hashchange\README.markdown" />
     <Content Include="lib\jquery-hashchange\shared\ba-debug.js" />
     <Content Include="lib\jquery-hashchange\shared\jquery-1.2.6.js" />
     <Content Include="lib\jquery-hashchange\shared\jquery-1.3.2.js" />
@@ -328,14 +167,7 @@
     <Content Include="lib\jquery-hashchange\unit\jquery-1.4.1.html" />
     <Content Include="lib\jquery-hashchange\unit\qunit.css" />
     <Content Include="lib\jquery-hashchange\unit\unit.js" />
-    <Content Include="lib\jquery-mobile\.bower.json" />
-    <Content Include="lib\jquery-mobile\.gitignore" />
-    <Content Include="lib\jquery-mobile\.mailmap" />
-    <Content Include="lib\jquery-mobile\.travis.yml" />
-    <Content Include="lib\jquery-mobile\bower.json" />
-    <Content Include="lib\jquery-mobile\changelog" />
     <Content Include="lib\jquery-mobile\combine.php" />
-    <Content Include="lib\jquery-mobile\CONTRIBUTING.md" />
     <Content Include="lib\jquery-mobile\css\structure\jquery.mobile.collapsible.css" />
     <Content Include="lib\jquery-mobile\css\structure\jquery.mobile.controlgroup.css" />
     <Content Include="lib\jquery-mobile\css\structure\jquery.mobile.core.css" />
@@ -592,7 +424,6 @@
     <Content Include="lib\jquery-mobile\external\jquery-ui\jquery.ui.widget.js" />
     <Content Include="lib\jquery-mobile\external\jquery\jquery.js" />
     <Content Include="lib\jquery-mobile\external\jquery\jquery.min.js" />
-    <Content Include="lib\jquery-mobile\external\jquery\jquery.min.map" />
     <Content Include="lib\jquery-mobile\external\jquery\plugins\jquery.hashchange.js" />
     <Content Include="lib\jquery-mobile\external\qunit\qunit.css" />
     <Content Include="lib\jquery-mobile\external\qunit\qunit.js" />
@@ -688,26 +519,10 @@
     <Content Include="lib\jquery-mobile\js\widgets\table.reflow.js" />
     <Content Include="lib\jquery-mobile\js\widgets\tabs.js" />
     <Content Include="lib\jquery-mobile\js\widgets\toolbar.js" />
-    <Content Include="lib\jquery-mobile\package.json" />
-    <Content Include="lib\jquery-mobile\README.md" />
-    <Content Include="lib\jquery-ui-tabs\.bower.json" />
-    <Content Include="lib\jquery-ui-tabs\.csslintrc" />
-    <Content Include="lib\jquery-ui-tabs\.editorconfig" />
-    <Content Include="lib\jquery-ui-tabs\.gitattributes" />
-    <Content Include="lib\jquery-ui-tabs\.gitignore" />
-    <Content Include="lib\jquery-ui-tabs\.jshintrc" />
-    <Content Include="lib\jquery-ui-tabs\.mailmap" />
     <Content Include="lib\jquery-ui-tabs\AUTHORS.txt" />
-    <Content Include="lib\jquery-ui-tabs\build\core.json" />
-    <Content Include="lib\jquery-ui-tabs\build\effect.json" />
-    <Content Include="lib\jquery-ui-tabs\build\interaction.json" />
-    <Content Include="lib\jquery-ui-tabs\build\release\changelog-shell" />
     <Content Include="lib\jquery-ui-tabs\build\release\release.js" />
     <Content Include="lib\jquery-ui-tabs\build\tasks\build.js" />
     <Content Include="lib\jquery-ui-tabs\build\tasks\testswarm.js" />
-    <Content Include="lib\jquery-ui-tabs\build\themes" />
-    <Content Include="lib\jquery-ui-tabs\build\widget.json" />
-    <Content Include="lib\jquery-ui-tabs\CONTRIBUTING.md" />
     <Content Include="lib\jquery-ui-tabs\demos\accordion\collapsible.html" />
     <Content Include="lib\jquery-ui-tabs\demos\accordion\custom-icons.html" />
     <Content Include="lib\jquery-ui-tabs\demos\accordion\default.html" />
@@ -922,9 +737,6 @@
     <Content Include="lib\jquery-ui-tabs\Gruntfile.js" />
     <Content Include="lib\jquery-ui-tabs\jquery-1.9.1.js" />
     <Content Include="lib\jquery-ui-tabs\MIT-LICENSE.txt" />
-    <Content Include="lib\jquery-ui-tabs\package.json" />
-    <Content Include="lib\jquery-ui-tabs\README.md" />
-    <Content Include="lib\jquery-ui-tabs\tests\.jshintrc" />
     <Content Include="lib\jquery-ui-tabs\tests\index.css" />
     <Content Include="lib\jquery-ui-tabs\tests\index.html" />
     <Content Include="lib\jquery-ui-tabs\tests\index.js" />
@@ -1157,7 +969,6 @@
     <Content Include="lib\jquery-ui-tabs\themes\base\jquery.ui.tabs.css" />
     <Content Include="lib\jquery-ui-tabs\themes\base\jquery.ui.theme.css" />
     <Content Include="lib\jquery-ui-tabs\themes\base\jquery.ui.tooltip.css" />
-    <Content Include="lib\jquery-ui-tabs\ui\.jshintrc" />
     <Content Include="lib\jquery-ui-tabs\ui\i18n\jquery.ui.datepicker-af.js" />
     <Content Include="lib\jquery-ui-tabs\ui\i18n\jquery.ui.datepicker-ar-DZ.js" />
     <Content Include="lib\jquery-ui-tabs\ui\i18n\jquery.ui.datepicker-ar.js" />
@@ -1266,25 +1077,10 @@
     <Content Include="lib\jquery-ui-tabs\ui\jquery.ui.tabs.js" />
     <Content Include="lib\jquery-ui-tabs\ui\jquery.ui.tooltip.js" />
     <Content Include="lib\jquery-ui-tabs\ui\jquery.ui.widget.js" />
-    <Content Include="lib\jquery-ui\.bower.json" />
-    <Content Include="lib\jquery-ui\.csslintrc" />
-    <Content Include="lib\jquery-ui\.editorconfig" />
-    <Content Include="lib\jquery-ui\.gitattributes" />
-    <Content Include="lib\jquery-ui\.gitignore" />
-    <Content Include="lib\jquery-ui\.jshintrc" />
-    <Content Include="lib\jquery-ui\.mailmap" />
-    <Content Include="lib\jquery-ui\.travis.yml" />
     <Content Include="lib\jquery-ui\AUTHORS.txt" />
-    <Content Include="lib\jquery-ui\build\core.json" />
-    <Content Include="lib\jquery-ui\build\effect.json" />
-    <Content Include="lib\jquery-ui\build\interaction.json" />
-    <Content Include="lib\jquery-ui\build\release\changelog-shell" />
     <Content Include="lib\jquery-ui\build\release\release.js" />
     <Content Include="lib\jquery-ui\build\tasks\build.js" />
     <Content Include="lib\jquery-ui\build\tasks\testswarm.js" />
-    <Content Include="lib\jquery-ui\build\themes" />
-    <Content Include="lib\jquery-ui\build\widget.json" />
-    <Content Include="lib\jquery-ui\CONTRIBUTING.md" />
     <Content Include="lib\jquery-ui\demos\accordion\collapsible.html" />
     <Content Include="lib\jquery-ui\demos\accordion\custom-icons.html" />
     <Content Include="lib\jquery-ui\demos\accordion\default.html" />
@@ -1492,9 +1288,6 @@
     <Content Include="lib\jquery-ui\Gruntfile.js" />
     <Content Include="lib\jquery-ui\jquery-1.10.2.js" />
     <Content Include="lib\jquery-ui\MIT-LICENSE.txt" />
-    <Content Include="lib\jquery-ui\package.json" />
-    <Content Include="lib\jquery-ui\README.md" />
-    <Content Include="lib\jquery-ui\tests\.jshintrc" />
     <Content Include="lib\jquery-ui\tests\index.css" />
     <Content Include="lib\jquery-ui\tests\index.html" />
     <Content Include="lib\jquery-ui\tests\index.js" />
@@ -1734,7 +1527,6 @@
     <Content Include="lib\jquery-ui\themes\base\jquery.ui.tabs.css" />
     <Content Include="lib\jquery-ui\themes\base\jquery.ui.theme.css" />
     <Content Include="lib\jquery-ui\themes\base\jquery.ui.tooltip.css" />
-    <Content Include="lib\jquery-ui\ui\.jshintrc" />
     <Content Include="lib\jquery-ui\ui\i18n\jquery.ui.datepicker-af.js" />
     <Content Include="lib\jquery-ui\ui\i18n\jquery.ui.datepicker-ar-DZ.js" />
     <Content Include="lib\jquery-ui\ui\i18n\jquery.ui.datepicker-ar.js" />
@@ -1845,29 +1637,15 @@
     <Content Include="lib\jquery-ui\ui\jquery.ui.tabs.js" />
     <Content Include="lib\jquery-ui\ui\jquery.ui.tooltip.js" />
     <Content Include="lib\jquery-ui\ui\jquery.ui.widget.js" />
-    <Content Include="lib\jquery\.bower.json" />
-    <Content Include="lib\jquery\.editorconfig" />
-    <Content Include="lib\jquery\.gitattributes" />
-    <Content Include="lib\jquery\.gitignore" />
-    <Content Include="lib\jquery\.gitmodules" />
-    <Content Include="lib\jquery\.jshintrc" />
-    <Content Include="lib\jquery\.mailmap" />
     <Content Include="lib\jquery\AUTHORS.txt" />
-    <Content Include="lib\jquery\bower.json" />
     <Content Include="lib\jquery\build\release-notes.js" />
     <Content Include="lib\jquery\build\release.js" />
-    <Content Include="lib\jquery\component.json" />
-    <Content Include="lib\jquery\composer.json" />
-    <Content Include="lib\jquery\CONTRIBUTING.md" />
     <Content Include="lib\jquery\Gruntfile.js" />
     <Content Include="lib\jquery\jquery-migrate.js" />
     <Content Include="lib\jquery\jquery-migrate.min.js" />
     <Content Include="lib\jquery\jquery.js" />
     <Content Include="lib\jquery\jquery.min.js" />
-    <Content Include="lib\jquery\jquery.min.map" />
     <Content Include="lib\jquery\MIT-LICENSE.txt" />
-    <Content Include="lib\jquery\package.json" />
-    <Content Include="lib\jquery\README.md" />
     <Content Include="lib\jquery\speed\benchmark.js" />
     <Content Include="lib\jquery\speed\benchmarker.css" />
     <Content Include="lib\jquery\speed\benchmarker.js" />
@@ -1879,7 +1657,6 @@
     <Content Include="lib\jquery\speed\index.html" />
     <Content Include="lib\jquery\speed\jquery-basis.js" />
     <Content Include="lib\jquery\speed\slice.vs.concat.html" />
-    <Content Include="lib\jquery\src\.jshintrc" />
     <Content Include="lib\jquery\src\ajax.js" />
     <Content Include="lib\jquery\src\ajax\jsonp.js" />
     <Content Include="lib\jquery\src\ajax\script.js" />
@@ -1906,8 +1683,6 @@
     <Content Include="lib\jquery\src\support.js" />
     <Content Include="lib\jquery\src\traversing.js" />
     <Content Include="lib\jquery\src\wrap.js" />
-    <Content Include="lib\jquery\test\.jshintignore" />
-    <Content Include="lib\jquery\test\.jshintrc" />
     <Content Include="lib\jquery\test\data\1x1.jpg" />
     <Content Include="lib\jquery\test\data\ajax\unreleasedXHR.html" />
     <Content Include="lib\jquery\test\data\atom+xml.php" />
@@ -1999,9 +1774,14 @@
     <Content Include="lib\jquery\test\unit\traversing.js" />
     <Content Include="lib\jquery\test\unit\wrap.js" />
     <Content Include="lib\jquery\test\xhtml.php" />
-    <Content Include="packages.config" />
-    <Content Include="bower.json" />
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include=".bowerrc" />
+    <Content Include="bower.json" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="lib\angular-loader\.bower.json" />
     <Content Include="lib\angular-loader\angular-loader.min.js.map" />
     <Content Include="lib\angular-loader\bower.json" />
@@ -2014,25 +1794,198 @@
     <Content Include="lib\angular-route\LICENSE.md" />
     <Content Include="lib\angular-route\package.json" />
     <Content Include="lib\angular-route\README.md" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
+    <Content Include="lib\angular\.bower.json" />
+    <Content Include="lib\angular\angular.min.js.gzip" />
+    <Content Include="lib\angular\angular.min.js.map" />
+    <Content Include="lib\angular\bower.json" />
+    <Content Include="lib\angular\LICENSE.md" />
+    <Content Include="lib\angular\package.json" />
+    <Content Include="lib\angular\README.md" />
+    <Content Include="lib\bootstrap\.bower.json" />
+    <Content Include="lib\bootstrap\bower.json" />
+    <Content Include="lib\bootstrap\CHANGELOG.md" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap-theme.css.map" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap.css.map" />
+    <Content Include="lib\bootstrap\dist\css\bootstrap.min.css.map" />
+    <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="lib\bootstrap\grunt\.jshintrc" />
+    <Content Include="lib\bootstrap\grunt\configBridge.json" />
+    <Content Include="lib\bootstrap\grunt\sauce_browsers.yml" />
+    <Content Include="lib\bootstrap\js\.jscsrc" />
+    <Content Include="lib\bootstrap\js\.jshintrc" />
+    <Content Include="lib\bootstrap\less\.csscomb.json" />
+    <Content Include="lib\bootstrap\less\.csslintrc" />
+    <Content Include="lib\bootstrap\less\alerts.less" />
+    <Content Include="lib\bootstrap\less\badges.less" />
+    <Content Include="lib\bootstrap\less\bootstrap.less" />
+    <Content Include="lib\bootstrap\less\breadcrumbs.less" />
+    <Content Include="lib\bootstrap\less\button-groups.less" />
+    <Content Include="lib\bootstrap\less\buttons.less" />
+    <Content Include="lib\bootstrap\less\carousel.less" />
+    <Content Include="lib\bootstrap\less\close.less" />
+    <Content Include="lib\bootstrap\less\code.less" />
+    <Content Include="lib\bootstrap\less\component-animations.less" />
+    <Content Include="lib\bootstrap\less\dropdowns.less" />
+    <Content Include="lib\bootstrap\less\forms.less" />
+    <Content Include="lib\bootstrap\less\glyphicons.less" />
+    <Content Include="lib\bootstrap\less\grid.less" />
+    <Content Include="lib\bootstrap\less\input-groups.less" />
+    <Content Include="lib\bootstrap\less\jumbotron.less" />
+    <Content Include="lib\bootstrap\less\labels.less" />
+    <Content Include="lib\bootstrap\less\list-group.less" />
+    <Content Include="lib\bootstrap\less\media.less" />
+    <Content Include="lib\bootstrap\less\mixins.less" />
+    <Content Include="lib\bootstrap\less\mixins\alerts.less" />
+    <Content Include="lib\bootstrap\less\mixins\background-variant.less" />
+    <Content Include="lib\bootstrap\less\mixins\border-radius.less" />
+    <Content Include="lib\bootstrap\less\mixins\buttons.less" />
+    <Content Include="lib\bootstrap\less\mixins\center-block.less" />
+    <Content Include="lib\bootstrap\less\mixins\clearfix.less" />
+    <Content Include="lib\bootstrap\less\mixins\forms.less" />
+    <Content Include="lib\bootstrap\less\mixins\gradients.less" />
+    <Content Include="lib\bootstrap\less\mixins\grid-framework.less" />
+    <Content Include="lib\bootstrap\less\mixins\grid.less" />
+    <Content Include="lib\bootstrap\less\mixins\hide-text.less" />
+    <Content Include="lib\bootstrap\less\mixins\image.less" />
+    <Content Include="lib\bootstrap\less\mixins\labels.less" />
+    <Content Include="lib\bootstrap\less\mixins\list-group.less" />
+    <Content Include="lib\bootstrap\less\mixins\nav-divider.less" />
+    <Content Include="lib\bootstrap\less\mixins\nav-vertical-align.less" />
+    <Content Include="lib\bootstrap\less\mixins\opacity.less" />
+    <Content Include="lib\bootstrap\less\mixins\pagination.less" />
+    <Content Include="lib\bootstrap\less\mixins\panels.less" />
+    <Content Include="lib\bootstrap\less\mixins\progress-bar.less" />
+    <Content Include="lib\bootstrap\less\mixins\reset-filter.less" />
+    <Content Include="lib\bootstrap\less\mixins\reset-text.less" />
+    <Content Include="lib\bootstrap\less\mixins\resize.less" />
+    <Content Include="lib\bootstrap\less\mixins\responsive-visibility.less" />
+    <Content Include="lib\bootstrap\less\mixins\size.less" />
+    <Content Include="lib\bootstrap\less\mixins\tab-focus.less" />
+    <Content Include="lib\bootstrap\less\mixins\table-row.less" />
+    <Content Include="lib\bootstrap\less\mixins\text-emphasis.less" />
+    <Content Include="lib\bootstrap\less\mixins\text-overflow.less" />
+    <Content Include="lib\bootstrap\less\mixins\vendor-prefixes.less" />
+    <Content Include="lib\bootstrap\less\modals.less" />
+    <Content Include="lib\bootstrap\less\navbar.less" />
+    <Content Include="lib\bootstrap\less\navs.less" />
+    <Content Include="lib\bootstrap\less\normalize.less" />
+    <Content Include="lib\bootstrap\less\pager.less" />
+    <Content Include="lib\bootstrap\less\pagination.less" />
+    <Content Include="lib\bootstrap\less\panels.less" />
+    <Content Include="lib\bootstrap\less\popovers.less" />
+    <Content Include="lib\bootstrap\less\print.less" />
+    <Content Include="lib\bootstrap\less\progress-bars.less" />
+    <Content Include="lib\bootstrap\less\responsive-embed.less" />
+    <Content Include="lib\bootstrap\less\responsive-utilities.less" />
+    <Content Include="lib\bootstrap\less\scaffolding.less" />
+    <Content Include="lib\bootstrap\less\tables.less" />
+    <Content Include="lib\bootstrap\less\theme.less" />
+    <Content Include="lib\bootstrap\less\thumbnails.less" />
+    <Content Include="lib\bootstrap\less\tooltip.less" />
+    <Content Include="lib\bootstrap\less\type.less" />
+    <Content Include="lib\bootstrap\less\utilities.less" />
+    <Content Include="lib\bootstrap\less\variables.less" />
+    <Content Include="lib\bootstrap\less\wells.less" />
+    <Content Include="lib\bootstrap\LICENSE" />
+    <Content Include="lib\bootstrap\nuget\bootstrap.less.nuspec" />
+    <Content Include="lib\bootstrap\nuget\bootstrap.nuspec" />
+    <Content Include="lib\bootstrap\nuget\MyGet.ps1" />
+    <Content Include="lib\bootstrap\package.json" />
+    <Content Include="lib\bootstrap\README.md" />
+    <Content Include="lib\jquery-hashchange\.bower.json" />
+    <Content Include="lib\jquery-hashchange\docs\nd\Data\ClassHierarchy.nd" />
+    <Content Include="lib\jquery-hashchange\docs\nd\Data\ConfigFileInfo.nd" />
+    <Content Include="lib\jquery-hashchange\docs\nd\Data\FileInfo.nd" />
+    <Content Include="lib\jquery-hashchange\docs\nd\Data\ImageFileInfo.nd" />
+    <Content Include="lib\jquery-hashchange\docs\nd\Data\ImageReferenceTable.nd" />
+    <Content Include="lib\jquery-hashchange\docs\nd\Data\IndexInfo.nd" />
+    <Content Include="lib\jquery-hashchange\docs\nd\Data\PreviousMenuState.nd" />
+    <Content Include="lib\jquery-hashchange\docs\nd\Data\PreviousSettings.nd" />
+    <Content Include="lib\jquery-hashchange\docs\nd\Data\SymbolTable.nd" />
+    <Content Include="lib\jquery-hashchange\LICENSE-GPL" />
+    <Content Include="lib\jquery-hashchange\LICENSE-MIT" />
+    <Content Include="lib\jquery-hashchange\README.markdown" />
+    <Content Include="lib\jquery-mobile\.bower.json" />
+    <Content Include="lib\jquery-mobile\.gitignore" />
+    <Content Include="lib\jquery-mobile\.mailmap" />
+    <Content Include="lib\jquery-mobile\.travis.yml" />
+    <Content Include="lib\jquery-mobile\bower.json" />
+    <Content Include="lib\jquery-mobile\changelog" />
+    <Content Include="lib\jquery-mobile\CONTRIBUTING.md" />
+    <Content Include="lib\jquery-mobile\external\jquery\jquery.min.map" />
+    <Content Include="lib\jquery-mobile\package.json" />
+    <Content Include="lib\jquery-mobile\README.md" />
+    <Content Include="lib\jquery-ui-tabs\.bower.json" />
+    <Content Include="lib\jquery-ui-tabs\.csslintrc" />
+    <Content Include="lib\jquery-ui-tabs\.editorconfig" />
+    <Content Include="lib\jquery-ui-tabs\.gitattributes" />
+    <Content Include="lib\jquery-ui-tabs\.gitignore" />
+    <Content Include="lib\jquery-ui-tabs\.jshintrc" />
+    <Content Include="lib\jquery-ui-tabs\.mailmap" />
+    <Content Include="lib\jquery-ui-tabs\build\core.json" />
+    <Content Include="lib\jquery-ui-tabs\build\effect.json" />
+    <Content Include="lib\jquery-ui-tabs\build\interaction.json" />
+    <Content Include="lib\jquery-ui-tabs\build\release\changelog-shell" />
+    <Content Include="lib\jquery-ui-tabs\build\themes" />
+    <Content Include="lib\jquery-ui-tabs\build\widget.json" />
+    <Content Include="lib\jquery-ui-tabs\CONTRIBUTING.md" />
+    <Content Include="lib\jquery-ui-tabs\package.json" />
+    <Content Include="lib\jquery-ui-tabs\README.md" />
+    <Content Include="lib\jquery-ui-tabs\tests\.jshintrc" />
+    <Content Include="lib\jquery-ui-tabs\ui\.jshintrc" />
+    <Content Include="lib\jquery-ui\.bower.json" />
+    <Content Include="lib\jquery-ui\.csslintrc" />
+    <Content Include="lib\jquery-ui\.editorconfig" />
+    <Content Include="lib\jquery-ui\.gitattributes" />
+    <Content Include="lib\jquery-ui\.gitignore" />
+    <Content Include="lib\jquery-ui\.jshintrc" />
+    <Content Include="lib\jquery-ui\.mailmap" />
+    <Content Include="lib\jquery-ui\.travis.yml" />
+    <Content Include="lib\jquery-ui\build\core.json" />
+    <Content Include="lib\jquery-ui\build\effect.json" />
+    <Content Include="lib\jquery-ui\build\interaction.json" />
+    <Content Include="lib\jquery-ui\build\release\changelog-shell" />
+    <Content Include="lib\jquery-ui\build\themes" />
+    <Content Include="lib\jquery-ui\build\widget.json" />
+    <Content Include="lib\jquery-ui\CONTRIBUTING.md" />
+    <Content Include="lib\jquery-ui\package.json" />
+    <Content Include="lib\jquery-ui\README.md" />
+    <Content Include="lib\jquery-ui\tests\.jshintrc" />
+    <Content Include="lib\jquery-ui\ui\.jshintrc" />
+    <Content Include="lib\jquery\.bower.json" />
+    <Content Include="lib\jquery\.editorconfig" />
+    <Content Include="lib\jquery\.gitattributes" />
+    <Content Include="lib\jquery\.gitignore" />
+    <Content Include="lib\jquery\.gitmodules" />
+    <Content Include="lib\jquery\.jshintrc" />
+    <Content Include="lib\jquery\.mailmap" />
+    <Content Include="lib\jquery\bower.json" />
+    <Content Include="lib\jquery\component.json" />
+    <Content Include="lib\jquery\composer.json" />
+    <Content Include="lib\jquery\CONTRIBUTING.md" />
+    <Content Include="lib\jquery\jquery.min.map" />
+    <Content Include="lib\jquery\package.json" />
+    <Content Include="lib\jquery\README.md" />
+    <Content Include="lib\jquery\src\.jshintrc" />
+    <Content Include="lib\jquery\test\.jshintignore" />
+    <Content Include="lib\jquery\test\.jshintrc" />
+    <Content Include="appcompiled\app.js.map" />
+    <Content Include="appcompiled\views\adminMain\adminMain.controller.js.map" />
+    <Content Include="appcompiled\views\tabletMain\tabletMain.controller.js.map" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
     </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="app\components\" />
-    <Folder Include="assets\fonts\" />
-    <Folder Include="assets\img\" />
-    <Folder Include="lib\jquery\src\sizzle\" />
-    <Folder Include="lib\jquery\test\qunit\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\app.ts" />
@@ -2051,23 +2004,38 @@
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Folder Include="app\components\" />
+    <Folder Include="app\filters\" />
+    <Folder Include="app\modules\" />
+    <Folder Include="app\services\" />
+    <Folder Include="assets\fonts\" />
+    <Folder Include="assets\img\" />
+    <Folder Include="lib\jquery\src\sizzle\" />
+    <Folder Include="lib\jquery\test\qunit\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>WebApp</RootNamespace>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
-  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>5736</DevelopmentServerPort>
+          <DevelopmentServerPort>8531</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:5703/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
@@ -2079,18 +2047,24 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptRemoveComments>false</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>true</TypeScriptSourceMap>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir>appcompiled/</TypeScriptOutDir>
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
+    <TypeScriptSourceMap>false</TypeScriptSourceMap>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>
