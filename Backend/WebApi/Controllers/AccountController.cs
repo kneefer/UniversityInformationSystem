@@ -6,13 +6,12 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using MongoDB.AspNet.Identity;
 using UniversityInformationSystem.WebApi.Models;
 using UniversityInformationSystem.WebApi.Providers;
 using UniversityInformationSystem.WebApi.Results;
@@ -28,6 +27,8 @@ namespace UniversityInformationSystem.WebApi.Controllers
 
         public AccountController()
         {
+            this.UserManager = new ApplicationUserManager(
+                new UserStore<ApplicationUser>("Mongo"));
         }
 
         public AccountController(ApplicationUserManager userManager,
@@ -87,7 +88,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
 
             List<UserLoginInfoViewModel> logins = new List<UserLoginInfoViewModel>();
 
-            foreach (IdentityUserLogin linkedAccount in user.Logins)
+            foreach (UserLoginInfo linkedAccount in user.Logins)
             {
                 logins.Add(new UserLoginInfoViewModel
                 {
@@ -328,7 +329,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -357,7 +358,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
                 return InternalServerError();
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user);
             if (!result.Succeeded)
