@@ -11,9 +11,9 @@ namespace UniversityInformationSystem.WebApi
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                url: "{*url}",
+                defaults: new { controller = "Help", action = "Index", id = UrlParameter.Optional }
+            ).DataTokens = new RouteValueDictionary(new { area = "HelpPage" }); ;
         }
     }
 }
