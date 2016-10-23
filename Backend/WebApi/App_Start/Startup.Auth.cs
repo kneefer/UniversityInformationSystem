@@ -4,6 +4,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
+using UniversityInformationSystem.MongoDbDAL.Configs;
 using UniversityInformationSystem.WebApi.Providers;
 
 namespace UniversityInformationSystem.WebApi

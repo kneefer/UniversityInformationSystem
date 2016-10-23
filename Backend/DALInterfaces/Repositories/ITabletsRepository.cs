@@ -1,0 +1,12 @@
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using UniversityInformationSystem.Common.Models;
+
+namespace UniversityInformationSystem.DALInterfaces.Repositories
+{
+    public interface ITabletsRepository
+    {
+        Task<List<TabletDTO>> GetAllTablets();
+        Task<List<TabletDTO>> GetTabletsOfUser(string userId);
+    }
+}

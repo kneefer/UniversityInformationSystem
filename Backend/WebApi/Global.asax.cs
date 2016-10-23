@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using UniversityInformationSystem.MongoDbDAL.Configs;
 
 namespace UniversityInformationSystem.WebApi
 {
@@ -9,6 +10,8 @@ namespace UniversityInformationSystem.WebApi
     {
         protected void Application_Start()
         {
+            MapperConfiguration.Configure();
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
