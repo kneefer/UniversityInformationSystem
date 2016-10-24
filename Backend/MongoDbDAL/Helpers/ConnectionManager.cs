@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿
+using MongoDB.Driver;
 
 namespace UniversityInformationSystem.MongoDbDAL.Helpers
 {
@@ -6,12 +7,12 @@ namespace UniversityInformationSystem.MongoDbDAL.Helpers
     {
         private static ConnectionManager _instance;
 
-        public IMongoDatabase Database { get; }
+        public MongoDatabase Database { get; }
 
         private ConnectionManager()
         {
             var client = new MongoClient();
-            Database = client.GetDatabase("UISDB");
+            Database = client.GetServer().GetDatabase("UISDB");
         }
 
         public static ConnectionManager Instance

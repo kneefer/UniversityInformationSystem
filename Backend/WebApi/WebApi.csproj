@@ -14,7 +14,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UniversityInformationSystem.WebApi</RootNamespace>
-    <AssemblyName>WebApi</AssemblyName>
+    <AssemblyName>UniversityInformationSystem.WebApi</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -233,7 +233,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ApiControllerBase.cs" />
+    <Compile Include="Controllers\ApiControllerBase.cs" />
+    <Compile Include="Helpers\AssembliesHelpers.cs" />
     <Compile Include="Infrastructure\NinjectHttpResolver.cs" />
     <Compile Include="Infrastructure\NinjectScope.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />

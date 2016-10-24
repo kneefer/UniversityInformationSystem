@@ -4,15 +4,18 @@ using UniversityInformationSystem.MongoDbDAL.Models;
 
 namespace UniversityInformationSystem.MongoDbDAL.Configs
 {
-    public static class MapperConfiguration
+    internal static class AutoMapperConfiguration
     {
-        public static void Configure()
+        internal static IMapper GetAutoMapperConfiguration()
         {
-            Mapper.Initialize(cfg => 
+            var config = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Tablet, TabletDTO>();
                 cfg.CreateMap<TabletDTO, Tablet>();
             });
+
+            var mapper = config.CreateMapper();
+            return mapper;
         }
     }
 }

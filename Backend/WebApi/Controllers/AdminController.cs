@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using UniversityInformationSystem.Common.Models;
 using UniversityInformationSystem.DALInterfaces.Repositories;
-using UniversityInformationSystem.WebApi.Helpers;
 
 namespace UniversityInformationSystem.WebApi.Controllers
 {
@@ -16,11 +15,6 @@ namespace UniversityInformationSystem.WebApi.Controllers
         public AdminController(ITabletsRepository tabletsRepository)
         {
             _tabletsRepository = tabletsRepository;
-        }
-
-        public AdminController()
-        {
-            
         }
 
         // GET api/Admin/Tablets

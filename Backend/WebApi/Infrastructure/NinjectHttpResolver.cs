@@ -8,7 +8,7 @@ namespace UniversityInformationSystem.WebApi.Infrastructure
     /// </summary>
     public class NinjectHttpResolver : NinjectScope, IDependencyResolver
     {
-        private IKernel _kernel;
+        private readonly IKernel _kernel;
 
         /// <summary>
         /// Constructor.

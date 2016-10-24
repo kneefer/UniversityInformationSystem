@@ -1,11 +1,14 @@
 using System;
+using System.Linq;
+using System.Reflection;
 using System.Web;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
-using UniversityInformationSystem.MongoDbDAL.Configs;
 using UniversityInformationSystem.WebApi;
+using UniversityInformationSystem.WebApi.Helpers;
 using UniversityInformationSystem.WebApi.Infrastructure;
+using WebGrease.Css.Extensions;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
@@ -65,7 +68,7 @@ namespace UniversityInformationSystem.WebApi
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            NinjectBindingsModule.Load(kernel);
+            kernel.Load("UniversityInformationSystem.*.dll");
         }        
     }
 }

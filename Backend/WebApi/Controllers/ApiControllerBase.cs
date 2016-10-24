@@ -3,7 +3,7 @@ using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace UniversityInformationSystem.WebApi.Helpers
+namespace UniversityInformationSystem.WebApi.Controllers
 {
     public class ApiControllerBase : ApiController
     {

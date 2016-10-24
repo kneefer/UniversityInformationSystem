@@ -15,13 +15,21 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
     [UsedImplicitly]
     internal class TabletsRepository : ITabletsRepository
     {
-        private readonly IMongoDatabase _db = ConnectionManager.Instance.Database;
+        private readonly MongoDatabase _db;
+        private readonly IMapper _mapper;
+
+        public TabletsRepository(IMapper mapper)
+        {
+            _db = ConnectionManager.Instance.Database;
+
+            _mapper = mapper;
+        }
 
         public async Task<List<TabletDTO>> GetAllTablets()
         {
             var tabletsCollection = _db.GetCollection<Tablet>("tablets");
-            var result = await tabletsCollection.Find(new BsonDocument()).ToListAsync();
-            return result.Select(Mapper.Map<TabletDTO>).ToList();
+            var result = await Task.Run(() => tabletsCollection.FindAll().ToList());
+            return result.Select(_mapper.Map<TabletDTO>).ToList();
         }
 
         public Task<List<TabletDTO>> GetTabletsOfUser(string userId)

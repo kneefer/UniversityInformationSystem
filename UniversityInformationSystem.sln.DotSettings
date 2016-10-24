@@ -2,5 +2,6 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=33CD1390_002DB361_002D4941_002DAC6E_002DDA7B3639FF34_002Fd_003Aplugins/@EntryIndexedValue">ExplicitlyExcluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=33CD1390_002DB361_002D4941_002DAC6E_002DDA7B3639FF34_002Fd_003Awww_002Fd_003Alib/@EntryIndexedValue">ExplicitlyExcluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=D6DADD1F_002D504C_002D43FE_002D8BD9_002D2BC71D3C7ACF_002Fd_003Alib/@EntryIndexedValue">ExplicitlyExcluded</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=DAL/@EntryIndexedValue">DAL</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=DB/@EntryIndexedValue">DB</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=DTO/@EntryIndexedValue">DTO</s:String></wpf:ResourceDictionary>

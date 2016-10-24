@@ -12,7 +12,6 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using MongoDB.AspNet.Identity;
-using UniversityInformationSystem.WebApi.Helpers;
 using UniversityInformationSystem.WebApi.Models;
 using UniversityInformationSystem.WebApi.Providers;
 using UniversityInformationSystem.WebApi.Results;
