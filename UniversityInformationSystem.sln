@@ -10,6 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{44F47219-7899-4A09-8C74-8B6C5485AE3C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "Backend\WebApi\WebApi.csproj", "{A80C5DD4-41AD-4485-A3F5-45ED192789AD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B137E551-B48E-4C21-B93D-1AF3741FA27E} = {B137E551-B48E-4C21-B93D-1AF3741FA27E}
+	EndProjectSection
 EndProject
 Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "MobileApp", "MobileApp\MobileApp.jsproj", "{33CD1390-B361-4941-AC6E-DA7B3639FF34}"
 EndProject
