@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helpers\IInitializeDB.cs" />
+    <Compile Include="Repositories\ITemplatesRepository.cs" />
     <Compile Include="Repositories\ITabletsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IUsersRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
