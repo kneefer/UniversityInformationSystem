@@ -16,8 +16,8 @@ namespace UniversityInformationSystem.MongoDbDAL.Configs
         {
             // Helpers
             Bind<IMapper>().ToConstant(AutoMapperConfiguration.GetAutoMapperConfiguration()).InSingletonScope();
-            Bind<IInitializeDB>().To<InitializeDB>();
             Bind<MongoDatabase>().ToConstant(ConnectionManager.Instance.Database).InSingletonScope();
+            Bind<IInitializeDB>().To<InitializeDB>();
 
             // Repositories
             Bind<ITabletsRepository>().To<TabletsRepository>();

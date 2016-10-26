@@ -26,17 +26,27 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
             throw new NotImplementedException();
         }
 
+        public Task<List<ExtendedTabletDTO>> GetTabletExtendedInfo(string tabletId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<List<TabletDTO>> GetTabletsOfUser(string userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<TabletDTO> UpdateTablet(TabletDTO updatedTablet)
+        public Task<TabletDTO> AddTablet(TabletDTO tabletToAdd)
         {
             throw new NotImplementedException();
         }
 
-        public Task DeleteTablet(TabletDTO tabletToDelete)
+        public Task<TabletDTO> UpdateTablet(string tabletId, TabletDTO updatedTablet)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteTablet(string tabletIdToDelete)
         {
             throw new NotImplementedException();
         }

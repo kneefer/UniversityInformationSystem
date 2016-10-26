@@ -1,10 +1,8 @@
-﻿using JetBrains.Annotations;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace UniversityInformationSystem.MongoDbDAL.Models
 {
-    [UsedImplicitly]
     internal class Tablet
     {
         [BsonId]

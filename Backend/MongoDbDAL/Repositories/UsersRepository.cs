@@ -31,6 +31,11 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
             throw new NotImplementedException();
         }
 
+        public Task<UserDTO> AddUser(UserDTO userToAdd)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<UserDTO> UpdateUser(UserDTO updatedUser)
         {
             throw new NotImplementedException();

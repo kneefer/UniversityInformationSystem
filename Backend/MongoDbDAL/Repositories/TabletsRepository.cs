@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 using MongoDB.Driver;
 using UniversityInformationSystem.DALInterfaces.Models;
 using UniversityInformationSystem.DALInterfaces.Repositories;
-using UniversityInformationSystem.MongoDbDAL.Helpers;
 using UniversityInformationSystem.MongoDbDAL.Models;
 
 namespace UniversityInformationSystem.MongoDbDAL.Repositories
@@ -30,17 +29,27 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
             return result.Select(_mapper.Map<TabletDTO>).ToList();
         }
 
+        public Task<List<ExtendedTabletDTO>> GetTabletExtendedInfo(string tabletId)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public Task<List<TabletDTO>> GetTabletsOfUser(string userId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<TabletDTO> UpdateTablet(TabletDTO updatedTablet)
+        public Task<TabletDTO> AddTablet(TabletDTO tabletToAdd)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task DeleteTablet(TabletDTO tabletToDelete)
+        public Task<TabletDTO> UpdateTablet(string tabletId, TabletDTO updatedTablet)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task DeleteTablet(string tabletIdToDelete)
         {
             throw new System.NotImplementedException();
         }
