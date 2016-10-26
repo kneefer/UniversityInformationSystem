@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using UniversityInformationSystem.WebApi.Models;
+using UniversityInformationSystem.DALInterfaces.Identity;
 
 namespace UniversityInformationSystem.WebApi.Providers
 {
@@ -18,7 +18,7 @@ namespace UniversityInformationSystem.WebApi.Providers
         {
             if (publicClientId == null)
             {
-                throw new ArgumentNullException("publicClientId");
+                throw new ArgumentNullException(nameof(publicClientId));
             }
 
             _publicClientId = publicClientId;

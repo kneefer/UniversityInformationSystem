@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using MongoDB.AspNet.Identity;
+using UniversityInformationSystem.DALInterfaces.Identity;
 using UniversityInformationSystem.WebApi.Models;
 using UniversityInformationSystem.WebApi.Providers;
 using UniversityInformationSystem.WebApi.Results;
@@ -23,31 +21,17 @@ namespace UniversityInformationSystem.WebApi.Controllers
     public class AccountController : ApiControllerBase
     {
         private const string LocalLoginProvider = "Local";
-        private ApplicationUserManager _userManager;
+        private readonly ApplicationUserManager _userManager;
+        private readonly IApplicationUserFactory _applicationUserFactory;
 
-        public AccountController()
-        {
-            this.UserManager = new ApplicationUserManager(
-                new UserStore<ApplicationUser>("Mongo"));
-        }
-
-        public AccountController(ApplicationUserManager userManager,
+        public AccountController(
+            ApplicationUserManager userManager,
+            IApplicationUserFactory applicationUserFactory,
             ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
-            UserManager = userManager;
+            _userManager = userManager;
+            _applicationUserFactory = applicationUserFactory;
             AccessTokenFormat = accessTokenFormat;
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
         }
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
@@ -63,7 +47,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
             {
                 Email = User.Identity.GetUserName(),
                 HasRegistered = externalLogin == null,
-                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
+                LoginProvider = externalLogin?.LoginProvider
             };
         }
 
@@ -76,44 +60,44 @@ namespace UniversityInformationSystem.WebApi.Controllers
         }
 
         // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
-        [Route("ManageInfo")]
-        public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
-        {
-            IdentityUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+        //[Route("ManageInfo")]
+        //public async Task<ManageInfoViewModel> GetManageInfo(string returnUrl, bool generateState = false)
+        //{
+        //    IIdentityUser user = await _userManager.FindByIdAsync(User.Identity.GetUserId());
 
-            if (user == null)
-            {
-                return null;
-            }
+        //    if (user == null)
+        //    {
+        //        return null;
+        //    }
 
-            List<UserLoginInfoViewModel> logins = new List<UserLoginInfoViewModel>();
+        //    List<UserLoginInfoViewModel> logins = new List<UserLoginInfoViewModel>();
 
-            foreach (UserLoginInfo linkedAccount in user.Logins)
-            {
-                logins.Add(new UserLoginInfoViewModel
-                {
-                    LoginProvider = linkedAccount.LoginProvider,
-                    ProviderKey = linkedAccount.ProviderKey
-                });
-            }
+        //    foreach (UserLoginInfo linkedAccount in user.Logins)
+        //    {
+        //        logins.Add(new UserLoginInfoViewModel
+        //        {
+        //            LoginProvider = linkedAccount.LoginProvider,
+        //            ProviderKey = linkedAccount.ProviderKey
+        //        });
+        //    }
 
-            if (user.PasswordHash != null)
-            {
-                logins.Add(new UserLoginInfoViewModel
-                {
-                    LoginProvider = LocalLoginProvider,
-                    ProviderKey = user.UserName,
-                });
-            }
+        //    if (user.PasswordHash != null)
+        //    {
+        //        logins.Add(new UserLoginInfoViewModel
+        //        {
+        //            LoginProvider = LocalLoginProvider,
+        //            ProviderKey = user.UserName,
+        //        });
+        //    }
 
-            return new ManageInfoViewModel
-            {
-                LocalLoginProvider = LocalLoginProvider,
-                Email = user.UserName,
-                Logins = logins,
-                ExternalLoginProviders = GetExternalLogins(returnUrl, generateState)
-            };
-        }
+        //    return new ManageInfoViewModel
+        //    {
+        //        LocalLoginProvider = LocalLoginProvider,
+        //        Email = user.UserName,
+        //        Logins = logins,
+        //        ExternalLoginProviders = GetExternalLogins(returnUrl, generateState)
+        //    };
+        //}
 
         // POST api/Account/ChangePassword
         [Route("ChangePassword")]
@@ -124,7 +108,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
+            IdentityResult result = await _userManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
             
             if (!result.Succeeded)
@@ -144,7 +128,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+            IdentityResult result = await _userManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
 
             if (!result.Succeeded)
             {
@@ -167,9 +151,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
 
             AuthenticationTicket ticket = AccessTokenFormat.Unprotect(model.ExternalAccessToken);
 
-            if (ticket == null || ticket.Identity == null || (ticket.Properties != null
-                && ticket.Properties.ExpiresUtc.HasValue
-                && ticket.Properties.ExpiresUtc.Value < DateTimeOffset.UtcNow))
+            if (ticket?.Identity == null || (ticket.Properties?.ExpiresUtc != null && ticket.Properties.ExpiresUtc.Value < DateTimeOffset.UtcNow))
             {
                 return BadRequest("External login failure.");
             }
@@ -181,7 +163,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
                 return BadRequest("The external login is already associated with an account.");
             }
 
-            IdentityResult result = await UserManager.AddLoginAsync(User.Identity.GetUserId(),
+            IdentityResult result = await _userManager.AddLoginAsync(User.Identity.GetUserId(),
                 new UserLoginInfo(externalData.LoginProvider, externalData.ProviderKey));
 
             if (!result.Succeeded)
@@ -205,11 +187,11 @@ namespace UniversityInformationSystem.WebApi.Controllers
 
             if (model.LoginProvider == LocalLoginProvider)
             {
-                result = await UserManager.RemovePasswordAsync(User.Identity.GetUserId());
+                result = await _userManager.RemovePasswordAsync(User.Identity.GetUserId());
             }
             else
             {
-                result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(),
+                result = await _userManager.RemoveLoginAsync(User.Identity.GetUserId(),
                     new UserLoginInfo(model.LoginProvider, model.ProviderKey));
             }
 
@@ -251,7 +233,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
                 return new ChallengeResult(provider, this);
             }
 
-            ApplicationUser user = await UserManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
+            var user = await _userManager.FindAsync(new UserLoginInfo(externalLogin.LoginProvider,
                 externalLogin.ProviderKey));
 
             bool hasRegistered = user != null;
@@ -260,9 +242,9 @@ namespace UniversityInformationSystem.WebApi.Controllers
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
                 
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(_userManager,
                     OAuthDefaults.AuthenticationType);
-                ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(_userManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
                 AuthenticationProperties properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
@@ -329,9 +311,9 @@ namespace UniversityInformationSystem.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email };
+            var user = _applicationUserFactory.GetApplicationUser(model.Email);
 
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            IdentityResult result = await _userManager.CreateAsync(user, model.Password);
 
             if (!result.Succeeded)
             {
@@ -342,48 +324,37 @@ namespace UniversityInformationSystem.WebApi.Controllers
         }
 
         // POST api/Account/RegisterExternal
-        [OverrideAuthentication]
-        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-        [Route("RegisterExternal")]
-        public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[OverrideAuthentication]
+        //[HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        //[Route("RegisterExternal")]
+        //public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            var info = await Authentication.GetExternalLoginInfoAsync();
-            if (info == null)
-            {
-                return InternalServerError();
-            }
+        //    var info = await Authentication.GetExternalLoginInfoAsync();
+        //    if (info == null)
+        //    {
+        //        return InternalServerError();
+        //    }
 
-            var user = new ApplicationUser() { UserName = model.Email };
+        //    var user = new ApplicationUser() { UserName = model.Email };
 
-            IdentityResult result = await UserManager.CreateAsync(user);
-            if (!result.Succeeded)
-            {
-                return GetErrorResult(result);
-            }
+        //    IdentityResult result = await _userManager.CreateAsync(user);
+        //    if (!result.Succeeded)
+        //    {
+        //        return GetErrorResult(result);
+        //    }
 
-            result = await UserManager.AddLoginAsync(user.Id, info.Login);
-            if (!result.Succeeded)
-            {
-                return GetErrorResult(result); 
-            }
-            return Ok();
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && _userManager != null)
-            {
-                _userManager.Dispose();
-                _userManager = null;
-            }
-
-            base.Dispose(disposing);
-        }
+        //    result = await _userManager.AddLoginAsync(user.Id, info.Login);
+        //    if (!result.Succeeded)
+        //    {
+        //        return GetErrorResult(result); 
+        //    }
+        //    return Ok();
+        //}
 
         #region Helpers
 
@@ -445,7 +416,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
 
                 if (strengthInBits % bitsPerByte != 0)
                 {
-                    throw new ArgumentException("strengthInBits must be evenly divisible by 8.", "strengthInBits");
+                    throw new ArgumentException("strengthInBits must be evenly divisible by 8.", nameof(strengthInBits));
                 }
 
                 int strengthInBytes = strengthInBits / bitsPerByte;
