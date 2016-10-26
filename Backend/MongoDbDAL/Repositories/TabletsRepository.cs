@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using JetBrains.Annotations;
 using MongoDB.Driver;
-using UniversityInformationSystem.Common.Models;
+using UniversityInformationSystem.DALInterfaces.Models;
 using UniversityInformationSystem.DALInterfaces.Repositories;
 using UniversityInformationSystem.MongoDbDAL.Helpers;
 using UniversityInformationSystem.MongoDbDAL.Models;

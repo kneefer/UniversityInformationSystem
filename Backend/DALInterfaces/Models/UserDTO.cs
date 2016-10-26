@@ -1,4 +1,4 @@
-﻿namespace UniversityInformationSystem.Common.Models
+﻿namespace UniversityInformationSystem.DALInterfaces.Models
 {
     public class UserDTO
     {

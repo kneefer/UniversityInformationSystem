@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace UniversityInformationSystem.Common.Models
+namespace UniversityInformationSystem.DALInterfaces.Models
 {
     public class ExtendedTabletDTO : TabletDTO
     {

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using UniversityInformationSystem.Common.Models;
+using UniversityInformationSystem.DALInterfaces.Models;
 using UniversityInformationSystem.MongoDbDAL.Models;
 
 namespace UniversityInformationSystem.MongoDbDAL.Configs

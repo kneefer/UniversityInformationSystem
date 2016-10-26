@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using UniversityInformationSystem.Common.Models;
+using UniversityInformationSystem.DALInterfaces.Models;
 
 namespace UniversityInformationSystem.DALInterfaces.Repositories
 {

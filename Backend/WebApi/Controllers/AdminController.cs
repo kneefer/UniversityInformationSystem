@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
-using UniversityInformationSystem.Common.Models;
+using UniversityInformationSystem.DALInterfaces.Models;
 using UniversityInformationSystem.DALInterfaces.Repositories;
 
 namespace UniversityInformationSystem.WebApi.Controllers
