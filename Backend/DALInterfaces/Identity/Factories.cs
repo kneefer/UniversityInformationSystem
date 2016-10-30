@@ -4,6 +4,6 @@ namespace UniversityInformationSystem.DALInterfaces.Identity
 {
     public interface IApplicationUserFactory
     {
-        IUser GetApplicationUser(string userName);
+        IUser CreateApplicationUser(string userName);
     }
 }

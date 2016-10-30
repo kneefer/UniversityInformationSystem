@@ -9,7 +9,8 @@ namespace UniversityInformationSystem.WebApi
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            var kernel = NinjectWebCommon.Bootstrapper.Kernel;
+            ConfigureAuth(app, kernel);
         }
     }
 }

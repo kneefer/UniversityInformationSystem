@@ -27,12 +27,10 @@ namespace UniversityInformationSystem.WebApi.Controllers
 
         public AccountController(
             UserManager<IUser> userManager,
-            IApplicationUserFactory applicationUserFactory,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+            IApplicationUserFactory applicationUserFactory)
         {
             _userManager = userManager;
             _applicationUserFactory = applicationUserFactory;
-            AccessTokenFormat = accessTokenFormat;
         }
 
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
@@ -312,7 +310,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = _applicationUserFactory.GetApplicationUser(model.Email);
+            var user = _applicationUserFactory.CreateApplicationUser(model.Email);
 
             IdentityResult result = await _userManager.CreateAsync(user, model.Password);
 

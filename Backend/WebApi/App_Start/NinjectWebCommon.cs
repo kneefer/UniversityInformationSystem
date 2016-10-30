@@ -1,12 +1,14 @@
 using System;
 using System.Web;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
 using UniversityInformationSystem.DALInterfaces.Identity;
 using UniversityInformationSystem.WebApi;
 using UniversityInformationSystem.WebApi.Infrastructure;
+using UniversityInformationSystem.WebApi.Providers;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
@@ -15,7 +17,7 @@ namespace UniversityInformationSystem.WebApi
 {
     public static class NinjectWebCommon 
     {
-        private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
+        public static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
@@ -66,6 +68,7 @@ namespace UniversityInformationSystem.WebApi
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<ApplicationOAuthProvider>().ToSelf();
             kernel.Bind<IdentityFactoryOptions<ApplicationUserManager>>()
                 .ToMethod(x => new IdentityFactoryOptions<ApplicationUserManager>()
                 {

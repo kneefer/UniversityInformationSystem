@@ -4,6 +4,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.OAuth;
+using Ninject;
+using Ninject.Parameters;
 using Owin;
 using UniversityInformationSystem.WebApi.Providers;
 
@@ -17,7 +19,7 @@ namespace UniversityInformationSystem.WebApi
 
         public static string PublicClientId { get; private set; }
 
-        private void ConfigureAuth(IAppBuilder app)
+        private void ConfigureAuth(IAppBuilder app, IKernel kernel)
         {
             DataProtectionProvider = app.GetDataProtectionProvider();
 
@@ -31,7 +33,7 @@ namespace UniversityInformationSystem.WebApi
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/Token"),
-                Provider = new ApplicationOAuthProvider(PublicClientId),
+                Provider = kernel.Get<ApplicationOAuthProvider>(new ConstructorArgument("publicClientId", PublicClientId)),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 // In production mode set AllowInsecureHttp = false
