@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using JetBrains.Annotations;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
+using Microsoft.AspNet.Identity;
+using MongoDB.AspNet.Identity;
 using MongoDB.Driver;
 using Ninject.Extensions.Factory;
 using Ninject.Modules;
@@ -20,9 +20,11 @@ namespace UniversityInformationSystem.MongoDbDAL.Configs
         public override void Load()
         {
             // Identity
-            Bind<IApplicationUser>().To<ApplicationUser>();
-            Bind<IApplicationUserManagerFactory>().ToFactory();
             Bind<IApplicationUserFactory>().ToFactory();
+
+            Bind<UserManager<IUser>>().To<ApplicationUserManager>();
+            Bind<IUser>().To<MongoApplicationUser>();
+            Bind(typeof(IUserStore<>)).To(typeof(UserStore<>)).WithConstructorArgument("Mongo");
 
             // Helpers
             Bind<IMapper>().ToConstant(AutoMapperConfiguration.GetAutoMapperConfiguration()).InSingletonScope();

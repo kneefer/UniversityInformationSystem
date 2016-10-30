@@ -7,6 +7,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using UniversityInformationSystem.DALInterfaces.Identity;
+using UniversityInformationSystem.WebApi.Helpers;
 
 namespace UniversityInformationSystem.WebApi.Providers
 {
@@ -28,7 +29,7 @@ namespace UniversityInformationSystem.WebApi.Providers
         {
             var userManager = context.OwinContext.GetUserManager<ApplicationUserManager>();
 
-            ApplicationUser user = await userManager.FindAsync(context.UserName, context.Password);
+            var user = await userManager.FindAsync(context.UserName, context.Password);
 
             if (user == null)
             {

@@ -10,6 +10,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using UniversityInformationSystem.DALInterfaces.Identity;
+using UniversityInformationSystem.WebApi.Helpers;
 using UniversityInformationSystem.WebApi.Models;
 using UniversityInformationSystem.WebApi.Providers;
 using UniversityInformationSystem.WebApi.Results;
@@ -21,11 +22,11 @@ namespace UniversityInformationSystem.WebApi.Controllers
     public class AccountController : ApiControllerBase
     {
         private const string LocalLoginProvider = "Local";
-        private readonly ApplicationUserManager _userManager;
+        private readonly UserManager<IUser> _userManager;
         private readonly IApplicationUserFactory _applicationUserFactory;
 
         public AccountController(
-            ApplicationUserManager userManager,
+            UserManager<IUser> userManager,
             IApplicationUserFactory applicationUserFactory,
             ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
         {
@@ -110,7 +111,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
 
             IdentityResult result = await _userManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -241,9 +242,9 @@ namespace UniversityInformationSystem.WebApi.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(_userManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(_userManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(_userManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -357,6 +358,8 @@ namespace UniversityInformationSystem.WebApi.Controllers
         //}
 
         #region Helpers
+
+        
 
         private class ExternalLoginData
         {

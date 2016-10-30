@@ -75,9 +75,7 @@
   <ItemGroup>
     <Compile Include="Helpers\IInitializeDB.cs" />
     <Compile Include="Identity\Factories.cs" />
-    <Compile Include="Identity\IApplicationUser.cs" />
-    <Compile Include="Identity\IApplicationUserManager.cs" />
-    <Compile Include="Identity\IIdentityUser.cs" />
+    <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Models\ContentDTO.cs" />
     <Compile Include="Models\ExtendedTabletDTO.cs" />
     <Compile Include="Models\TabletDTO.cs" />

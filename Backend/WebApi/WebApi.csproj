@@ -183,7 +183,6 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -223,6 +222,7 @@
     </Compile>
     <Compile Include="Controllers\ApiControllerBase.cs" />
     <Compile Include="Helpers\AssembliesHelpers.cs" />
+    <Compile Include="Helpers\IdentityHelpers.cs" />
     <Compile Include="Infrastructure\NinjectHttpResolver.cs" />
     <Compile Include="Infrastructure\NinjectScope.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />

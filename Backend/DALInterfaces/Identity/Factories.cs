@@ -1,15 +1,9 @@
-﻿using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin;
+﻿using Microsoft.AspNet.Identity;
 
 namespace UniversityInformationSystem.DALInterfaces.Identity
 {
-    public interface IApplicationUserManagerFactory
-    {
-        ApplicationUserManager CreateApplicationUserManager(IdentityFactoryOptions<IApplicationUserManager> options, IOwinContext context);
-    }
-
     public interface IApplicationUserFactory
     {
-        IApplicationUser GetApplicationUser(string userName);
+        IUser GetApplicationUser(string userName);
     }
 }

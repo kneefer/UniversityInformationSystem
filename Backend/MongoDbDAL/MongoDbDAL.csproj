@@ -104,9 +104,7 @@
     <Compile Include="Helpers\ConnectionManager.cs" />
     <Compile Include="Helpers\InitializeDB.cs" />
     <Compile Include="Configs\AutoMapperConfiguration.cs" />
-    <Compile Include="Identity\ApplicationUserManager.cs" />
-    <Compile Include="Identity\ApplicationUser.cs" />
-    <Compile Include="Identity\IdentityUser.cs" />
+    <Compile Include="Identity\MongoApplicationUser.cs" />
     <Compile Include="Models\Content.cs" />
     <Compile Include="Models\Tablet.cs" />
     <Compile Include="Configs\MongoDbDALNinjectModule.cs" />
@@ -132,6 +130,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
