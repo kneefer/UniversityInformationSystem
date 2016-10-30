@@ -2,7 +2,10 @@
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.OAuth;
+using Ninject;
+using Ninject.Parameters;
 using Owin;
 using UniversityInformationSystem.WebApi.Providers;
 
@@ -10,15 +13,15 @@ namespace UniversityInformationSystem.WebApi
 {
     public partial class Startup
     {
-        public static OAuthAuthorizationServerOptions OAuthOptions { get; private set; }
+        private static OAuthAuthorizationServerOptions OAuthOptions { get; set; }
+
+        public static IDataProtectionProvider DataProtectionProvider { get; private set; }
 
         public static string PublicClientId { get; private set; }
 
-        // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
-        public void ConfigureAuth(IAppBuilder app)
+        private void ConfigureAuth(IAppBuilder app, IKernel kernel)
         {
-            // Configure the db context and user manager to use a single instance per request
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+            DataProtectionProvider = app.GetDataProtectionProvider();
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
@@ -30,7 +33,7 @@ namespace UniversityInformationSystem.WebApi
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/Token"),
-                Provider = new ApplicationOAuthProvider(PublicClientId),
+                Provider = kernel.Get<ApplicationOAuthProvider>(new ConstructorArgument("publicClientId", PublicClientId)),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 // In production mode set AllowInsecureHttp = false
@@ -39,25 +42,6 @@ namespace UniversityInformationSystem.WebApi
 
             // Enable the application to use bearer tokens to authenticate users
             app.UseOAuthBearerTokens(OAuthOptions);
-
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
-
-            //app.UseTwitterAuthentication(
-            //    consumerKey: "",
-            //    consumerSecret: "");
-
-            //app.UseFacebookAuthentication(
-            //    appId: "",
-            //    appSecret: "");
-
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
         }
     }
 }
