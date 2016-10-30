@@ -1,20 +1,25 @@
-using System;
-using System.Web;
+using System.Configuration;
+using System.Web.Http;
+using System.Web.Mvc;
 using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-using Ninject;
-using Ninject.Web.Common;
+using Ninject.Web.WebApi;
 using UniversityInformationSystem.DALInterfaces.Identity;
-using UniversityInformationSystem.WebApi;
-using UniversityInformationSystem.WebApi.Infrastructure;
 using UniversityInformationSystem.WebApi.Providers;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(UniversityInformationSystem.WebApi.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(UniversityInformationSystem.WebApi.App_Start.NinjectWebCommon), "Stop")]
 
-namespace UniversityInformationSystem.WebApi
+// ReSharper disable once CheckNamespace
+namespace UniversityInformationSystem.WebApi.App_Start
 {
+    using System;
+    using System.Web;
+
+    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+
+    using Ninject;
+    using Ninject.Web.Common;
+
     public static class NinjectWebCommon 
     {
         public static readonly Bootstrapper Bootstrapper = new Bootstrapper();
@@ -50,8 +55,6 @@ namespace UniversityInformationSystem.WebApi
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
-
-                System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new NinjectHttpResolver(kernel);
 
                 return kernel;
             }
