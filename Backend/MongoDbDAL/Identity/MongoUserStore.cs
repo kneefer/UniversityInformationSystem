@@ -12,7 +12,6 @@ namespace UniversityInformationSystem.MongoDbDAL.Identity
         IUserRoleStore<IUser>, 
         IUserPasswordStore<IUser>, 
         IUserSecurityStampStore<IUser>, 
-        IUserEmailStore<IUser>,
         IUserStore<IUser>
     {
         private readonly UserStore<MongoApplicationUser> _userStore;
@@ -130,31 +129,6 @@ namespace UniversityInformationSystem.MongoDbDAL.Identity
         public Task<string> GetSecurityStampAsync(IUser user)
         {
             return _userStore.GetSecurityStampAsync((MongoApplicationUser) user);
-        }
-
-        public Task SetEmailAsync(IUser user, string email)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<string> GetEmailAsync(IUser user)
-        {
-            return _userStore.FindByNameAsync(user.UserName).ContinueWith(x => x.Result?.UserName);
-        }
-
-        public Task<bool> GetEmailConfirmedAsync(IUser user)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task SetEmailConfirmedAsync(IUser user, bool confirmed)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<IUser> FindByEmailAsync(string email)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

@@ -68,12 +68,12 @@ namespace UniversityInformationSystem.WebApi
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<ApplicationOAuthProvider>().ToSelf();
+            kernel.Bind<ApplicationOAuthProvider>().ToSelf().InSingletonScope();
             kernel.Bind<IdentityFactoryOptions<ApplicationUserManager>>()
                 .ToMethod(x => new IdentityFactoryOptions<ApplicationUserManager>()
                 {
                     DataProtectionProvider = Startup.DataProtectionProvider
-                });
+                }).InRequestScope();
             kernel.Load("UniversityInformationSystem.*.dll");
         }        
     }

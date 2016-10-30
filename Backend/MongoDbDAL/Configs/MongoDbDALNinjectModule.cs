@@ -23,14 +23,14 @@ namespace UniversityInformationSystem.MongoDbDAL.Configs
             // Identity
             Bind<IApplicationUserFactory>().ToFactory();
 
-            Bind<UserManager<IUser>>().To<ApplicationUserManager>();
+            Bind<UserManager<IUser>>().To<ApplicationUserManager>().InRequestScope();
             Bind<IUser>().To<MongoApplicationUser>();
-            Bind<IUserStore<IUser>>().To<MongoUserStoreWrapper>().WithConstructorArgument("Mongo");
+            Bind<IUserStore<IUser>>().To<MongoUserStoreWrapper>().InRequestScope().WithConstructorArgument("Mongo");
 
             // Helpers
             Bind<IMapper>().ToConstant(AutoMapperConfiguration.GetAutoMapperConfiguration()).InSingletonScope();
             Bind<MongoDatabase>().ToConstant(ConnectionManager.Instance.Database).InRequestScope();
-            Bind<IInitializeDB>().To<InitializeDB>();
+            Bind<IInitializeDB>().To<InitializeDB>().InRequestScope();
 
             // Repositories
             Bind<ITabletsRepository>().To<TabletsRepository>();
