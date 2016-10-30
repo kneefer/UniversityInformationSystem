@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Microsoft.AspNet.Identity;
 using MongoDB.AspNet.Identity;
 
 namespace UniversityInformationSystem.MongoDbDAL.Identity
 {
+    [UsedImplicitly]
     internal class MongoUserStoreWrapper : 
         IUserLoginStore<IUser>, 
         IUserClaimStore<IUser>, 
@@ -48,7 +50,7 @@ namespace UniversityInformationSystem.MongoDbDAL.Identity
 
         public void Dispose()
         {
-            _userStore.Dispose();
+            
         }
 
         public Task AddLoginAsync(IUser user, UserLoginInfo login)

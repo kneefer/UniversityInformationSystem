@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace UniversityInformationSystem.WebApi.Models
 {
@@ -48,13 +46,6 @@ namespace UniversityInformationSystem.WebApi.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-    }
-
-    public class RegisterExternalBindingModel
-    {
-        [Required]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
     }
 
     public class RemoveLoginBindingModel

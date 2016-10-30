@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.OAuth;
 using Ninject;
 using Ninject.Parameters;
+using Ninject.Syntax;
 using Owin;
 using UniversityInformationSystem.WebApi.Providers;
 
@@ -19,7 +20,7 @@ namespace UniversityInformationSystem.WebApi
 
         public static string PublicClientId { get; private set; }
 
-        private void ConfigureAuth(IAppBuilder app, IKernel kernel)
+        private static void ConfigureAuth(IAppBuilder app, IResolutionRoot kernel)
         {
             DataProtectionProvider = app.GetDataProtectionProvider();
 

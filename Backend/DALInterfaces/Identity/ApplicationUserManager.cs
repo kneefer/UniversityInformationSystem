@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using JetBrains.Annotations;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 
 namespace UniversityInformationSystem.DALInterfaces.Identity
 {
+    [UsedImplicitly]
     public class ApplicationUserManager : UserManager<IUser>
     {
         public ApplicationUserManager(

@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using JetBrains.Annotations;
 using Microsoft.AspNet.Identity;
-using MongoDB.AspNet.Identity;
 using MongoDB.Driver;
 using Ninject.Extensions.Factory;
 using Ninject.Modules;
