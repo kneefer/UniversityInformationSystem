@@ -15,8 +15,8 @@ import { LoginService } from './login.service'
         SharedModule,
         RouterModule.forChild([
             { path: 'login', component: LoginComponent },
-            { path: '', redirectTo: '/login', pathMatch: 'full' },
-            { path: '**', redirectTo: '/login', pathMatch: 'full' }
+            { path: '', redirectTo: 'login' },
+            { path: '**', redirectTo: 'login' }
         ])
     ],
     providers: [

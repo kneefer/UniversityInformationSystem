@@ -1,8 +1,8 @@
 {
-  "name": "myproject",
-  "repository": "https://github.com/Drag13/Angular2WebTemplate1",
+  "name": "universityinformationsystem.web",
+  "repository": "https://github.com/kneefer/UniversityInformationSystem",
   "license": "MIT",
-	"version": "1.4.2",
+  "version": "1.4.2",
 
   "devDependencies": {
     "typescript": "2.0.6",
