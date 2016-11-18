@@ -1,9 +1,9 @@
 ﻿import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { SharedModule } from '../shared/shared.module'
+import { SharedModule } from '../shared/shared.module';
 
-import { PanelUserTabletsComponent } from './tablets/tablets.component'
+import { PanelUserTabletsComponent } from './tablets/tablets.component';
 
 import { PanelUserService } from './paneluser.service';
 
