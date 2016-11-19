@@ -17,9 +17,9 @@ import { PanelUserModule } from './paneluser/paneluser.module';
         PanelUserModule,
 
         RouterModule.forRoot([
-            { path: 'login', loadChildren: '.app/login/login.module' },
-            { path: '', redirectTo: '/login', pathMatch: 'full' },
-            { path: '**', redirectTo: '/login', pathMatch: 'full' }
+            { path: 'login', loadChildren: './app/login/login.module#LoginModule' },
+            { path: '', redirectTo: 'login', pathMatch: 'full' },
+            { path: '**', redirectTo: 'login', pathMatch: 'full' }
         ]),
         
     ],
