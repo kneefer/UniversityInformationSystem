@@ -2,16 +2,17 @@
   "compilerOptions": {
     "target": "es5",
     "module": "system",
-	"moduleResolution": "node",
-	"sourceMap": true,
-	"noEmitOnError": false,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "noEmitOnError": false,
     "emitDecoratorMetadata": true,
-	"experimentalDecorators": true,
+    "experimentalDecorators": true,
     "removeComments": false,
     "noImplicitAny": true,
-	"suppressImplicitAnyIndexErrors": true
+    "suppressImplicitAnyIndexErrors": true
   },
   "exclude": [
-	"node_modules"
- ]
+    "node_modules"
+  ],
+  "compileOnSave": true
 }

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Content Include="app\app.component.css" />
     <Content Include="app\app.component.html" />
+    <Content Include="app\login\login.css" />
     <Content Include="app\login\login.html" />
     <Content Include="app\paneladmin\tablets\tablets.component.html" />
     <Content Include="app\paneladmin\users\users.component.html" />
