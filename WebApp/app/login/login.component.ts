@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { IEntity } from '../shared/models/entity';
 import { LoginService, User } from './login.service';
@@ -14,17 +15,22 @@ export class LoginComponent implements OnInit {
     public user = new User('', '');
     public errorMsg = '';
 
-    constructor(private _loginService: LoginService) {
+    constructor(
+        private loginService: LoginService,
+        private router: Router) { }
+
+    public ngOnInit(): void {
 
     }
 
-    ngOnInit(): void {
-
-    }
-
-    login() {
-        if (!this._loginService.login(this.user)) {
-            this.errorMsg = 'Failed to login';
-        }
+    public login() {
+        this.loginService.login(this.user)
+            .subscribe(token => {
+                localStorage.setItem('id_token', token.accessToken);
+                this.router.navigate(['paneladmin']);
+            }, error => {
+                this.errorMsg = error.text();
+                console.log(error.text());
+            });
     }
 }

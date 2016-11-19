@@ -63,7 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\app.component.ts" />
+    <TypeScriptCompile Include="app\app.config.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
+    <TypeScriptCompile Include="app\common\auth.ts" />
     <TypeScriptCompile Include="app\login\login.module.ts" />
     <TypeScriptCompile Include="app\login\login.service.ts" />
     <TypeScriptCompile Include="app\login\login.component.ts" />
@@ -72,6 +74,7 @@
     <TypeScriptCompile Include="app\paneladmin\users\users.component.ts" />
     <TypeScriptCompile Include="app\paneluser\paneluser.service.ts" />
     <TypeScriptCompile Include="app\paneluser\tablets\tablets.component.ts" />
+    <TypeScriptCompile Include="app\common\headers.ts" />
     <TypeScriptCompile Include="app\shared\models\entity.ts" />
     <TypeScriptCompile Include="app\paneladmin\paneladmin.service.ts" />
     <TypeScriptCompile Include="app\paneladmin\paneladmin.module.ts" />

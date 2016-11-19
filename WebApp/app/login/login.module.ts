@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 
 import { LoginComponent } from './login.component';
-
 import { LoginService } from './login.service';
 
 @NgModule({

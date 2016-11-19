@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { PanelAdminModule } from './paneladmin/paneladmin.module';
 import { PanelUserModule } from './paneluser/paneluser.module';
+import { APP_CONFIG, AppConfig } from './app.config'
 
 @NgModule({
     imports: [
@@ -20,11 +21,14 @@ import { PanelUserModule } from './paneluser/paneluser.module';
             { path: 'login', loadChildren: './app/login/login.module#LoginModule' },
             { path: '', redirectTo: 'login', pathMatch: 'full' },
             { path: '**', redirectTo: 'login', pathMatch: 'full' }
-        ]),
+        ])
         
     ],
     declarations: [
         AppComponent
+    ],
+    providers: [
+        { provide: APP_CONFIG, useValue: AppConfig }
     ],
     bootstrap: [AppComponent]
 })

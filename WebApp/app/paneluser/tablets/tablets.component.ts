@@ -8,7 +8,7 @@ import { PanelUserService } from '../paneluser.service';
 })
 export class PanelUserTabletsComponent implements OnInit {
 
-    constructor(private _panelUser: PanelUserService) {
+    constructor(private panelUser: PanelUserService) {
 
     }
 
