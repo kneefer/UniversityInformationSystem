@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { PanelAdminModule } from './paneladmin/paneladmin.module';
 import { PanelUserModule } from './paneluser/paneluser.module';
 import { CoreModule } from './core/core.module';
-import { APP_CONFIG, AppConfig } from './app.config'
+import { APP_CONFIG, AppConfig } from './app.config';
 
 @NgModule({
     imports: [

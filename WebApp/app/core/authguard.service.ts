@@ -12,7 +12,8 @@ export class AuthGuard implements CanActivate {
 			return true;
 		}
 
+		console.log('Lack of access token. Redirecting to login page.');
         this.router.navigate(['login']);
         return false;
-    }
+	}
 }

@@ -16,11 +16,13 @@ import { PanelAdminService } from './paneladmin.service';
 	imports: [
 		SharedModule,
 		RouterModule.forChild([{
-			path: '',
-			canActivateChild: [AuthGuard],
+			path: 'paneladmin',
+			canActivate: [ AuthGuard ],
 			children: [
-				{ path: 'paneladmin/users', component: PanelAdminUsersComponent },
-				{ path: 'paneladmin', redirectTo: 'paneladmin/users' },
+				{ path: 'tablets', component: PanelAdminTabletsComponent },
+				{ path: 'users', component: PanelAdminUsersComponent },
+				{ path: '', redirectTo: 'users' },
+				{ path: '**', redirectTo: 'users' }
 			]
 		}])
     ],

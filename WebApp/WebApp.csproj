@@ -35,8 +35,9 @@
   <ItemGroup>
     <Content Include="app\app.component.css" />
     <Content Include="app\app.component.html" />
-    <Content Include="app\login\login.css" />
-    <Content Include="app\login\login.html" />
+    <Content Include="app\login\login\login.css" />
+    <Content Include="app\login\login\login.html" />
+    <Content Include="app\login\logout\logout.html" />
     <Content Include="app\paneladmin\tablets\tablets.component.html" />
     <Content Include="app\paneladmin\users\users.component.html" />
     <Content Include="app\paneluser\tablets\tablets.component.html" />
@@ -68,7 +69,8 @@
     <TypeScriptCompile Include="app\core\authguard.service.ts" />
     <TypeScriptCompile Include="app\login\login.module.ts" />
     <TypeScriptCompile Include="app\login\login.service.ts" />
-    <TypeScriptCompile Include="app\login\login.component.ts" />
+    <TypeScriptCompile Include="app\login\login\login.component.ts" />
+    <TypeScriptCompile Include="app\login\logout\logout.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\paneladmin\tablets\tablets.component.ts" />
     <TypeScriptCompile Include="app\paneladmin\users\users.component.ts" />

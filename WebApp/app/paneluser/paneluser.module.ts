@@ -12,10 +12,14 @@ import { PanelUserService } from './paneluser.service';
     ],
     imports: [
 		SharedModule,
-		RouterModule.forChild([
-			{ path: 'paneluser/tablets', component: PanelUserTabletsComponent },
-            { path: 'paneluser', redirectTo: 'paneluser/tablets' }
-        ])
+		RouterModule.forChild([{
+			path: 'paneluser',
+			children: [
+				{ path: 'tablets', component: PanelUserTabletsComponent },
+				{ path: '', redirectTo: 'tablets' },
+				{ path: '**', redirectTo: 'tablets' }
+			]
+		}])
     ],
     providers: [
 		PanelUserService
