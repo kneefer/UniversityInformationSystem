@@ -6,7 +6,6 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
-import { IEntity } from '../shared/models/entity';
 import { APP_CONFIG, IAppConfig } from '../app.config'
 
 export class User {
@@ -38,7 +37,6 @@ export class LoginService {
     }
 
     public logout() {
-
     }
 
     private handleError(error: Response) {

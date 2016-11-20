@@ -40,7 +40,6 @@
     <Content Include="app\paneladmin\tablets\tablets.component.html" />
     <Content Include="app\paneladmin\users\users.component.html" />
     <Content Include="app\paneluser\tablets\tablets.component.html" />
-    <Content Include="app\shared\my\my.component.html" />
     <Content Include="index.html" />
     <Content Include="package.json" />
     <Content Include="tsconfig.json" />
@@ -53,7 +52,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="gulpfile.js" />
     <Content Include="styles.css" />
     <Content Include="systemjs.config.js" />
     <Content Include="Web.config" />
@@ -65,7 +63,9 @@
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.config.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
-    <TypeScriptCompile Include="app\common\auth.ts" />
+    <TypeScriptCompile Include="app\common\headers.ts" />
+    <TypeScriptCompile Include="app\core\core.module.ts" />
+    <TypeScriptCompile Include="app\core\authguard.service.ts" />
     <TypeScriptCompile Include="app\login\login.module.ts" />
     <TypeScriptCompile Include="app\login\login.service.ts" />
     <TypeScriptCompile Include="app\login\login.component.ts" />
@@ -74,12 +74,9 @@
     <TypeScriptCompile Include="app\paneladmin\users\users.component.ts" />
     <TypeScriptCompile Include="app\paneluser\paneluser.service.ts" />
     <TypeScriptCompile Include="app\paneluser\tablets\tablets.component.ts" />
-    <TypeScriptCompile Include="app\common\headers.ts" />
-    <TypeScriptCompile Include="app\shared\models\entity.ts" />
     <TypeScriptCompile Include="app\paneladmin\paneladmin.service.ts" />
     <TypeScriptCompile Include="app\paneladmin\paneladmin.module.ts" />
     <TypeScriptCompile Include="app\paneluser\paneluser.module.ts" />
-    <TypeScriptCompile Include="app\shared\my\my.component.ts" />
     <TypeScriptCompile Include="app\shared\shared.module.ts" />
   </ItemGroup>
   <ItemGroup>

@@ -1,12 +1,10 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { IEntity } from '../shared/models/entity';
 import { LoginService, User } from './login.service';
 
-declare var __moduleName: any;
 @Component({
-    moduleId: __moduleName,
+	moduleId: module.id,
     templateUrl: 'login.html',
     styleUrls: ['login.css']
 })

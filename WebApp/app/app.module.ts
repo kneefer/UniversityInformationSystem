@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { PanelAdminModule } from './paneladmin/paneladmin.module';
 import { PanelUserModule } from './paneluser/paneluser.module';
+import { CoreModule } from './core/core.module';
 import { APP_CONFIG, AppConfig } from './app.config'
 
 @NgModule({
@@ -15,14 +16,14 @@ import { APP_CONFIG, AppConfig } from './app.config'
         HttpModule,
 
         PanelAdminModule,
-        PanelUserModule,
+		PanelUserModule,
+		CoreModule.forRoot(),
 
         RouterModule.forRoot([
             { path: 'login', loadChildren: './app/login/login.module#LoginModule' },
             { path: '', redirectTo: 'login', pathMatch: 'full' },
             { path: '**', redirectTo: 'login', pathMatch: 'full' }
-        ])
-        
+		])
     ],
     declarations: [
         AppComponent
@@ -32,6 +33,4 @@ import { APP_CONFIG, AppConfig } from './app.config'
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule {
-    
-}
+export class AppModule { }

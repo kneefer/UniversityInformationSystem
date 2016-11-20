@@ -1,6 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
-import { IEntity } from '../../shared/models/entity';
 import { PanelUserService } from '../paneluser.service';
 
 @Component({
