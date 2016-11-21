@@ -67,6 +67,7 @@
     <TypeScriptCompile Include="app\common\headers.ts" />
     <TypeScriptCompile Include="app\core\core.module.ts" />
     <TypeScriptCompile Include="app\core\authguard.service.ts" />
+    <TypeScriptCompile Include="app\core\pagetitle.service.ts" />
     <TypeScriptCompile Include="app\login\login.module.ts" />
     <TypeScriptCompile Include="app\login\login.service.ts" />
     <TypeScriptCompile Include="app\login\login\login.component.ts" />

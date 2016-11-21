@@ -2,13 +2,15 @@
 import { CommonModule } from '@angular/common'
 
 import { AuthGuard } from './authguard.service'
+import { PageTitleService } from './pagetitle.service'
 
 @NgModule({
 	imports: [
 		CommonModule
 	],
 	providers: [
-		AuthGuard
+        AuthGuard,
+        PageTitleService
 	]
 })
 export class CoreModule {
@@ -22,10 +24,10 @@ export class CoreModule {
 		}
 	}
 
-	static forRoot(): ModuleWithProviders {
+	public static forRoot(): ModuleWithProviders {
 		return {
 			ngModule: CoreModule,
-			providers: [ AuthGuard ]
+            providers: [ AuthGuard, PageTitleService ]
 		};
 	}
 }

@@ -13,12 +13,25 @@
             <ul class="nav navbar-nav">
                 <li><a [routerLink]="['login', 'login']">Login</a></li>
                 <li><a [routerLink]="['paneladmin']">Admin panel</a></li>
-				<li><a [routerLink]="['paneluser']">User panel</a></li>
+                <li><a [routerLink]="['paneluser']">User panel</a></li>
                 <li><a [routerLink]="['login', 'logout']">Logout</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
+
 <div class="container">
-    <router-outlet></router-outlet>
+    <h1>{{title}}</h1>
+
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+<div class="container">
+    <hr>
+
+    <footer>
+        <p>&copy; 2016 Szymon Bartnik &amp; Mateusz Małota</p>
+    </footer>
 </div>

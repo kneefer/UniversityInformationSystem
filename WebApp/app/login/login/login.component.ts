@@ -2,9 +2,10 @@
 import { Router } from '@angular/router';
 
 import { LoginService, User } from '../login.service';
+import { PageTitleService } from '../../core/pagetitle.service';
 
 @Component({
-	moduleId: module.id,
+    moduleId: module.id,
     templateUrl: 'login.html',
     styleUrls: ['login.css']
 })
@@ -15,10 +16,11 @@ export class LoginComponent implements OnInit {
 
     constructor(
         private loginService: LoginService,
+        private pageTitleService: PageTitleService,
         private router: Router) { }
 
     public ngOnInit(): void {
-
+        this.pageTitleService.name.next("Login");
     }
 
     public login() {
