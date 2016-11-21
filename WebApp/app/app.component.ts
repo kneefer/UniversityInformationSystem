@@ -10,7 +10,8 @@ import { PageTitleService } from './core/pagetitle.service';
 })
 export class AppComponent implements OnInit {
 
-    public title : string = "DEFAULT_TITLE";
+    public title : string = "";
+    public currentYear: number = 0;
 
     constructor(
         private pageTitleService: PageTitleService,
@@ -21,5 +22,7 @@ export class AppComponent implements OnInit {
             this.title = newTitle;
             this.titleService.setTitle(`University Information System - ${newTitle}`);
         });
+
+        this.currentYear = new Date().getFullYear();
     }
 }
