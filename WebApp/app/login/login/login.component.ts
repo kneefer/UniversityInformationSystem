@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
         private router: Router) { }
 
     public ngOnInit(): void {
-        this.pageTitleService.name.next("Login");
+        this.pageTitleService.name.next('Login');
     }
 
     public login() {

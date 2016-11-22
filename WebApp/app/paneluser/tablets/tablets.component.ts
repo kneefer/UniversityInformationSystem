@@ -20,6 +20,6 @@ export class PanelUserTabletsComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.pageTitleService.name.next("Panel user - tablets");
+        this.pageTitleService.name.next('Panel user - tablets');
     }
 }

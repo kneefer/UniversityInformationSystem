@@ -18,6 +18,6 @@ export class PanelAdminUsersComponent implements OnInit {
         private pageTitleService: PageTitleService) { }
 
     ngOnInit(): void {
-        this.pageTitleService.name.next("Panel Admin - Users");
+        this.pageTitleService.name.next('Panel Admin - Users');
     }
 }
