@@ -4,7 +4,8 @@
 (function (global) {
     System.config({
         paths: {
-            'npm:': 'node_modules/'
+            'npm:': 'node_modules/',
+            'm': 'app/models'
         },
 
         // map tells the System loader where to look for things

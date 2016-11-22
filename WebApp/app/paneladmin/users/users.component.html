@@ -1,10 +1,30 @@
 ﻿<div>
     <div class="panel-group">
-        <div class="col-md-6">
-            fsdf
+        <div class="panel-heading">sdf</div>
+        <div class="col-md-6 panel-body">
+            <div *ngFor="let user of users">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 form-group">
+                    <a href="#">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">{{ user.getFullName() }}</div>
+                            <div class="panel-body">
+                                
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="col-md-6">
-            dfsdf
+            <a *ngFor="let item of [0,1,2,3,4,5,6]" href="product-des.php?1">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="panel panel-warning">
+                        <div class="panel-heading">Microsoft Lumia 575</div>
+                        <div class="panel-body">
+                        </div>
+                    </div>
+                </div>
+            </a>
         </div>
     </div>
 </div>

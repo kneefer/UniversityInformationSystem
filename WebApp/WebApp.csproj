@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\assets\" />
+    <Folder Include="app\models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
