@@ -3,14 +3,19 @@ import { Title } from '@angular/platform-browser';
 
 import { PageTitleService } from './core/pagetitle.service';
 
+declare var module: {
+    id: string;
+}
+
 @Component({
+    moduleId: module.id,
     selector: 'app-component',
-    templateUrl: 'app/app.component.html',
-    styleUrls: ['app/app.component.css']
+    templateUrl: 'app.component.html',
+    styleUrls: ['app.component.css']
 })
 export class AppComponent implements OnInit {
 
-    public title : string = "";
+    public title : string = '';
     public currentYear: number = 0;
 
     constructor(

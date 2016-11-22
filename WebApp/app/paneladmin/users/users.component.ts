@@ -3,8 +3,13 @@
 import { PanelAdminService } from '../paneladmin.service';
 import { PageTitleService } from '../../core/pagetitle.service';
 
+declare var module: {
+    id: string;
+}
+
 @Component({
-    templateUrl: 'app/paneladmin/users/users.component.html'
+    moduleId: module.id,
+    templateUrl: 'users.component.html'
 })
 export class PanelAdminUsersComponent implements OnInit {
 

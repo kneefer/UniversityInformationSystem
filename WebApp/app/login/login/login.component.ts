@@ -4,6 +4,10 @@ import { Router } from '@angular/router';
 import { LoginService, User } from '../login.service';
 import { PageTitleService } from '../../core/pagetitle.service';
 
+declare var module: {
+    id: string;
+}
+
 @Component({
     moduleId: module.id,
     templateUrl: 'login.html',
