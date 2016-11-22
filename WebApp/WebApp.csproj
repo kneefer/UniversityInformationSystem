@@ -38,9 +38,9 @@
     <Content Include="app\login\login\login.css" />
     <Content Include="app\login\login\login.html" />
     <Content Include="app\login\logout\logout.html" />
-    <Content Include="app\paneladmin\tablets\tablets.component.html" />
-    <Content Include="app\paneladmin\users\users.component.html" />
-    <Content Include="app\paneluser\tablets\tablets.component.html" />
+    <Content Include="app\panel-admin\tablets\tablets.component.html" />
+    <Content Include="app\panel-admin\users\users.component.html" />
+    <Content Include="app\panel-user\tablets\tablets.component.html" />
     <Content Include="index.html" />
     <Content Include="package.json" />
     <Content Include="tsconfig.json" />
@@ -66,20 +66,20 @@
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\common\headers.ts" />
     <TypeScriptCompile Include="app\core\core.module.ts" />
-    <TypeScriptCompile Include="app\core\authguard.service.ts" />
-    <TypeScriptCompile Include="app\core\pagetitle.service.ts" />
+    <TypeScriptCompile Include="app\core\auth-guard.service.ts" />
+    <TypeScriptCompile Include="app\core\page-title.service.ts" />
     <TypeScriptCompile Include="app\login\login.module.ts" />
     <TypeScriptCompile Include="app\login\login.service.ts" />
     <TypeScriptCompile Include="app\login\login\login.component.ts" />
     <TypeScriptCompile Include="app\login\logout\logout.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
-    <TypeScriptCompile Include="app\paneladmin\tablets\tablets.component.ts" />
-    <TypeScriptCompile Include="app\paneladmin\users\users.component.ts" />
-    <TypeScriptCompile Include="app\paneluser\paneluser.service.ts" />
-    <TypeScriptCompile Include="app\paneluser\tablets\tablets.component.ts" />
-    <TypeScriptCompile Include="app\paneladmin\paneladmin.service.ts" />
-    <TypeScriptCompile Include="app\paneladmin\paneladmin.module.ts" />
-    <TypeScriptCompile Include="app\paneluser\paneluser.module.ts" />
+    <TypeScriptCompile Include="app\panel-admin\tablets\tablets.component.ts" />
+    <TypeScriptCompile Include="app\panel-admin\users\users.component.ts" />
+    <TypeScriptCompile Include="app\panel-user\panel-user.service.ts" />
+    <TypeScriptCompile Include="app\panel-user\tablets\tablets.component.ts" />
+    <TypeScriptCompile Include="app\panel-admin\panel-admin.service.ts" />
+    <TypeScriptCompile Include="app\panel-admin\panel-admin.module.ts" />
+    <TypeScriptCompile Include="app\panel-user\panel-user.module.ts" />
     <TypeScriptCompile Include="app\shared\shared.module.ts" />
   </ItemGroup>
   <ItemGroup>

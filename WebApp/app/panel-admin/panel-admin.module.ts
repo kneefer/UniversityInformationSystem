@@ -2,11 +2,11 @@
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
-import { AuthGuard } from '../core/authguard.service'
+import { AuthGuard } from '../core/auth-guard.service'
 
 import { PanelAdminTabletsComponent } from './tablets/tablets.component';
 import { PanelAdminUsersComponent } from './users/users.component';
-import { PanelAdminService } from './paneladmin.service';
+import { PanelAdminService } from './panel-admin.service';
 
 @NgModule({
     declarations: [

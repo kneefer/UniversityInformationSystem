@@ -2,7 +2,7 @@
 import { Router } from '@angular/router';
 
 import { LoginService, User } from '../login.service';
-import { PageTitleService } from '../../core/pagetitle.service';
+import { PageTitleService } from '../../core/page-title.service';
 
 declare var module: {
     id: string;

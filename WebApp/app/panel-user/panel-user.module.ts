@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module/';
 
 import { PanelUserTabletsComponent } from './tablets/tablets.component';
-import { PanelUserService } from './paneluser.service';
+import { PanelUserService } from './panel-user.service';
 
 @NgModule({
     declarations: [

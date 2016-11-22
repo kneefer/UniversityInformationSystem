@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
-import { PageTitleService } from './core/pagetitle.service';
+import { PageTitleService } from './core/page-title.service';
 
 declare var module: {
     id: string;

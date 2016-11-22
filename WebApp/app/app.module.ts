@@ -5,8 +5,8 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
-import { PanelAdminModule } from './paneladmin/paneladmin.module';
-import { PanelUserModule } from './paneluser/paneluser.module';
+import { PanelAdminModule } from './panel-admin/panel-admin.module';
+import { PanelUserModule } from './panel-user/panel-user.module';
 import { CoreModule } from './core/core.module';
 import { APP_CONFIG, AppConfig } from './app.config';
 

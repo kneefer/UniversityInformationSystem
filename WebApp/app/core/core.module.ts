@@ -1,8 +1,8 @@
 ﻿import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
-import { AuthGuard } from './authguard.service'
-import { PageTitleService } from './pagetitle.service'
+import { AuthGuard } from './auth-guard.service'
+import { PageTitleService } from './page-title.service'
 
 @NgModule({
 	imports: [

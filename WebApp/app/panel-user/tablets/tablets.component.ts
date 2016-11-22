@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 
-import { PanelUserService } from '../paneluser.service';
-import { PageTitleService } from '../../core/pagetitle.service';
+import { PanelUserService } from '../panel-user.service';
+import { PageTitleService } from '../../core/page-title.service';
 
 declare var module: {
     id: string;
