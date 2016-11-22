@@ -1,3 +1,7 @@
 ﻿tbody tr:first-child td {
     border-top: none;
 }
+
+.user-tile > a {
+    text-decoration: none;
+}

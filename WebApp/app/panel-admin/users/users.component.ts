@@ -28,7 +28,7 @@ export class PanelAdminUsersComponent implements OnInit {
         this.users.push(new User('Adam', 'Kowalski', 'adakow123', 'akow@fdsf.com', 'nothing'));
         this.users.push(new User('Tomasz', 'Nowak', 'tomnow354', 'sdffd@fdsf.com', ''));
         this.users.push(new User('Jarosław', 'Paduch', 'jaropad3434', 'df3@fd.com', ''));
-        this.users.push(new User('Agnieszka', 'Debudaj', 'agadebu34', 'df@.df.com', 'description'));
+        this.users.push(new User('Agnieszka', 'Debudaj', 'agadebu34', 'df@df.com', 'description'));
         this.users.push(new User('Wojciech', 'Jeziorski', 'wojcjez3434', 'sdfdf@com.com', ''));
     }
 }
