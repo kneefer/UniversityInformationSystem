@@ -1,8 +1,8 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
-declare var module: {
-    id: string;
-}
+import { User } from '../../models/user.model';
+
+declare var module: { id: string; }
 
 @Component({
     moduleId: module.id,
@@ -12,5 +12,11 @@ declare var module: {
 })
 export class UserTileComponent {
 
+    @Input() public user: User;
 
+    @Output() public userClicked = new EventEmitter<User>();
+
+    onClick(): void {
+        this.userClicked.emit(this.user);
+    }
 }

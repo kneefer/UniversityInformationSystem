@@ -3,9 +3,7 @@
 import { PanelUserService } from '../panel-user.service';
 import { PageTitleService } from '../../core/page-title.service';
 
-declare var module: {
-    id: string;
-}
+declare var module: { id: string; }
 
 @Component({
     moduleId: module.id,

@@ -11,7 +11,7 @@ import { PanelAdminService } from './panel-admin.service';
 @NgModule({
     declarations: [
         PanelAdminTabletsComponent,
-        PanelAdminUsersComponent,
+        PanelAdminUsersComponent
     ],
 	imports: [
 		SharedModule,

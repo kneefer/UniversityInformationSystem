@@ -1,9 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
-declare var module: {
-    id: string;
-}
+declare var module: { id: string; }
 
 @Component({
 	moduleId: module.id,

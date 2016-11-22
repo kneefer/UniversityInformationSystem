@@ -3,9 +3,7 @@ import { Title } from '@angular/platform-browser';
 
 import { PageTitleService } from './core/page-title.service';
 
-declare var module: {
-    id: string;
-}
+declare var module: { id: string; }
 
 @Component({
     moduleId: module.id,
@@ -22,7 +20,7 @@ export class AppComponent implements OnInit {
         private pageTitleService: PageTitleService,
         private titleService: Title) { }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.pageTitleService.name.subscribe(newTitle => {
             this.title = newTitle;
             this.titleService.setTitle(`University Information System - ${newTitle}`);

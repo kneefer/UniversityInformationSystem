@@ -75,6 +75,7 @@
     <TypeScriptCompile Include="app\login\login\login.component.ts" />
     <TypeScriptCompile Include="app\login\logout\logout.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\models\user.model.ts" />
     <TypeScriptCompile Include="app\panel-admin\tablets\tablets.component.ts" />
     <TypeScriptCompile Include="app\panel-admin\users\users.component.ts" />
     <TypeScriptCompile Include="app\panel-user\panel-user.service.ts" />
@@ -87,7 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\assets\" />
-    <Folder Include="app\models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
