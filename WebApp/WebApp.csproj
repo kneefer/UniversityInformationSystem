@@ -33,14 +33,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="app\app.component.css" />
-    <Content Include="app\app.component.html" />
+    <Content Include="app\app.css" />
+    <Content Include="app\app.html" />
     <Content Include="app\login\login\login.css" />
     <Content Include="app\login\login\login.html" />
     <Content Include="app\login\logout\logout.html" />
-    <Content Include="app\panel-admin\tablets\tablets.component.html" />
-    <Content Include="app\panel-admin\users\users.component.html" />
-    <Content Include="app\panel-user\tablets\tablets.component.html" />
+    <Content Include="app\panel-admin\tablets\tablets.html" />
+    <Content Include="app\panel-admin\users\users.html" />
+    <Content Include="app\panel-user\tablets\tablets.html" />
+    <Content Include="app\shared\user-tile\user-tile.css" />
+    <Content Include="app\shared\user-tile\user-tile.html" />
     <Content Include="index.html" />
     <Content Include="package.json" />
     <Content Include="tsconfig.json" />
@@ -81,6 +83,7 @@
     <TypeScriptCompile Include="app\panel-admin\panel-admin.module.ts" />
     <TypeScriptCompile Include="app\panel-user\panel-user.module.ts" />
     <TypeScriptCompile Include="app\shared\shared.module.ts" />
+    <TypeScriptCompile Include="app\shared\user-tile\user-tile.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\assets\" />

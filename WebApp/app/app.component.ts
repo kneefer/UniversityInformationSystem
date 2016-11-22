@@ -10,8 +10,8 @@ declare var module: {
 @Component({
     moduleId: module.id,
     selector: 'app-component',
-    templateUrl: 'app.component.html',
-    styleUrls: ['app.component.css']
+    templateUrl: 'app.html',
+    styleUrls: ['app.css']
 })
 export class AppComponent implements OnInit {
 

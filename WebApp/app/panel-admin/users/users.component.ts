@@ -20,7 +20,7 @@ export class User {
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'users.component.html'
+    templateUrl: 'users.html'
 })
 export class PanelAdminUsersComponent implements OnInit {
 

@@ -9,7 +9,7 @@ declare var module: {
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'tablets.component.html'
+    templateUrl: 'tablets.html'
 })
 export class PanelAdminTabletsComponent implements OnInit {
 
