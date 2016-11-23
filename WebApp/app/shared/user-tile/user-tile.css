@@ -20,3 +20,7 @@
 .user-tile > a {
     text-decoration: none;
 }
+
+.form-horizontal .control-label {
+    text-align: left;
+}
