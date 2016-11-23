@@ -16,7 +16,8 @@ export class UserTileComponent {
 
     @Output() public userClicked = new EventEmitter<User>();
 
-    onClick(): void {
+    private onClick(event: Event): void {
+        event.preventDefault();
         this.userClicked.emit(this.user);
     }
 }

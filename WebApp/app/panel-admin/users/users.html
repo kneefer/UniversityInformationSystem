@@ -1,16 +1,21 @@
 ﻿<div>
-    <div class="panel-group">
-        <div class="col-md-6">
-            <user-tile *ngFor="let user of users"
-                       [user]="user"
-                       (userClicked)="onUserClicked($event)">
-            </user-tile>
+    <!-- Panel admin - users -->
+    <div class="col-md-6">
+        <user-tile *ngFor="let user of users"
+                   [user]="user"
+                   (userClicked)="onUserClicked($event)">
+        </user-tile>
+    </div>
+    
+    <!-- Panel admin - tablets -->
+    <div class="col-md-6" [hidden]="!selectedUser">
+        <div id="headingTablets">
+            <p>Tablets of selected user</p>
+            <h2>{{ selectedUser ? selectedUser.getFullName() : '' }}</h2>
         </div>
-        <div class="col-md-6">
-            <user-tile *ngFor="let user of users"
-                       [user]="user"
-                       (userClicked)="onUserClicked($event)">
-            </user-tile>
-        </div>
+        <user-tile *ngFor="let user of users"
+                   [user]="user"
+                   (userClicked)="onUserClicked($event)">
+        </user-tile>
     </div>
 </div>

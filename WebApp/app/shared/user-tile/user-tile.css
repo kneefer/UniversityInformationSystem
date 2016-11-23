@@ -2,6 +2,17 @@
     border-top: none;
 }
 
+.user-tile:hover * {
+    background: #337ab7;
+    color: white;
+}
+
+.user-tile:hover .panel-heading {
+    background: white;
+    color: #337ab7;
+    font-weight: bolder;
+}
+
 .user-tile > a {
     text-decoration: none;
 }

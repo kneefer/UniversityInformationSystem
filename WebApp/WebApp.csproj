@@ -39,6 +39,7 @@
     <Content Include="app\login\login\login.html" />
     <Content Include="app\login\logout\logout.html" />
     <Content Include="app\panel-admin\tablets\tablets.html" />
+    <Content Include="app\panel-admin\users\users.css" />
     <Content Include="app\panel-admin\users\users.html" />
     <Content Include="app\panel-user\tablets\tablets.html" />
     <Content Include="app\shared\user-tile\user-tile.css" />
