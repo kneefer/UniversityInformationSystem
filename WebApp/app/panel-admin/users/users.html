@@ -50,7 +50,7 @@
         <masonry [options]="masonryOptions">
             
             <!-- Bind tablet with current user -->
-            <masonry-brick class="col-xs-12 col-sm-12 col-md-6 col-lg-6 stamp">
+            <masonry-brick class="col-xs-12 col-sm-12 col-md-12 col-lg-6 stamp">
                 <user-tablet-bind *ngIf="isBindMode"
                                   [user]="user"
                                   [tablets]="allTablets"
@@ -64,7 +64,7 @@
 
             <!-- List of tablets of user -->
             <masonry-brick *ngFor="let tablet of tablets"
-                           class="col-xs-12 col-sm-12 col-md-6 col-lg-6 masonry-brick">
+                           class="col-xs-12 col-sm-6 col-md-6 col-lg-6 masonry-brick">
                 <tablet-tile [tablet]="tablet"
                              (tabletClicked)="onTabletClicked($event)">
                 </tablet-tile>
