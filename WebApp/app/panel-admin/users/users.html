@@ -1,52 +1,83 @@
-﻿<div>
-    <!-- Panel admin - users -->
-    <div class="col-sm-6 col-md-8">
-        <masonry>
-            <masonry-brick *ngFor="let user of users"
-                           class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-                <user-tile [user]="user"
-                           (userClicked)="onUserClicked($event)">
-                </user-tile>
-            </masonry-brick>
-        </masonry>
-    </div> <!-- / Panel admin - users -->
+﻿<!-- Users part -->
+<div class="col-sm-6 col-md-8">
+    <masonry [options]="masonryOptions">
+        
+        <!-- Add new user -->
+        <masonry-brick class="col-xs-12 col-sm-12 col-md-6 col-lg-4 stamp">
+            <user-add-edit *ngIf="isAddMode"
+                           (saveClicked)="onUserAdd($event)"
+                           (cancelClicked)="toggleAddMode($event)">
+            </user-add-edit>
+            <plus-button *ngIf="!isAddMode" 
+                         (click)="toggleAddMode($event)">
+            </plus-button>
+        </masonry-brick> <!-- / Add new user -->
+
+        <!-- List of all users -->
+        <masonry-brick *ngFor="let user of users"
+                       class="col-xs-12 col-sm-12 col-md-6 col-lg-4 masonry-brick">
+            <user-tile [user]="user"
+                       (userClicked)="onUserClicked($event)">
+            </user-tile>
+        </masonry-brick> <!-- / List of all users -->
+    </masonry>
+</div> <!-- / Users part -->
     
-    <!-- Panel admin - tablets -->
-    <div class="col-sm-6 col-md-4" *ngIf="selectedUser">
+<!-- Tablets of user part -->
+<div class="col-sm-6 col-md-4" *ngIf="selectedUser">
         
-        <!-- Read only mode -->
-        <div>
-            <div class="heading-no-margin">
-                <h2>{{ selectedUser.getFullName() }}</h2>
-                <h4>{{ selectedUser.description }}</h4>
+    <!-- Read only mode -->
+    <div *ngIf="!isEditMode">
+        <div class="heading-no-margin">
+            <h2>{{ selectedUser.getFullName() }}</h2>
+            <h4>{{ selectedUser.description }}</h4>
 
-                <p class="btn-toolbar text-center">
-                    <button class="btn btn-primary btn-primary">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                        Edit user
-                    </button>
-                    <button class="btn btn-primary btn-primary">
-                        <span class="glyphicon glyphicon-remove-circle"></span>
-                        Delete user
-                    </button>
-                </p>
-            </div>
+            <p class="btn-toolbar text-center">
+                <button class="btn btn-primary btn-warning"
+                        (click)="toggleEditMode($event)">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    Edit user
+                </button>
+                <button class="btn btn-primary btn-danger"
+                        (click)="onSelectedUserDelete($event)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Delete user
+                </button>
+            </p>
+        </div>
         
-            <h3 class="heading-no-margin">Tablets of user</h3>
-            <masonry>
-                <masonry-brick *ngFor="let tablet of tablets" 
-                               class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <tablet-tile [tablet]="tablet"
-                                 (tabletClicked)="onTabletClicked($event)">
-                    </tablet-tile>
-                </masonry-brick>
-            </masonry>
+        <h3 class="heading-no-margin">Tablets of user</h3>
+        <masonry [options]="masonryOptions">
             
-        </div> <!-- / Read only mode -->
+            <!-- Bind tablet with current user -->
+            <masonry-brick class="col-xs-12 col-sm-12 col-md-6 col-lg-6 stamp">
+                <user-tablet-bind *ngIf="isBindMode"
+                                  [user]="user"
+                                  [tablets]="allTablets"
+                                  (addClicked)="onBindUserWithTablet($event)"
+                                  (cancelClicked)="toggleBindMode($event)">
+                </user-tablet-bind>
+                <plus-button *ngIf="!isBindMode"
+                             (click)="toggleBindMode($event)">
+                </plus-button>
+            </masonry-brick> <!-- / Bind tablet with current user -->
 
-        <!-- Edit mode -->
-        <div>
+            <!-- List of tablets of user -->
+            <masonry-brick *ngFor="let tablet of tablets"
+                           class="col-xs-12 col-sm-12 col-md-6 col-lg-6 masonry-brick">
+                <tablet-tile [tablet]="tablet"
+                             (tabletClicked)="onTabletClicked($event)">
+                </tablet-tile>
+            </masonry-brick> <!-- / List of tablets of user -->
+        </masonry>
             
-        </div> <!-- / Edit mode -->
-    </div> <!-- / Panel admin - tablets -->
-</div>
+    </div> <!-- / Read only mode -->
+
+    <!-- Edit mode -->
+    <div *ngIf="isEditMode">
+        <user-add-edit [user]="selectedUser"
+                    (saveClicked)="onUserSave($event)"
+                    (cancelClicked)="toggleEditMode($event)">
+        </user-add-edit>
+    </div> <!-- / Edit mode -->
+</div> <!-- / Tablets of user part -->

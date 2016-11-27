@@ -15,26 +15,68 @@ declare var module: { id: string; }
 })
 export class PanelAdminUsersComponent implements OnInit {
 
+    public masonryOptions = {
+        itemSelector: '.masonry-brick',
+        stamp: '.stamp'
+    }
+
     public users = new Array<UserViewModel>();
     public selectedUser: UserViewModel;
+
     public isEditMode = false;
+    public isAddMode = false;
+    public isBindMode = false;
 
     public tablets = new Array<TabletViewModel>();
+    public allTablets = this.tablets;
 
     constructor(
         private panelAdminService: PanelAdminService,
         private pageTitleService: PageTitleService,
         private router: Router) { }
 
+    private toggleAddMode(event?: Event) {
+        if (event) {
+            event.preventDefault();
+        }
+        this.isAddMode = !this.isAddMode;
+    }
+
+    private toggleEditMode() {
+        this.isEditMode = !this.isEditMode;
+    }
+
+    private toggleBindMode() {
+        this.isBindMode = !this.isBindMode;
+    }
+
     private onUserClicked(user: UserViewModel) {
-        console.log(`Selected user: ${user.getFullName()}`);
         this.selectedUser = user;
-        //this.router.navigate(['paneladmin', 'users', user.id]);
+        this.isEditMode = false;
     }
 
     private onTabletClicked(tablet: TabletViewModel) {
-        console.log(`Selected tablet: ${tablet.getFullName()}`);
-        //this.router.navigate(['paneladmin', 'tablets', tablet.id]);
+
+    }
+
+    private onUserAdd(user: UserViewModel) {
+        
+    }
+
+    private onUserSave(user: UserViewModel) {
+        
+    }
+
+    private onSelectedUserDelete() {
+        
+    }
+
+    private onBindUserWithTablet(tablet: TabletViewModel) {
+        
+    }
+
+    private onDeleteBinding(tablet: TabletViewModel) {
+        
     }
 
     public ngOnInit(): void {

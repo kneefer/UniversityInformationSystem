@@ -42,10 +42,13 @@
     <Content Include="app\panel-admin\users\users.css" />
     <Content Include="app\panel-admin\users\users.html" />
     <Content Include="app\panel-user\tablets\tablets.html" />
+    <Content Include="app\shared\plus-button\plus-button.css" />
     <Content Include="app\shared\tablet-tile\tablet-tile.css" />
     <Content Include="app\shared\tablet-tile\tablet-tile.html" />
-    <Content Include="app\shared\user-edit\user-edit.css" />
-    <Content Include="app\shared\user-edit\user-edit..html" />
+    <Content Include="app\shared\user-add-edit\user-add-edit.css" />
+    <Content Include="app\shared\user-add-edit\user-add-edit.html" />
+    <Content Include="app\shared\user-tablet-bind\user-tablet-bind.css" />
+    <Content Include="app\shared\user-tablet-bind\user-tablet-bind.html" />
     <Content Include="app\shared\user-tile\user-tile.css" />
     <Content Include="app\shared\user-tile\user-tile.html" />
     <Content Include="index.html" />
@@ -89,9 +92,11 @@
     <TypeScriptCompile Include="app\panel-admin\panel-admin.service.ts" />
     <TypeScriptCompile Include="app\panel-admin\panel-admin.module.ts" />
     <TypeScriptCompile Include="app\panel-user\panel-user.module.ts" />
+    <TypeScriptCompile Include="app\shared\plus-button\plus-button.component.ts" />
     <TypeScriptCompile Include="app\shared\shared.module.ts" />
     <TypeScriptCompile Include="app\shared\tablet-tile\tablet-tile.component.ts" />
-    <TypeScriptCompile Include="app\shared\user-edit\user-edit.component.ts" />
+    <TypeScriptCompile Include="app\shared\user-add-edit\user-add-edit.component.ts" />
+    <TypeScriptCompile Include="app\shared\user-tablet-bind\user-tablet-bind.component.ts" />
     <TypeScriptCompile Include="app\shared\user-tile\user-tile.component.ts" />
   </ItemGroup>
   <ItemGroup>

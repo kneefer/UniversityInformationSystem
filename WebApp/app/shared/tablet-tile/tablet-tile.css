@@ -7,13 +7,13 @@
 }
 
 .user-tile:hover * {
-    background: #337ab7;
-    color: white;
+    background: #d9edf7;
+    color: #31708f;
 }
 
 .user-tile:hover .panel-heading {
     background: white;
-    color: #337ab7;
+    color: #31708f;
     font-weight: bolder;
 }
 

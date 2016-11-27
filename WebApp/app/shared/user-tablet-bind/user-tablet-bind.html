@@ -1,0 +1,26 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading text-center">Bind tablet to user</div>
+    <div class="panel-body">
+        <form class="form-horizontal form-group-sm" id="editForm">
+            <div class="form-group">
+                <label htmlFor="tabletName" class="col-sm-5 control-label">Tablet name</label>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" id="tabletName" name="tabletName"
+                           placeholder="Tablet Name" [(ngModel)]="selectedTabletToBind.name" required>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" (click)="onAddClick($event)"
+                        class="btn btn-md btn-primary btn-space" id="addBindingButton">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    Save
+                </button>
+                <button type="submit" (click)="onCancelClick($event)"
+                        class="btn btn-sm btn-primary btn-space">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿.plus-button {
+    text-align: center;
+    background-color: #5cb85c;
+    color: white;
+    font-size: 3em;
+    font-weight: 700;
+}
+
+.plus-button:hover {
+    color: white;
+}
+
+.plus-button > a {
+    text-decoration: none;
+    color: white;
+}
