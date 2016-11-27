@@ -1,6 +1,6 @@
 ﻿import { Component, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
-import { User } from '../../models/user.model';
+import { UserViewModel } from '../../models/user.model';
 
 declare var module: { id: string; }
 
@@ -12,11 +12,11 @@ declare var module: { id: string; }
 })
 export class UserTileComponent {
 
-    @Input() public user: User;
+    @Input() public user: UserViewModel;
 
-    @Output() public userClicked = new EventEmitter<User>();
+    @Output() public userClicked = new EventEmitter<UserViewModel>();
 
-    private onClick(event: Event): void {
+    private onTileClick(event: Event): void {
         event.preventDefault();
         this.userClicked.emit(this.user);
     }

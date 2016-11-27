@@ -1,72 +1,25 @@
-﻿<div>
-    <div class="form-group user-tile" (click)="onClick($event)">
-        <a href="#">
-            <div class="panel panel-primary">
-                <div class="panel-heading">{{ user.getFullName() }}</div>
-                <div class="panel-body">
-                    <table class="table table-condensed">
-                        <tbody>
-                            <tr>
-                                <td>Username</td>
-                                <td>{{ user.userName }}</td>
-                            </tr>
-                            <tr>
-                                <td>Email</td>
-                                <td>{{ user.email }}</td>
-                            </tr>
-                            <tr>
-                                <td>Description</td>
-                                <td>{{ user.description }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+﻿<div class="form-group user-tile" (click)="onTileClick($event)">
+    <a href="#">
+        <div class="panel panel-primary">
+            <div class="panel-heading">{{ user.getFullName() }}</div>
+            <div class="panel-body">
+                <table class="table table-condensed">
+                    <tbody>
+                        <tr>
+                            <td>Username</td>
+                            <td>{{ user.userName }}</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td>{{ user.email }}</td>
+                        </tr>
+                        <tr *ngIf="user.description">
+                            <td>Description</td>
+                            <td>{{ user.description }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </a>
-    </div>
-    <div class="panel panel-primary">
-        <div class="panel-heading text-center">Edit user</div>
-        <div class="panel-body">
-            <form class="form-horizontal form-group-sm">
-                <div class="form-group">
-                    <label htmlFor="firstName-{{ user.id }}" class="col-sm-5 control-label">First Name</label>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control" id="firstName-{{ user.id }}" name="firstName"
-                               placeholder="First Name" [(ngModel)]="user.firstName" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label htmlFor="lastName-{{ user.id }}" class="col-sm-5 control-label">Last Name</label>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control" id="lastName-{{ user.id }}" name="lastName"
-                               placeholder="Last Name" [(ngModel)]="user.lastName" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label htmlFor="userName-{{ user.id }}" class="col-sm-5 control-label">Username</label>
-                    <div class="col-sm-7">
-                        <input type="text" class="form-control" id="userName-{{ user.id }}" name="userName"
-                               placeholder="Username" [(ngModel)]="user.userName" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label htmlFor="email-{{ user.id }}" class="col-sm-3 control-label">Email</label>
-                    <div class="col-sm-9">
-                        <input type="email" class="form-control" id="email-{{ user.id }}" name="email"
-                               placeholder="Email" [(ngModel)]="user.email" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label htmlFor="description-{{ user.id }}" class="col-sm-4 control-label">Description</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="description-{{ user.id }}" name="description"
-                               placeholder="Description" [(ngModel)]="user.description">
-                    </div>
-                </div>
-                <div>
-                    <button type="submit" class="btn btn-md btn-primary col-sm-10 col-md-offset-1">Save</button>
-                </div>
-            </form>
         </div>
-    </div>
+    </a>
 </div>

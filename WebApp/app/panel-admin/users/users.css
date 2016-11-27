@@ -1,7 +1,7 @@
-﻿#headingTablets {
+﻿.heading-no-margin {
     margin-left: 15px;
 }
 
-#headingTablets h2 {
+.heading-no-margin h2 {
     margin-top: 0;
 }

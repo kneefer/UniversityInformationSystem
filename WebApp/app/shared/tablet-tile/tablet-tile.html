@@ -1,0 +1,16 @@
+﻿<div class="form-group user-tile" (click)="onTabletClick($event)">
+    <a href="#">
+        <div class="panel panel-primary">
+            <div class="panel-heading">{{ tablet.getFullName() }}</div>
+            <div class="panel-body">
+                <table class="table table-condensed" *ngIf="tablet.description">
+                    <tbody>
+                        <tr>
+                            <td>{{ tablet.description }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </a>
+</div>

@@ -1,4 +1,4 @@
-﻿export class User {
+﻿export class UserViewModel {
 
     constructor(
         public id: string,

@@ -23,11 +23,17 @@
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
 
             // other libraries
+            'angular2-masonry': 'npm:angular2-masonry',
+            "masonry-layout": 'npm:masonry-layout/dist/masonry.pkgd.js',
             'rxjs': 'npm:rxjs'
         },
 
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
+            'angular2-masonry': {
+                defaultExtension: 'js',
+                main: './index'
+            },
             app: {
                 main: './main.js',
                 defaultExtension: 'js'

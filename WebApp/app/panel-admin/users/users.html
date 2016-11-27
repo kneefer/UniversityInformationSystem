@@ -1,23 +1,52 @@
 ﻿<div>
     <!-- Panel admin - users -->
     <div class="col-sm-6 col-md-8">
-        <user-tile *ngFor="let user of users"
-                   [user]="user"
-                   (userClicked)="onUserClicked($event)"
-                   class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-        </user-tile>
-    </div>
+        <masonry>
+            <masonry-brick *ngFor="let user of users"
+                           class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+                <user-tile [user]="user"
+                           (userClicked)="onUserClicked($event)">
+                </user-tile>
+            </masonry-brick>
+        </masonry>
+    </div> <!-- / Panel admin - users -->
     
     <!-- Panel admin - tablets -->
-    <div class="col-sm-6 col-md-4" [hidden]="!selectedUser">
-        <div id="headingTablets">
-            <p>Tablets of selected user</p>
-            <h2>{{ selectedUser ? selectedUser.getFullName() : '' }}</h2>
-        </div>
-        <user-tile *ngFor="let user of users"
-                   [user]="user"
-                   (userClicked)="onUserClicked($event)"
-                   class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        </user-tile>
-    </div>
+    <div class="col-sm-6 col-md-4" *ngIf="selectedUser">
+        
+        <!-- Read only mode -->
+        <div>
+            <div class="heading-no-margin">
+                <h2>{{ selectedUser.getFullName() }}</h2>
+                <h4>{{ selectedUser.description }}</h4>
+
+                <p class="btn-toolbar text-center">
+                    <button class="btn btn-primary btn-primary">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        Edit user
+                    </button>
+                    <button class="btn btn-primary btn-primary">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                        Delete user
+                    </button>
+                </p>
+            </div>
+        
+            <h3 class="heading-no-margin">Tablets of user</h3>
+            <masonry>
+                <masonry-brick *ngFor="let tablet of tablets" 
+                               class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                    <tablet-tile [tablet]="tablet"
+                                 (tabletClicked)="onTabletClicked($event)">
+                    </tablet-tile>
+                </masonry-brick>
+            </masonry>
+            
+        </div> <!-- / Read only mode -->
+
+        <!-- Edit mode -->
+        <div>
+            
+        </div> <!-- / Edit mode -->
+    </div> <!-- / Panel admin - tablets -->
 </div>
