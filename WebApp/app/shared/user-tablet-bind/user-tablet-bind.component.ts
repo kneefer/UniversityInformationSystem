@@ -31,7 +31,12 @@ export class UserTabletBindComponent implements OnInit {
         this.cancelClicked.emit();
     }
 
+    private onTabletOptionClick(event: Event, selectedTablet: TabletViewModel) {
+        event.preventDefault();
+        this.selectedTabletToBind = selectedTablet;
+    }
+
     public ngOnInit(): void {
-        this.selectedTabletToBind = this.tablets[0];
+
     }
 }

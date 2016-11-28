@@ -4,8 +4,23 @@
         <form class="form form-group-sm" id="editForm">
             <div class="form-group">
                 <label for="tabletName">Tablet name</label>
-                <input type="text" class="form-control" id="tabletName" name="tabletName"
-                        placeholder="Tablet Name" [(ngModel)]="selectedTabletToBind.name" required>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" 
+                            id="tabletName" data-toggle="dropdown" 
+                            aria-haspopup="true" aria-expanded="true">
+                        {{ selectedTabletToBind ? selectedTabletToBind.getFullName() : 'Select tablet' }}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="tabletName">
+                        <li *ngFor="let tablet of tablets" 
+                            (click)="onTabletOptionClick($event, tablet)">
+                            <a href="#">{{ tablet.getFullName() }}</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!--<input type="text" class="form-control" id="tabletName" name="tabletName"
+                        placeholder="Tablet Name" [(ngModel)]="selectedTabletToBind.name" required>-->
             </div>
             <div class="text-center">
                 <button type="submit" (click)="onAddClick($event)"
