@@ -9,7 +9,9 @@ declare var module: { id: string; }
     <div (click)="onTabletClick($event)"
          class="panel panel-default plus-button">
         <a href="#">
-            <div class="panel-body">+</div>
+            <div class="panel-body">
+                + Add
+            </div>
         </a>
     </div>
     `,
