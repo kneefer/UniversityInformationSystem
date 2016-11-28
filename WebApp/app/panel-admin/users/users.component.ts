@@ -56,7 +56,7 @@ export class PanelAdminUsersComponent implements OnInit {
     }
 
     private onTabletClicked(tablet: TabletViewModel) {
-
+        this.router.navigate(['paneladmin', 'tablets', tablet.id]);
     }
 
     private onUserAdd(user: UserViewModel) {

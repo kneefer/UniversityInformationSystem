@@ -20,6 +20,7 @@ import { PanelAdminService } from './panel-admin.service';
 			canActivate: [ AuthGuard ],
 			children: [
 				{ path: 'tablets', component: PanelAdminTabletsComponent },
+				{ path: 'tablets/:id', component: PanelAdminTabletsComponent },
 				{ path: 'users', component: PanelAdminUsersComponent },
 				{ path: '', redirectTo: 'users' },
 				{ path: '**', redirectTo: 'users' }
