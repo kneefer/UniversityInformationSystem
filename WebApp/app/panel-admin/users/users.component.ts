@@ -50,9 +50,15 @@ export class PanelAdminUsersComponent implements OnInit {
         this.isBindMode = !this.isBindMode;
     }
 
+    private returnToStandardMode() {
+        this.isEditMode = false;
+        this.isAddMode = false;
+        this.isBindMode = false;
+    }
+
     private onUserClicked(user: UserViewModel) {
         this.selectedUser = user;
-        this.isEditMode = false;
+        this.returnToStandardMode();
     }
 
     private onTabletClicked(tablet: TabletViewModel) {
@@ -60,19 +66,19 @@ export class PanelAdminUsersComponent implements OnInit {
     }
 
     private onUserAdd(user: UserViewModel) {
-        
+        this.returnToStandardMode();
     }
 
     private onUserSave(user: UserViewModel) {
-        
+        this.returnToStandardMode();
     }
 
     private onSelectedUserDelete() {
-        
+        this.returnToStandardMode();
     }
 
     private onBindUserWithTablet(tablet: TabletViewModel) {
-        
+        this.isBindMode = false;
     }
 
     private onDeleteBinding(tablet: TabletViewModel) {
