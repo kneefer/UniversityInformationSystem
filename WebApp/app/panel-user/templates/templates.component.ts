@@ -11,10 +11,10 @@ declare var module: { id: string; }
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'tablets.html',
-    styleUrls: ['tablets.css']
+    templateUrl: 'templates.html',
+    styleUrls: ['templates.css']
 })
-export class PanelUserTabletsComponent implements OnInit {
+export class TemplatesComponent implements OnInit {
 
     constructor(
         private pageTitleService: PageTitleService,
@@ -22,7 +22,7 @@ export class PanelUserTabletsComponent implements OnInit {
         private router: Router) { }
 
     public ngOnInit(): void {
-        this.pageTitleService.name.next('Panel user - tablets');
+        this.pageTitleService.name.next('Panel user - templates');
         this.refresh();
     }
 

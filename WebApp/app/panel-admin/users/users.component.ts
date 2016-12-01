@@ -1,10 +1,11 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { PageTitleService } from '../../core/page-title.service';
+import { PanelAdminService } from '../panel-admin.service';
+
 import { UserViewModel } from '../../models/user.model';
 import { TabletViewModel } from '../../models/tablet.model';
-import { PanelAdminService } from '../panel-admin.service';
-import { PageTitleService } from '../../core/page-title.service';
 
 declare var module: { id: string; }
 
