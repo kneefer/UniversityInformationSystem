@@ -18,6 +18,10 @@ export class PanelAdminService {
         @Inject(APP_CONFIG) private config: IAppConfig,
         private http: Http) { }
 
+    /////////////////////////////////////////////
+    // User operations
+    /////////////////////////////////////////////
+
     public getUsers(): Observable<UserViewModel[]> {
         const users = [
             new UserViewModel('1', 'Adam', 'Kowalski', 'adakow123', 'akow@fdsf.com', 'nothing'),
@@ -55,6 +59,10 @@ export class PanelAdminService {
     public deleteUser(user: UserViewModel): Observable<any> {
         return Observable.from([1]);
     }
+
+    ///////////////////////////////////////
+    // Tablet operations
+    ///////////////////////////////////////
 
     public getTablets(): Observable<TabletViewModel[]> {
         const tablets = [
