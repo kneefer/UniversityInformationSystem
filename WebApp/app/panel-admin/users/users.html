@@ -76,8 +76,8 @@
     <!-- Edit mode -->
     <div *ngIf="isEditMode">
         <user-add-edit [user]="selectedUser"
-                    (saveClicked)="onUserSave($event)"
-                    (cancelClicked)="toggleEditMode($event)">
+                       (saveClicked)="onUserSave($event)"
+                       (cancelClicked)="toggleEditMode($event)">
         </user-add-edit>
     </div> <!-- / Edit mode -->
 </div> <!-- / Tablets of user part -->

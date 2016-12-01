@@ -1,20 +1,20 @@
 ﻿<div class="panel panel-success">
-    <div class="panel-heading text-center">Bind tablet to user</div>
+    <div class="panel-heading text-center">Bind user to tablet</div>
     <div class="panel-body">
         <form class="form form-group-sm" id="editForm">
             <div class="form-group">
-                <label for="tabletName">Tablet name</label>
+                <label for="userName">User name</label>
                 <div class="dropdown">
                     <button class="btn btn-default dropdown-toggle" type="button" 
-                            id="tabletName" data-toggle="dropdown" 
+                            id="userName" data-toggle="dropdown" 
                             aria-haspopup="true" aria-expanded="true">
-                        {{ selectedTabletToBind ? selectedTabletToBind.getFullName() : 'Select tablet' }}
+                        {{ selectedUserToBind ? selectedUserToBind.getFullName() : 'Select user' }}
                         <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="tabletName">
-                        <li *ngFor="let tablet of tablets" 
-                            (click)="onTabletOptionClick($event, tablet)">
-                            <a href="#">{{ tablet.getFullName() }}</a>
+                    <ul class="dropdown-menu" aria-labelledby="userName">
+                        <li *ngFor="let user of users" 
+                            (click)="onUserOptionClick($event, user)">
+                            <a href="#">{{ user.getFullName() }}</a>
                         </li>
                     </ul>
                 </div>

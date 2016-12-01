@@ -39,12 +39,17 @@
     <Content Include="app\login\login\login.html" />
     <Content Include="app\login\logout\logout.html" />
     <Content Include="app\panel-admin\tablets\tablets.html" />
+    <Content Include="app\panel-admin\tablets\tablets.css" />
     <Content Include="app\panel-admin\users\users.css" />
     <Content Include="app\panel-admin\users\users.html" />
     <Content Include="app\panel-user\tablets\tablets.html" />
     <Content Include="app\shared\plus-button\plus-button.css" />
+    <Content Include="app\shared\tablet-add-edit\tablet-add-edit.css" />
+    <Content Include="app\shared\tablet-add-edit\tablet-add-edit.html" />
     <Content Include="app\shared\tablet-tile\tablet-tile.css" />
     <Content Include="app\shared\tablet-tile\tablet-tile.html" />
+    <Content Include="app\shared\tablet-user-bind\tablet-user-bind.css" />
+    <Content Include="app\shared\tablet-user-bind\tablet-user-bind.html" />
     <Content Include="app\shared\user-add-edit\user-add-edit.css" />
     <Content Include="app\shared\user-add-edit\user-add-edit.html" />
     <Content Include="app\shared\user-tablet-bind\user-tablet-bind.css" />
@@ -94,14 +99,15 @@
     <TypeScriptCompile Include="app\panel-user\panel-user.module.ts" />
     <TypeScriptCompile Include="app\shared\plus-button\plus-button.component.ts" />
     <TypeScriptCompile Include="app\shared\shared.module.ts" />
+    <TypeScriptCompile Include="app\shared\tablet-add-edit\tablet-add-edit.component.ts" />
     <TypeScriptCompile Include="app\shared\tablet-tile\tablet-tile.component.ts" />
+    <TypeScriptCompile Include="app\shared\tablet-user-bind\tablet-user-bind.component.ts" />
     <TypeScriptCompile Include="app\shared\user-add-edit\user-add-edit.component.ts" />
     <TypeScriptCompile Include="app\shared\user-tablet-bind\user-tablet-bind.component.ts" />
     <TypeScriptCompile Include="app\shared\user-tile\user-tile.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\assets\" />
-    <Folder Include="app\shared\tablet-edit\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>

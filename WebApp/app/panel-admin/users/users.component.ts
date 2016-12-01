@@ -31,9 +31,16 @@ export class PanelAdminUsersComponent implements OnInit {
     public allTablets: Array<TabletViewModel>;
 
     constructor(
-        private panelAdminService: PanelAdminService,
         private pageTitleService: PageTitleService,
+        private panelAdminService: PanelAdminService,
         private router: Router) { }
+
+    public ngOnInit(): void {
+        this.pageTitleService.name.next('Panel Admin - Users');
+        this.refresh();
+    }
+
+    //#region Toggles
 
     private toggleAddMode(event?: Event) {
         if (event) {
@@ -61,6 +68,10 @@ export class PanelAdminUsersComponent implements OnInit {
         }
     }
 
+    //#endregion Toggles
+
+    //#region Notify
+
     private notifyError(error: any) {
         console.log(error);
     }
@@ -68,6 +79,8 @@ export class PanelAdminUsersComponent implements OnInit {
     private notifyInfo(info: any) {
         console.log(info);
     }
+
+    //#endregion Notify
 
     private returnToStandardMode() {
         this.isEditMode = false;
@@ -111,7 +124,7 @@ export class PanelAdminUsersComponent implements OnInit {
     private onUserSave(user: UserViewModel) {
         this.panelAdminService.editUser(user).subscribe(
             data => {
-                this.notifyInfo(`UserViewModel ${user.getFullName()} modified.`);
+                this.notifyInfo(`User ${user.getFullName()} modified.`);
                 this.refresh();
             },
             error => this.notifyError(error)
@@ -151,10 +164,5 @@ export class PanelAdminUsersComponent implements OnInit {
             },
             error => this.notifyError(error)
         );
-    }
-
-    public ngOnInit(): void {
-        this.refresh();
-        this.pageTitleService.name.next('Panel Admin - Users');
     }
 }

@@ -87,6 +87,18 @@ export class PanelAdminService {
         return Observable.from([tablets]);
     }
 
+    public addTablet(tablet: TabletViewModel): Observable<any> {
+        return Observable.from([1]);
+    }
+
+    public editTablet(tablet: TabletViewModel): Observable<any> {
+        return Observable.from([1]);
+    }
+
+    public deleteTablet(tablet: TabletViewModel): Observable<any> {
+        return Observable.from([1]);
+    }
+
     public bindTabletWithUser(tablet: TabletViewModel, user: UserViewModel): Observable<any> {
         return Observable.from([1]);
     }
