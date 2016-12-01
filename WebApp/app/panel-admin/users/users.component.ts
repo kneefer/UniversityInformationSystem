@@ -20,15 +20,15 @@ export class PanelAdminUsersComponent implements OnInit {
         stamp: '.stamp'
     }
 
-    public users = new Array<UserViewModel>();
+    public users: Array<UserViewModel>;
     public selectedUser: UserViewModel;
 
     public isEditMode = false;
     public isAddMode = false;
     public isBindMode = false;
 
-    public tablets = new Array<TabletViewModel>();
-    public allTablets = this.tablets;
+    public tablets: Array<TabletViewModel>;
+    public allTablets: Array<TabletViewModel>;
 
     constructor(
         private panelAdminService: PanelAdminService,
@@ -47,7 +47,26 @@ export class PanelAdminUsersComponent implements OnInit {
     }
 
     private toggleBindMode() {
-        this.isBindMode = !this.isBindMode;
+        if (!this.isBindMode) {
+            this.panelAdminService.getTablets()
+                .subscribe(
+                    tablets => {
+                        this.allTablets = tablets;
+                        this.isBindMode = !this.isBindMode;
+                    },
+                    error => this.notifyError(error)
+                );
+        } else {
+            this.isBindMode = !this.isBindMode;
+        }
+    }
+
+    private notifyError(error: any) {
+        console.log(error);
+    }
+
+    private notifyInfo(info: any) {
+        console.log(info);
     }
 
     private returnToStandardMode() {
@@ -56,9 +75,23 @@ export class PanelAdminUsersComponent implements OnInit {
         this.isBindMode = false;
     }
 
+    private refresh() {
+        this.returnToStandardMode();
+        this.selectedUser = null;
+        this.tablets = null;
+        this.panelAdminService.getUsers().subscribe(
+            users => this.users = users,
+            error => this.notifyError(error)
+        );
+    }
+
     private onUserClicked(user: UserViewModel) {
         this.selectedUser = user;
         this.returnToStandardMode();
+        this.panelAdminService.getTabletsOfUser(user).subscribe(
+            tablets => this.tablets = tablets,
+            error => this.notifyError(error)
+        );
     }
 
     private onTabletClicked(tablet: TabletViewModel) {
@@ -66,43 +99,62 @@ export class PanelAdminUsersComponent implements OnInit {
     }
 
     private onUserAdd(user: UserViewModel) {
-        this.returnToStandardMode();
+        this.panelAdminService.addUser(user).subscribe(
+            data => {
+                this.notifyInfo('New user added'); 
+                this.refresh();
+            },
+            error => this.notifyError(error)
+        );
     }
 
     private onUserSave(user: UserViewModel) {
-        this.returnToStandardMode();
+        this.panelAdminService.editUser(user).subscribe(
+            data => {
+                this.notifyInfo(`UserViewModel ${user.getFullName()} modified.`);
+                this.refresh();
+            },
+            error => this.notifyError(error)
+        );
     }
 
     private onSelectedUserDelete() {
-        this.returnToStandardMode();
+        const user = this.selectedUser;
+        this.panelAdminService.deleteUser(this.selectedUser).subscribe(
+            data => {
+                this.notifyInfo(`User ${user.getFullName()} deleted.`);
+                this.refresh();
+            },
+            error => this.notifyError(error)
+        );
     }
 
     private onBindUserWithTablet(tablet: TabletViewModel) {
+        const user = this.selectedUser;
         this.isBindMode = false;
+        this.panelAdminService.bindTabletWithUser(tablet, user).subscribe(
+            data => {
+                this.notifyInfo(`User ${user.getFullName()} bound to tablet ${tablet.getFullName()}.`);
+                this.onUserClicked(user);
+            },
+            error => this.notifyError(error)
+        );
     }
 
     private onDeleteBinding(tablet: TabletViewModel) {
-        
+        const user = this.selectedUser;
+        this.isBindMode = false;
+        this.panelAdminService.unbindTabletFromUser(tablet, user).subscribe(
+            data => {
+                this.notifyInfo(`User ${user.getFullName()} unbound from tablet ${tablet.getFullName()}.`);
+                this.onUserClicked(user);
+            },
+            error => this.notifyError(error)
+        );
     }
 
     public ngOnInit(): void {
+        this.refresh();
         this.pageTitleService.name.next('Panel Admin - Users');
-
-        this.users.push(new UserViewModel('1', 'Adam', 'Kowalski', 'adakow123', 'akow@fdsf.com', 'nothing'));
-        this.users.push(new UserViewModel('2', 'Tomasz', 'Nowak', 'tomnow354', 'sdffd@fdsf.com', ''));
-        this.users.push(new UserViewModel('3', 'Jarosław', 'Paduch', 'jaropad3434', 'df3@fd.com', ''));
-        this.users.push(new UserViewModel('4', 'Agnieszka', 'Debudaj', 'agadebu34', 'df@df.com', 'description'));
-        this.users.push(new UserViewModel('5', 'Wojciech', 'Jeziorski', 'wojcjez3434', 'sdfdf@com.com', ''));
-        this.users.push(new UserViewModel('6', 'Wojciech', 'Jeziorski', 'wojcjez3434', 'sdfdf@com.com', ''));
-        this.users.push(new UserViewModel('7', 'Wojciech', 'Jeziorski', 'wojcjez3434', 'sdfdf@com.com', ''));
-        this.users.push(new UserViewModel('8', 'Wojciech', 'Jeziorski', 'wojcjez3434', 'sdfdf@com.com', ''));
-        this.users.push(new UserViewModel('9', 'Wojciech', 'Jeziorski', 'wojcjez3434', 'sdfdf@com.com', ''));
-
-        this.tablets.push(new TabletViewModel('1', '201', 'descript'));
-        this.tablets.push(new TabletViewModel('3', '634', ''));
-        this.tablets.push(new TabletViewModel('2', '123', 'fsfsdf'));
-        this.tablets.push(new TabletViewModel('4', '652', 'sdf'));
-        this.tablets.push(new TabletViewModel('5', '234', 'df'));
-        this.tablets.push(new TabletViewModel('6', '564', ''));
     }
 }
