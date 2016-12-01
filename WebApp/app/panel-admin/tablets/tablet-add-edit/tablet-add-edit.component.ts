@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
-import { TabletViewModel } from '../../models/tablet.model';
+import { TabletViewModel } from '../../../models/tablet.model';
 
 declare var module: { id: string; }
 

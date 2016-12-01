@@ -4,14 +4,25 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { AuthGuard } from '../core/auth-guard.service'
 
+import { PanelAdminService } from './panel-admin.service';
+
 import { PanelAdminTabletsComponent } from './tablets/tablets.component';
 import { PanelAdminUsersComponent } from './users/users.component';
-import { PanelAdminService } from './panel-admin.service';
+
+import { TabletAddEditComponent } from './tablets/tablet-add-edit/tablet-add-edit.component'
+import { TabletUserBindComponent } from './tablets/tablet-user-bind/tablet-user-bind.component'
+import { UserAddEditComponent } from './users/user-add-edit/user-add-edit.component'
+import { UserTabletBindComponent } from './users/user-tablet-bind/user-tablet-bind.component'
 
 @NgModule({
     declarations: [
         PanelAdminTabletsComponent,
-        PanelAdminUsersComponent
+        PanelAdminUsersComponent,
+
+        TabletAddEditComponent,
+        TabletUserBindComponent,
+        UserAddEditComponent,
+        UserTabletBindComponent
     ],
 	imports: [
 		SharedModule,

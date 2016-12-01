@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
-import { UserViewModel } from '../../models/user.model';
-import { TabletViewModel } from '../../models/tablet.model';
+import { UserViewModel } from '../../../models/user.model';
+import { TabletViewModel } from '../../../models/tablet.model';
 
 declare var module: { id: string; }
 
