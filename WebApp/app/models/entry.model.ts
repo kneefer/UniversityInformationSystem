@@ -1,14 +1,14 @@
-﻿import { TokenViewModel } from './token.model';
+﻿import { TokenViewModel } from './token.model'
 
-export class TemplateViewModel {
+export class EntryViewModel {
 
     constructor(
         public id: string = '',
-        public name: string = '',
+        public date: Date = new Date(),
         public htmlContent: string = '',
         public tokens: TokenViewModel[] = new Array<TokenViewModel>()) { }
 
     public getFullName(): string {
-        return `${this.name}`;
+        return `${this.date.toDateString()}`;
     }
 }
