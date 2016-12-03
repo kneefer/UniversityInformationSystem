@@ -52,6 +52,8 @@
     <Content Include="app\panel-user\templates\template-tablet-set\template-tablet-set.html" />
     <Content Include="app\panel-user\templates\templates.css" />
     <Content Include="app\panel-user\templates\templates.html" />
+    <Content Include="app\shared\entry-tile\entry-tile.css" />
+    <Content Include="app\shared\entry-tile\entry-tile.html" />
     <Content Include="app\shared\plus-button\plus-button.css" />
     <Content Include="app\panel-admin\tablets\tablet-add-edit\tablet-add-edit.css" />
     <Content Include="app\panel-admin\tablets\tablet-add-edit\tablet-add-edit.html" />
@@ -63,6 +65,8 @@
     <Content Include="app\panel-admin\users\user-add-edit\user-add-edit.html" />
     <Content Include="app\panel-admin\users\user-tablet-bind\user-tablet-bind.css" />
     <Content Include="app\panel-admin\users\user-tablet-bind\user-tablet-bind.html" />
+    <Content Include="app\shared\template-tile\template-tile.css" />
+    <Content Include="app\shared\template-tile\template-tile.html" />
     <Content Include="app\shared\user-tile\user-tile.css" />
     <Content Include="app\shared\user-tile\user-tile.html" />
     <Content Include="index.html" />
@@ -113,6 +117,7 @@
     <TypeScriptCompile Include="app\panel-user\templates\template-add-edit\template-add-edit.component.ts" />
     <TypeScriptCompile Include="app\panel-user\templates\template-tablet-set\template-tablet-set.component.ts" />
     <TypeScriptCompile Include="app\panel-user\templates\templates.component.ts" />
+    <TypeScriptCompile Include="app\shared\entry-tile\entry-tile.component.ts" />
     <TypeScriptCompile Include="app\shared\plus-button\plus-button.component.ts" />
     <TypeScriptCompile Include="app\shared\shared.module.ts" />
     <TypeScriptCompile Include="app\panel-admin\tablets\tablet-add-edit\tablet-add-edit.component.ts" />
@@ -120,6 +125,7 @@
     <TypeScriptCompile Include="app\panel-admin\tablets\tablet-user-bind\tablet-user-bind.component.ts" />
     <TypeScriptCompile Include="app\panel-admin\users\user-add-edit\user-add-edit.component.ts" />
     <TypeScriptCompile Include="app\panel-admin\users\user-tablet-bind\user-tablet-bind.component.ts" />
+    <TypeScriptCompile Include="app\shared\template-tile\template-tile.component.ts" />
     <TypeScriptCompile Include="app\shared\user-tile\user-tile.component.ts" />
   </ItemGroup>
   <ItemGroup>

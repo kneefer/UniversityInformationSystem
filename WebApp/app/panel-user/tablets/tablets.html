@@ -1,1 +1,50 @@
-﻿<div>test user panel tablets component</div>
+﻿<!-- List of users's tablets -->
+<div class="col-sm-6 col-md-4">
+    <masonry>
+        <masonry-brick *ngFor="let tablet of tablets"
+                       class="col-xs-12 col-sm-6 col-md-6 col-lg-6 masonry-brick">
+            <tablet-tile [tablet]="tablet"
+                         (tabletClicked)="onTabletClicked($event)">
+            </tablet-tile>
+        </masonry-brick>
+    </masonry>
+</div> <!-- / List of users's tablets -->
+
+<!-- Selected tablet's entities part -->
+<div class="col-sm-6 col-md-8" *ngIf="selectedTablet">
+    <div class="heading-no-margin">
+        <h2>{{ selectedTablet.getFullName() }}</h2>
+        <h4>{{ selectedTablet.description }}</h4>
+
+        <p class="btn-toolbar text-center">
+            <button class="btn btn-primary"
+                    (click)="onSelectedTabletGoToPage($event)">
+                <span class="glyphicon glyphicon-play-circle"></span>
+                Go to tablet's page
+            </button>
+        </p>
+    </div>
+    
+    <!-- List of latest entries -->
+    <h3 class="heading-no-margin">Latest entries</h3>
+    <masonry>
+        <masonry-brick *ngFor="let entry of entries"
+                       class="col-xs-12 col-sm-12 col-md-6 col-lg-4 masonry-brick">
+            <entry-tile [entry]="entry"
+                        (entryClicked)="onEntryClicked($event)">
+            </entry-tile>
+        </masonry-brick>
+    </masonry><!-- / List of latest entries -->
+    
+    <!-- List of templates -->
+    <h3 class="heading-no-margin">My templates</h3>
+    <masonry>
+        <masonry-brick *ngFor="let template of templates"
+                       class="col-xs-12 col-sm-12 col-md-6 col-lg-4 masonry-brick">
+            <template-tile [template]="template"
+                        (templateClicked)="onTemplateClicked($event)">
+            </template-tile>
+        </masonry-brick>
+    </masonry><!-- / List of templates -->
+
+</div> <!-- / Selected tablet's entities part -->

@@ -1,0 +1,17 @@
+﻿<div class="form-group template-tile" (click)="onTileClick($event)">
+    <a href="#">
+        <div class="panel panel-primary">
+            <div class="panel-heading">{{ template.getFullName() }}</div>
+            <div class="panel-body">
+                <table class="table table-condensed">
+                    <tbody>
+                        <tr>
+                            <td>Description</td>
+                            <td>{{ template.description }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </a>
+</div>

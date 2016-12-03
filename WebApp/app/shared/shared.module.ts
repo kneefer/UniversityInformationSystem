@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 
 import { MasonryModule } from 'angular2-masonry';
 
+import { EntryTileComponent } from './entry-tile/entry-tile.component';
 import { PlusButtonComponent } from './plus-button/plus-button.component';
-import { UserTileComponent } from './user-tile/user-tile.component';
 import { TabletTileComponent } from './tablet-tile/tablet-tile.component';
+import { TemplateTileComponent } from './template-tile/template-tile.component';
+import { UserTileComponent } from './user-tile/user-tile.component';
 
 @NgModule({
     imports: [
@@ -15,18 +17,22 @@ import { TabletTileComponent } from './tablet-tile/tablet-tile.component';
         MasonryModule
     ],
     declarations: [
+        EntryTileComponent,
         PlusButtonComponent,
-        UserTileComponent,
-        TabletTileComponent
+        TabletTileComponent,
+        TemplateTileComponent,
+        UserTileComponent
     ],
     exports: [
         CommonModule,
         FormsModule,
         MasonryModule,
 
+        EntryTileComponent,
         PlusButtonComponent,
-        UserTileComponent,
-        TabletTileComponent
+        TabletTileComponent,
+        TemplateTileComponent,
+        UserTileComponent
     ]
 })
 export class SharedModule { }

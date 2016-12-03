@@ -1,0 +1,17 @@
+﻿<div class="form-group entry-tile" (click)="onTileClick($event)">
+    <a href="#">
+        <div class="panel panel-primary">
+            <div class="panel-heading">{{ entry.getFullName() }}</div>
+            <div class="panel-body">
+                <table class="table table-condensed">
+                    <tbody>
+                        <tr>
+                            <td>Tokens number</td>
+                            <td>{{ entry.tokens.length }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </a>
+</div>

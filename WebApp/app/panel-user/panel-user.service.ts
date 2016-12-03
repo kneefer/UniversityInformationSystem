@@ -78,10 +78,10 @@ export class PanelUserService {
 
     public getTemplates(): Observable<TemplateViewModel[]> {
         const templates = [
-            new TemplateViewModel('1', 'templ_name', '<h1>$(Communicate)</h1>', [
+            new TemplateViewModel('1', 'templ_name', 'desc', '<h1>$(Communicate)</h1>', [
                 new TokenViewModel('1', 'Communicate', 'fill the token')
             ]),
-            new TemplateViewModel('2', 'templ_name2', '<h1>$(Communicate)</h1><h2>$(OtherToken)</h2>', [
+            new TemplateViewModel('2', 'templ_name2', 'desc', '<h1>$(Communicate)</h1><h2>$(OtherToken)</h2>', [
                 new TokenViewModel('1', 'Communicate', 'fill the token'),
                 new TokenViewModel('2', 'OtherToken', 'other default')
             ])
