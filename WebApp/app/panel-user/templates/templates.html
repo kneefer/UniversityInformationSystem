@@ -19,8 +19,8 @@
 </div> <!-- / Templates part -->
     
 <!-- Selected template properties -->
-<div class="col-sm-6 col-md-8" *ngIf="selectedTemplate">
-    <div class="heading-no-margin">
+<div class="col-sm-6 col-md-8 template-properties" *ngIf="selectedTemplate">
+    <div>
         <h2>{{ selectedTemplate.getFullName() }}</h2>
         <h4>{{ selectedTemplate.description }}</h4>
 
@@ -32,15 +32,37 @@
             </button>
         </p>
     </div>
-        
+    
+    <!-- Tokens list -->
+    <div class="row">
+        <div class="col-lg-8">
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Token name</th>
+                        <th>Default value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let token of selectedTemplate.tokens">
+                        <td>{{ token.name }}</td>
+                        <td>{{ token.defaultValue }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
     <!-- Set template on tablet -->
-    <h3 class="heading-no-margin">Set template on tablet</h3>
-    <masonry [options]="masonryOptions">
-        <masonry-brick *ngFor="let tablet of tablets"
-                        class="col-xs-12 col-sm-12 col-md-6 col-lg-4 masonry-brick">
-            <tablet-tile [tablet]="tablet"
-                            (tabletClicked)="onTabletClicked($event)">
-            </tablet-tile>
-        </masonry-brick>
-    </masonry> <!-- / Set template on tablet -->
+    <div class="row template-block">
+        <h3>Set template on tablet</h3>
+        <masonry [options]="masonryOptions">
+            <masonry-brick *ngFor="let tablet of tablets"
+                           class="col-xs-12 col-sm-12 col-md-6 col-lg-4 masonry-brick">
+                <tablet-tile [tablet]="tablet"
+                             (tabletClicked)="onTabletClicked($event)">
+                </tablet-tile>
+            </masonry-brick>
+        </masonry>
+    </div><!-- / Set template on tablet -->
 </div> <!-- / Selected template properties -->

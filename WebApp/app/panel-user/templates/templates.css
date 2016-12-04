@@ -1,7 +1,15 @@
-﻿.heading-no-margin {
-    margin-left: 15px;
+﻿.template-block {
+    margin-left: -15px;
 }
 
-.heading-no-margin h2 {
+.template-properties {
+    padding: 0 15px;
+}
+
+.template-properties h2 {
     margin-top: 0;
+}
+
+.template-properties h3 {
+    margin-left: 15px;
 }
