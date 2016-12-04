@@ -57,6 +57,7 @@
     <Content Include="app\shared\plus-button\plus-button.css" />
     <Content Include="app\panel-admin\tablets\tablet-add-edit\tablet-add-edit.css" />
     <Content Include="app\panel-admin\tablets\tablet-add-edit\tablet-add-edit.html" />
+    <Content Include="app\shared\plus-button\plus-button.html" />
     <Content Include="app\shared\tablet-tile\tablet-tile.css" />
     <Content Include="app\shared\tablet-tile\tablet-tile.html" />
     <Content Include="app\panel-admin\tablets\tablet-user-bind\tablet-user-bind.css" />

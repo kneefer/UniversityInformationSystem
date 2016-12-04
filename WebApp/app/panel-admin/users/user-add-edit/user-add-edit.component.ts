@@ -19,6 +19,12 @@ export class UserAddEditComponent implements OnInit {
 
     public processedUser: UserViewModel;
 
+    public ngOnInit(): void {
+        this.processedUser = this.user
+            ? JSON.parse(JSON.stringify(this.user)) as UserViewModel
+            : new UserViewModel();
+    }
+
     private onSaveClick(event: Event): void {
         event.preventDefault();
         this.saveClicked.emit(this.user);
@@ -27,11 +33,5 @@ export class UserAddEditComponent implements OnInit {
     private onCancelClick(event: Event): void {
         event.preventDefault();
         this.cancelClicked.emit();
-    }
-
-    public ngOnInit(): void {
-        this.processedUser = this.user
-            ? JSON.parse(JSON.stringify(this.user)) as UserViewModel
-            : new UserViewModel();
     }
 }

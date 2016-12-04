@@ -18,7 +18,13 @@ export class TemplateAddEditComponent implements OnInit {
     @Output() public saveClicked = new EventEmitter<TemplateViewModel>();
     @Output() public cancelClicked = new EventEmitter();
 
-    public processedUser: TemplateViewModel;
+    public processedTemplate: TemplateViewModel;
+
+    public ngOnInit(): void {
+        this.processedTemplate = this.template
+            ? JSON.parse(JSON.stringify(this.template)) as TemplateViewModel
+            : new TemplateViewModel();
+    }
 
     private onSaveClick(event: Event): void {
         event.preventDefault();
@@ -28,11 +34,5 @@ export class TemplateAddEditComponent implements OnInit {
     private onCancelClick(event: Event): void {
         event.preventDefault();
         this.cancelClicked.emit();
-    }
-
-    public ngOnInit(): void {
-        this.processedUser = this.template
-            ? JSON.parse(JSON.stringify(this.template)) as TemplateViewModel
-            : new TemplateViewModel();
     }
 }

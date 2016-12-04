@@ -2,6 +2,7 @@
 
 import { TabletViewModel } from '../../../models/tablet.model';
 import { TemplateViewModel } from '../../../models/template.model';
+import { EntryViewModel } from '../../../models/entry.model'
 import { TokenViewModel } from '../../../models/token.model';
 
 declare var module: { id: string; }
@@ -14,7 +15,31 @@ declare var module: { id: string; }
 })
 export class TemplateTabletSetComponent implements OnInit {
 
+    @Input() public tablet: TabletViewModel;
+    @Input() public template: TemplateViewModel;
+
+    @Output() public saveClicked = new EventEmitter<EntryViewModel>();
+    @Output() public showPreviewClicked = new EventEmitter<EntryViewModel>();
+    @Output() public cancelClicked = new EventEmitter();
+
+    public entry: EntryViewModel;
+
     public ngOnInit(): void {
-        
+        this.entry = new EntryViewModel();
+    }
+
+    private onSaveClick(event: Event): void {
+        event.preventDefault();
+        this.saveClicked.emit(this.entry);
+    }
+
+    private onShowPreviewClick(event: Event): void {
+        event.preventDefault();
+        this.showPreviewClicked.emit(this.entry);
+    }
+
+    private onCancelClick(event: Event): void {
+        event.preventDefault();
+        this.cancelClicked.emit();
     }
 }

@@ -5,16 +5,7 @@ declare var module: { id: string; }
 @Component({
     moduleId: module.id,
     selector: 'plus-button',
-    template: `
-    <div (click)="onTabletClick($event)"
-         class="panel panel-default plus-button">
-        <a href="#">
-            <div class="panel-body">
-                + Add
-            </div>
-        </a>
-    </div>
-    `,
+    templateUrl: 'plus-button.html',
     styleUrls: ['plus-button.css']
 })
 export class PlusButtonComponent {

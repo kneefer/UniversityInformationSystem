@@ -11,7 +11,7 @@ declare var module: { id: string; }
     templateUrl: 'user-tablet-bind.html',
     styleUrls: ['user-tablet-bind.css']
 })
-export class UserTabletBindComponent implements OnInit {
+export class UserTabletBindComponent {
 
     @Input() public tablets : Array<TabletViewModel>;
     @Input() public user : UserViewModel;
@@ -34,9 +34,5 @@ export class UserTabletBindComponent implements OnInit {
     private onTabletOptionClick(event: Event, selectedTablet: TabletViewModel) {
         event.preventDefault();
         this.selectedTabletToBind = selectedTablet;
-    }
-
-    public ngOnInit(): void {
-
     }
 }

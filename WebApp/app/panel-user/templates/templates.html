@@ -1,68 +1,86 @@
-﻿<!-- Templates part -->
-<div class="col-sm-6 col-md-4">
-    <masonry [options]="masonryOptions">
-        
-        <!-- Add new template -->
-        <masonry-brick class="col-xs-12 col-sm-12 col-md-12 col-lg-12 stamp">
-            <plus-button (click)="onTemplateAddClick($event)">
-            </plus-button>
-        </masonry-brick> <!-- / Add new template -->
-
-        <!-- List of all templates -->
-        <masonry-brick *ngFor="let template of templates"
-                       class="col-xs-12 col-sm-6 col-md-6 col-lg-6 masonry-brick">
-            <template-tile [template]="template"
-                           (templateClicked)="onTemplateClicked($event)">
-            </template-tile>
-        </masonry-brick> <!-- / List of all templates -->
-    </masonry>
-</div> <!-- / Templates part -->
-    
-<!-- Selected template properties -->
-<div class="col-sm-6 col-md-8 template-properties" *ngIf="selectedTemplate">
-    <div>
-        <h2>{{ selectedTemplate.getFullName() }}</h2>
-        <h4>{{ selectedTemplate.description }}</h4>
-
-        <p class="btn-toolbar text-center">
-            <button class="btn btn-primary btn-warning"
-                    (click)="onSelectedTemplateEdit($event)">
-                <span class="glyphicon glyphicon-remove"></span>
-                Edit
-            </button>
-        </p>
-    </div>
-    
-    <!-- Tokens list -->
-    <div class="row">
-        <div class="col-lg-8">
-            <table class="table table-condensed">
-                <thead>
-                    <tr>
-                        <th>Token name</th>
-                        <th>Default value</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let token of selectedTemplate.tokens">
-                        <td>{{ token.name }}</td>
-                        <td>{{ token.defaultValue }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Set template on tablet -->
-    <div class="row template-block">
-        <h3>Set template on tablet</h3>
+﻿<div *ngIf="!isEditMode && !isAddMode && !isTabletSetMode">
+    <!-- Templates part -->
+    <div class="col-sm-6 col-md-4">
         <masonry [options]="masonryOptions">
-            <masonry-brick *ngFor="let tablet of tablets"
-                           class="col-xs-12 col-sm-12 col-md-6 col-lg-4 masonry-brick">
-                <tablet-tile [tablet]="tablet"
-                             (tabletClicked)="onTabletClicked($event)">
-                </tablet-tile>
-            </masonry-brick>
+
+            <!-- Add new template -->
+            <masonry-brick class="col-xs-12 col-sm-12 col-md-12 col-lg-12 stamp">
+                <plus-button (click)="onTemplateAddClick($event)">
+                </plus-button>
+            </masonry-brick> <!-- / Add new template -->
+            <!-- List of all templates -->
+            <masonry-brick *ngFor="let template of templates"
+                           class="col-xs-12 col-sm-6 col-md-6 col-lg-6 masonry-brick">
+                <template-tile [template]="template"
+                               (templateClicked)="onTemplateClicked($event)">
+                </template-tile>
+            </masonry-brick> <!-- / List of all templates -->
         </masonry>
-    </div><!-- / Set template on tablet -->
-</div> <!-- / Selected template properties -->
+    </div> <!-- / Templates part -->
+    <!-- Selected template properties -->
+    <div class="col-sm-6 col-md-8 template-properties" *ngIf="selectedTemplate">
+        <div>
+            <h2>{{ selectedTemplate.getFullName() }}</h2>
+            <h4>{{ selectedTemplate.description }}</h4>
+
+            <p class="btn-toolbar text-center">
+                <button class="btn btn-primary btn-warning"
+                        (click)="onSelectedTemplateEdit($event)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Edit
+                </button>
+            </p>
+        </div>
+
+        <!-- Tokens list -->
+        <div class="row">
+            <div class="col-lg-8">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Token name</th>
+                            <th>Default value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let token of selectedTemplate.tokens">
+                            <td>{{ token.name }}</td>
+                            <td>{{ token.defaultValue }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!-- / Tokens list -->
+        <!-- Set template on tablet -->
+        <div class="row template-block">
+            <h3>Set template on tablet</h3>
+            <masonry [options]="masonryOptions">
+                <masonry-brick *ngFor="let tablet of tablets"
+                               class="col-xs-12 col-sm-12 col-md-6 col-lg-4 masonry-brick">
+                    <tablet-tile [tablet]="tablet"
+                                 (tabletClicked)="onTabletClicked($event)">
+                    </tablet-tile>
+                </masonry-brick>
+            </masonry>
+        </div><!-- / Set template on tablet -->
+    </div> <!-- / Selected template properties -->
+</div>
+
+<template-add-edit *ngIf="isAddMode"
+                   (saveClicked)="onTemplateAdd($event)"
+                   (cancelClicked)="onCancelClicked($event)">
+</template-add-edit>
+
+<template-add-edit *ngIf="isEditMode"
+                   [template]="selectedTemplate"
+                   (saveClicked)="onTemplateSave($event)"
+                   (cancelClicked)="onCancelClicked($event)">
+</template-add-edit>
+
+<template-tablet-set *ngIf="isTabletSetMode"
+                     [tablet]="selectedTablet"
+                     [template]="selectedTemplate"
+                     (saveClicked)="onAddEntryToTabletClicked($event)"
+                     (showPreviewClicked)="onShowPreviewClicked($event)"
+                     (cancelClicked)="onCancelClicked($event)">
+</template-tablet-set>
