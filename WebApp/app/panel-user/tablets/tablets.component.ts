@@ -73,7 +73,7 @@ export class PanelUserTabletsComponent implements OnInit {
     }
 
     private onEntryClicked(entry: EntryViewModel) {
-        entry = JSON.parse(JSON.stringify(entry)) as EntryViewModel;
+        //entry = JSON.parse(JSON.stringify(entry)) as EntryViewModel;
         this.panelUserService.addEntryToTablet(entry, this.selectedTablet).subscribe(
             data => {
                 this.notifyInfo(`Entry based on ${entry.id} added`);

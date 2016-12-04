@@ -1,1 +1,46 @@
-﻿<div>test user panel templates component</div>
+﻿<!-- Templates part -->
+<div class="col-sm-6 col-md-4">
+    <masonry [options]="masonryOptions">
+        
+        <!-- Add new template -->
+        <masonry-brick class="col-xs-12 col-sm-12 col-md-12 col-lg-12 stamp">
+            <plus-button (click)="onTemplateAddClick($event)">
+            </plus-button>
+        </masonry-brick> <!-- / Add new template -->
+
+        <!-- List of all templates -->
+        <masonry-brick *ngFor="let template of templates"
+                       class="col-xs-12 col-sm-6 col-md-6 col-lg-6 masonry-brick">
+            <template-tile [template]="template"
+                           (templateClicked)="onTemplateClicked($event)">
+            </template-tile>
+        </masonry-brick> <!-- / List of all templates -->
+    </masonry>
+</div> <!-- / Templates part -->
+    
+<!-- Selected template properties -->
+<div class="col-sm-6 col-md-8" *ngIf="selectedTemplate">
+    <div class="heading-no-margin">
+        <h2>{{ selectedTemplate.getFullName() }}</h2>
+        <h4>{{ selectedTemplate.description }}</h4>
+
+        <p class="btn-toolbar text-center">
+            <button class="btn btn-primary btn-warning"
+                    (click)="onSelectedTemplateEdit($event)">
+                <span class="glyphicon glyphicon-remove"></span>
+                Edit
+            </button>
+        </p>
+    </div>
+        
+    <!-- Set template on tablet -->
+    <h3 class="heading-no-margin">Set template on tablet</h3>
+    <masonry [options]="masonryOptions">
+        <masonry-brick *ngFor="let tablet of tablets"
+                        class="col-xs-12 col-sm-12 col-md-6 col-lg-4 masonry-brick">
+            <tablet-tile [tablet]="tablet"
+                            (tabletClicked)="onTabletClicked($event)">
+            </tablet-tile>
+        </masonry-brick>
+    </masonry> <!-- / Set template on tablet -->
+</div> <!-- / Selected template properties -->
