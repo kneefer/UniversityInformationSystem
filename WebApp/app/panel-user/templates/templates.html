@@ -10,13 +10,14 @@
             </masonry-brick> <!-- / Add new template -->
             <!-- List of all templates -->
             <masonry-brick *ngFor="let template of templates"
-                           class="col-xs-12 col-sm-6 col-md-6 col-lg-6 masonry-brick">
+                           class="col-xs-12 col-sm-12 col-md-12 col-lg-12 masonry-brick">
                 <template-tile [template]="template"
                                (templateClicked)="onTemplateClicked($event)">
                 </template-tile>
             </masonry-brick> <!-- / List of all templates -->
         </masonry>
     </div> <!-- / Templates part -->
+
     <!-- Selected template properties -->
     <div class="col-sm-6 col-md-8 template-properties" *ngIf="selectedTemplate">
         <div>
@@ -47,6 +48,9 @@
                             <td>{{ token.name }}</td>
                             <td>{{ token.defaultValue }}</td>
                         </tr>
+                        <tr *ngIf="selectedTemplate.tokens.length === 0">
+                            <td colspan="2" class="text-center text-muted">No tokens</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -74,6 +78,7 @@
 <template-add-edit *ngIf="isEditMode"
                    [template]="selectedTemplate"
                    (saveClicked)="onTemplateSave($event)"
+                   (showPreviewClicked)="onShowPreviewClickedTemplate($event)"
                    (cancelClicked)="onCancelClicked($event)">
 </template-add-edit>
 
@@ -81,6 +86,6 @@
                      [tablet]="selectedTablet"
                      [template]="selectedTemplate"
                      (saveClicked)="onAddEntryToTabletClicked($event)"
-                     (showPreviewClicked)="onShowPreviewClicked($event)"
+                     (showPreviewClicked)="onShowPreviewClickedEntry($event)"
                      (cancelClicked)="onCancelClicked($event)">
 </template-tablet-set>

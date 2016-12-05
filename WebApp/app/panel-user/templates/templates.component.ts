@@ -128,8 +128,20 @@ export class TemplatesComponent implements OnInit {
         );
     }
 
-    private onShowPreviewClicked(entry: EntryViewModel) {
+    private onShowPreviewClickedEntry(entry: EntryViewModel) {
         this.panelUserService.addPreviewEntry(entry).subscribe(
+            guid => {
+                this.notifyInfo(`Preview generated: GUID: ${guid}.`);
+                this.router.navigate(['paneluser', 'preview', guid]);
+            },
+            error => this.notifyError(error)
+        );
+    }
+
+    private onShowPreviewClickedTemplate(template: TemplateViewModel) {
+        this.panelUserService.addPreviewEntry(
+            EntryViewModel.generateFromTemplate(template)
+        ).subscribe(
             guid => {
                 this.notifyInfo(`Preview generated: GUID: ${guid}.`);
                 this.router.navigate(['paneluser', 'preview', guid]);

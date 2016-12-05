@@ -16,19 +16,41 @@ export class TemplateAddEditComponent implements OnInit {
     @Input() public template: TemplateViewModel;
 
     @Output() public saveClicked = new EventEmitter<TemplateViewModel>();
+    @Output() public showPreviewClicked = new EventEmitter<TemplateViewModel>();
     @Output() public cancelClicked = new EventEmitter();
 
     public processedTemplate: TemplateViewModel;
+    public processedTemplateTokens: Array<TokenViewModel>;
 
     public ngOnInit(): void {
         this.processedTemplate = this.template
             ? JSON.parse(JSON.stringify(this.template)) as TemplateViewModel
             : new TemplateViewModel();
+        this.processedTemplateTokens = this.processedTemplate.tokens;
+    }
+
+    private unifyModels(): void {
+        this.processedTemplate.tokens = this.processedTemplateTokens;
+    }
+
+    private onClickAddToken(): void {
+        this.processedTemplateTokens.push(new TokenViewModel());
+    }
+
+    private onTokenRemove(token: TokenViewModel): void {
+        this.processedTemplateTokens = this.processedTemplateTokens.filter(x => x !== token);
     }
 
     private onSaveClick(event: Event): void {
         event.preventDefault();
-        this.saveClicked.emit(this.template);
+        this.unifyModels();
+        this.saveClicked.emit(this.processedTemplate);
+    }
+
+    private onShowPreviewClick(event: Event): void {
+        event.preventDefault();
+        this.unifyModels();
+        this.showPreviewClicked.emit(this.processedTemplate);
     }
 
     private onCancelClick(event: Event): void {

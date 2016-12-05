@@ -1,4 +1,5 @@
 ﻿import { TokenViewModel } from './token.model'
+import { TemplateViewModel } from './template.model'
 
 export class EntryViewModel {
 
@@ -10,5 +11,19 @@ export class EntryViewModel {
 
     public getFullName(): string {
         return `${this.date.toDateString()}`;
+    }
+
+    public static generateFromTemplate(template: TemplateViewModel): EntryViewModel {
+        return new EntryViewModel(
+            '',
+            new Date(),
+            template.htmlContent,
+            template.tokens.map(token => new TokenViewModel(
+                '',
+                token.name,
+                token.defaultValue,
+                token.defaultValue
+            )),
+        );
     }
 }

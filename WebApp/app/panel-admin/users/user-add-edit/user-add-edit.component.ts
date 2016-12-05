@@ -27,7 +27,7 @@ export class UserAddEditComponent implements OnInit {
 
     private onSaveClick(event: Event): void {
         event.preventDefault();
-        this.saveClicked.emit(this.user);
+        this.saveClicked.emit(this.processedUser);
     }
 
     private onCancelClick(event: Event): void {

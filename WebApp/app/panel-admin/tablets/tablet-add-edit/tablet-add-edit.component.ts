@@ -19,19 +19,19 @@ export class TabletAddEditComponent implements OnInit {
 
     public processedTablet: TabletViewModel;
 
+    public ngOnInit(): void {
+        this.processedTablet = this.tablet
+            ? JSON.parse(JSON.stringify(this.tablet)) as TabletViewModel
+            : new TabletViewModel();
+    }
+
     private onSaveClick(event: Event): void {
         event.preventDefault();
-        this.saveClicked.emit(this.tablet);
+        this.saveClicked.emit(this.processedTablet);
     }
 
     private onCancelClick(event: Event): void {
         event.preventDefault();
         this.cancelClicked.emit();
-    }
-
-    public ngOnInit(): void {
-        this.processedTablet = this.tablet
-            ? JSON.parse(JSON.stringify(this.tablet)) as TabletViewModel
-            : new TabletViewModel();
     }
 }

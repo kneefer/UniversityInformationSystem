@@ -1,1 +1,84 @@
-﻿<div>test user panel template (add/edit) component</div>
+﻿<div class="main-container">
+    
+    <!-- Left column (HTML content) -->
+    <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">
+        <h2>Html content</h2>
+        <textarea class="form-control" rows="10"></textarea>
+    </div><!-- / Left column (HTML content) -->
+    
+    <!-- Right column -->
+    <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
+        <!-- Template name  -->
+        <div class="form-group">
+            <label htmlFor="name" class="control-label h2">Name</label>
+            <div>
+                <input type="text" class="form-control" id="name" name="name"
+                        placeholder="Name" [(ngModel)]="processedTemplate.name" required>
+            </div>
+        </div><!-- / Template name -->
+
+        <!-- Tokens list -->
+        <div>
+            <h2>
+                Tokens
+                <button type="button" class="btn btn-success btn-sm"
+                        (click)="onClickAddToken($event)">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Add token
+                </button>
+            </h2>
+            <table class="table table-condensed">
+                <thead>
+                <tr>
+                    <th>Token name</th>
+                    <th>Default value</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let token of processedTemplateTokens; let i=index">
+                    <td class="col-md-5">
+                        <input type="text" class="form-control" name="tokenName-{{i}}" id="tokenName-{{i}}"
+                               placeholder="Token name" [(ngModel)]="token.name" required>
+                    </td>
+                    <td class="col-md-6">
+                        <input type="text" class="form-control" name="tokenDefVal-{{i}}" id="tokenDefVal-{{i}}"
+                               placeholder="Default value" [(ngModel)]="token.defaultValue" required>
+                    </td>
+                    <td class="col-md-1 vert-align">
+                        <button type="button" class="btn btn-danger btn-sm"
+                                (click)="onTokenRemove(token)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="processedTemplateTokens.length === 0">
+                    <td colspan="3" class="text-center text-muted">No tokens</td>
+                </tr>
+                </tbody>
+            </table>
+        </div><!-- / Tokens list -->
+    
+        <!-- Buttons -->
+        <div class="text-center">
+            <div class="form-group">
+                <button type="submit" (click)="onSaveClick($event)"
+                        class="btn btn-lg btn-success">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    Save
+                </button>
+                <button type="submit" (click)="onShowPreviewClick($event)"
+                        class="btn btn-lg btn-success">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                    Show Preview
+                </button>
+                <button type="submit" (click)="onCancelClick($event)"
+                        class="btn btn-sm btn-warning">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Cancel
+                </button>
+            </div>
+            
+        </div><!-- / Buttons -->
+    </div><!-- / Right column -->
+</div>
