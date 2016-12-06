@@ -5,11 +5,13 @@ import { SharedModule } from '../shared/shared.module/';
 import { AuthGuard } from '../core/auth-guard.service';
 
 import { PreviewComponent } from './preview.component';
+import { EntryRendererComponent } from './entry-renderer/entry-renderer.component'
 import { PreviewService } from './preview.service';
 
 @NgModule({
     declarations: [
-        PreviewComponent
+        PreviewComponent,
+        EntryRendererComponent
     ],
     imports: [
         SharedModule,

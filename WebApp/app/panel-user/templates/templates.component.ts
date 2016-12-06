@@ -39,7 +39,6 @@ export class TemplatesComponent implements OnInit {
         private router: Router) { }
 
     public ngOnInit(): void {
-        
         this.refresh();
     }
 

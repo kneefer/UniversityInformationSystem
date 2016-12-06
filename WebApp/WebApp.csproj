@@ -50,8 +50,6 @@
     <Content Include="app\panel-user\templates\template-tablet-set\template-tablet-set.html" />
     <Content Include="app\panel-user\templates\templates.css" />
     <Content Include="app\panel-user\templates\templates.html" />
-    <Content Include="app\preview\preview.css" />
-    <Content Include="app\preview\preview.html" />
     <Content Include="app\shared\entry-tile\entry-tile.css" />
     <Content Include="app\shared\entry-tile\entry-tile.html" />
     <Content Include="app\shared\plus-button\plus-button.css" />
@@ -117,6 +115,7 @@
     <TypeScriptCompile Include="app\panel-user\templates\template-add-edit\template-add-edit.component.ts" />
     <TypeScriptCompile Include="app\panel-user\templates\template-tablet-set\template-tablet-set.component.ts" />
     <TypeScriptCompile Include="app\panel-user\templates\templates.component.ts" />
+    <TypeScriptCompile Include="app\preview\entry-renderer\entry-renderer.component.ts" />
     <TypeScriptCompile Include="app\preview\preview.component.ts" />
     <TypeScriptCompile Include="app\preview\preview.module.ts" />
     <TypeScriptCompile Include="app\preview\preview.service.ts" />
