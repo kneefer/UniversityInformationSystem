@@ -7,6 +7,8 @@ import { AppComponent } from './app.component';
 
 import { PanelAdminModule } from './panel-admin/panel-admin.module';
 import { PanelUserModule } from './panel-user/panel-user.module';
+import { PreviewModule } from './preview/preview.module'
+
 import { CoreModule } from './core/core.module';
 import { APP_CONFIG, AppConfig } from './app.config';
 
@@ -16,7 +18,8 @@ import { APP_CONFIG, AppConfig } from './app.config';
         HttpModule,
 
         PanelAdminModule,
-		PanelUserModule,
+        PanelUserModule,
+        PreviewModule,
 		CoreModule.forRoot(),
 
         RouterModule.forRoot([
