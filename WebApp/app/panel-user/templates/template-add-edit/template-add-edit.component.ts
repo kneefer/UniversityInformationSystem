@@ -1,5 +1,7 @@
 ﻿import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
+import { PageTitleService } from '../../../core/page-title.service';
+
 import { TemplateViewModel } from '../../../models/template.model';
 import { TokenViewModel } from '../../../models/token.model';
 
@@ -22,7 +24,11 @@ export class TemplateAddEditComponent implements OnInit {
     public processedTemplate: TemplateViewModel;
     public processedTemplateTokens: Array<TokenViewModel>;
 
+    constructor(
+        private pageTitleService: PageTitleService) { }
+
     public ngOnInit(): void {
+        this.pageTitleService.name.next(`${this.template ? 'Edit' : 'Add'} template`);
         this.processedTemplate = this.template
             ? JSON.parse(JSON.stringify(this.template)) as TemplateViewModel
             : new TemplateViewModel();

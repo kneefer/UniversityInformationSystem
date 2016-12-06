@@ -30,7 +30,7 @@ export class PanelUserTabletsComponent implements OnInit {
         private router: Router) { }
 
     public ngOnInit(): void {
-        this.pageTitleService.name.next('Panel user - tablets');
+        this.pageTitleService.name.next('My tablets');
         this.refresh();
     }
 

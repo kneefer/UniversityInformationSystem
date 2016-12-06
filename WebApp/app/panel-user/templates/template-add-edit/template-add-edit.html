@@ -3,17 +3,18 @@
     <!-- Left column (HTML content) -->
     <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">
         <h2>Html content</h2>
-        <textarea class="form-control" rows="10"></textarea>
+        <textarea class="form-control" [(ngModel)]="processedTemplate.htmlContent" rows="10"></textarea>
     </div><!-- / Left column (HTML content) -->
-    
+
     <!-- Right column -->
     <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
-        <!-- Template name  -->
+
+        <!-- Template name -->
         <div class="form-group">
             <label htmlFor="name" class="control-label h2">Name</label>
             <div>
                 <input type="text" class="form-control" id="name" name="name"
-                        placeholder="Name" [(ngModel)]="processedTemplate.name" required>
+                       placeholder="Name" [(ngModel)]="processedTemplate.name" required>
             </div>
         </div><!-- / Template name -->
 
@@ -58,7 +59,7 @@
                 </tbody>
             </table>
         </div><!-- / Tokens list -->
-    
+
         <!-- Buttons -->
         <div class="text-center">
             <div class="form-group">
@@ -78,7 +79,6 @@
                     Cancel
                 </button>
             </div>
-            
         </div><!-- / Buttons -->
     </div><!-- / Right column -->
 </div>

@@ -39,7 +39,7 @@ export class TemplatesComponent implements OnInit {
         private router: Router) { }
 
     public ngOnInit(): void {
-        this.pageTitleService.name.next('Panel user - templates');
+        
         this.refresh();
     }
 
@@ -56,6 +56,7 @@ export class TemplatesComponent implements OnInit {
     //#endregion Notify
 
     private returnToStandardMode() {
+        this.pageTitleService.name.next('My templates');
         this.isEditMode = false;
         this.isAddMode = false;
         this.isTabletSetMode = false;
