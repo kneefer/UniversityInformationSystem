@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { PageTitleService } from '../../core/page-title.service';
@@ -6,6 +6,8 @@ import { PanelAdminService } from '../panel-admin.service';
 
 import { UserViewModel } from '../../models/user.model';
 import { TabletViewModel } from '../../models/tablet.model';
+
+import { WINDOW_PROVIDER } from '../../app.config'
 
 declare var module: { id: string; }
 
@@ -32,6 +34,7 @@ export class PanelAdminTabletsComponent implements OnInit {
     public allUsers: Array<UserViewModel>;
 
     constructor(
+        @Inject(WINDOW_PROVIDER) private window: Window,
         private pageTitleService: PageTitleService,
         private panelAdminService: PanelAdminService,
         private router: Router,
@@ -147,6 +150,10 @@ export class PanelAdminTabletsComponent implements OnInit {
             },
             error => this.notifyError(error)
         );
+    }
+
+    private onSelectedTabletGoToPage() {
+        this.window.open(`/preview/tablet/${this.selectedTablet.id}`);
     }
 
     private onBindTabletWithUser(user: UserViewModel) {
