@@ -1,4 +1,4 @@
-﻿import { NgModule } from '@angular/core';
+﻿import { NgModule, ValueProvider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
@@ -10,7 +10,7 @@ import { PanelUserModule } from './panel-user/panel-user.module';
 import { PreviewModule } from './preview/preview.module'
 
 import { CoreModule } from './core/core.module';
-import { APP_CONFIG, AppConfig } from './app.config';
+import { APP_CONFIG, WINDOW_PROVIDER, AppConfig } from './app.config';
 
 @NgModule({
     imports: [
@@ -32,7 +32,8 @@ import { APP_CONFIG, AppConfig } from './app.config';
         AppComponent
     ],
     providers: [
-        { provide: APP_CONFIG, useValue: AppConfig }
+        { provide: APP_CONFIG, useValue: AppConfig },
+        { provide: WINDOW_PROVIDER, useValue: window }
     ],
     bootstrap: [AppComponent]
 })

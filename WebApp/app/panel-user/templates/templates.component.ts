@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { PageTitleService } from '../../core/page-title.service';
@@ -8,6 +8,8 @@ import { TemplateViewModel } from '../../models/template.model';
 import { EntryViewModel } from '../../models/entry.model';
 import { TokenViewModel } from '../../models/token.model';
 import { TabletViewModel } from '../../models/tablet.model';
+
+import { WINDOW_PROVIDER } from '../../app.config'
 
 declare var module: { id: string; }
 
@@ -34,6 +36,7 @@ export class TemplatesComponent implements OnInit {
     public isTabletSetMode = false;
 
     constructor(
+        @Inject(WINDOW_PROVIDER) private window: Window,
         private pageTitleService: PageTitleService,
         private panelUserService: PanelUserService,
         private router: Router) { }
@@ -132,7 +135,7 @@ export class TemplatesComponent implements OnInit {
         this.panelUserService.addPreviewEntry(entry).subscribe(
             guid => {
                 this.notifyInfo(`Preview generated: GUID: ${guid}.`);
-                this.router.navigate(['paneluser', 'preview', guid]);
+                this.window.open(`/preview/guid/${guid}`);
             },
             error => this.notifyError(error)
         );
@@ -144,7 +147,7 @@ export class TemplatesComponent implements OnInit {
         ).subscribe(
             guid => {
                 this.notifyInfo(`Preview generated: GUID: ${guid}.`);
-                this.router.navigate(['paneluser', 'preview', guid]);
+                this.window.open(`/preview/guid/${guid}`);
             },
             error => this.notifyError(error)
         );

@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { PageTitleService } from '../../core/page-title.service';
@@ -8,6 +8,8 @@ import { UserViewModel } from '../../models/user.model';
 import { TabletViewModel } from '../../models/tablet.model';
 import { EntryViewModel } from '../../models/entry.model';
 import { TemplateViewModel } from '../../models/template.model';
+
+import { WINDOW_PROVIDER } from '../../app.config'
 
 declare var module: { id: string; }
 
@@ -25,6 +27,7 @@ export class PanelUserTabletsComponent implements OnInit {
     public templates: Array<TemplateViewModel>;
 
     constructor(
+        @Inject(WINDOW_PROVIDER) private window: Window,
         private pageTitleService: PageTitleService,
         private panelUserService: PanelUserService,
         private router: Router) { }
@@ -69,7 +72,7 @@ export class PanelUserTabletsComponent implements OnInit {
     }
 
     private onSelectedTabletGoToPage() {
-        this.router.navigate(['preview', this.selectedTablet.id]);
+        this.window.open(`/preview/tablet/${this.selectedTablet.id}`);
     }
 
     private onEntryClicked(entry: EntryViewModel) {

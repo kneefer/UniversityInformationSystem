@@ -5,6 +5,7 @@ import { contentHeaders } from './common/headers';
 
 // ReSharper disable once InconsistentNaming
 export let APP_CONFIG = new OpaqueToken('app.config');
+export let WINDOW_PROVIDER = new OpaqueToken('Window');
 
 export interface IAppConfig {
     apiEndpoint: string;
