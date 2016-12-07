@@ -35,8 +35,6 @@ export class EntryRendererComponent implements OnInit, OnChanges {
         this.htmlContent = this.entry.htmlContent.replace(
             this.tokenFindRegex,
             (str, p1, offset, s) => this.getTokenValue(p1));
-
-        console.log(`New content: ${this.entry.htmlContent}`);
     }
 
     private getTokenValue(tokenName: string): string {
