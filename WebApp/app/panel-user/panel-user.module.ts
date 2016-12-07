@@ -25,6 +25,7 @@ import { TemplateTabletSetComponent } from './templates/template-tablet-set/temp
 			children: [
 				{ path: 'tablets', component: PanelUserTabletsComponent },
 				{ path: 'templates', component: TemplatesComponent },
+				{ path: 'templates/:id', component: TemplatesComponent },
 				{ path: '', redirectTo: 'tablets' },
 				{ path: '**', redirectTo: 'tablets' }
 			]

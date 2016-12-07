@@ -33,6 +33,7 @@ import { UserTabletBindComponent } from './users/user-tablet-bind/user-tablet-bi
 				{ path: 'tablets', component: PanelAdminTabletsComponent },
 				{ path: 'tablets/:id', component: PanelAdminTabletsComponent },
 				{ path: 'users', component: PanelAdminUsersComponent },
+				{ path: 'users/:id', component: PanelAdminUsersComponent },
 				{ path: '', redirectTo: 'users' },
 				{ path: '**', redirectTo: 'users' }
 			]

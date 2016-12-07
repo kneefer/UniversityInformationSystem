@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { PageTitleService } from '../../core/page-title.service';
 import { PanelAdminService } from '../panel-admin.service';
@@ -34,7 +34,8 @@ export class PanelAdminTabletsComponent implements OnInit {
     constructor(
         private pageTitleService: PageTitleService,
         private panelAdminService: PanelAdminService,
-        private router: Router) { }
+        private router: Router,
+        private route: ActivatedRoute) { }
 
     public ngOnInit(): void {
         this.pageTitleService.name.next('Panel Admin - Tablets');
@@ -94,7 +95,12 @@ export class PanelAdminTabletsComponent implements OnInit {
         this.selectedTablet = null;
         this.users = null;
         this.panelAdminService.getTablets().subscribe(
-            tablets => this.tablets = tablets,
+            tablets => {
+                this.tablets = tablets;
+                this.route.params.subscribe(next => {
+                    this.onTabletClicked(this.tablets.filter(x => x.id === next['id'])[0]);
+                });
+            },
             error => this.notifyError(error)
         );
     }

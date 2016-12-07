@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit, Inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { PageTitleService } from '../../core/page-title.service';
 import { PanelUserService } from '../panel-user.service';
@@ -39,7 +39,8 @@ export class TemplatesComponent implements OnInit {
         @Inject(WINDOW_PROVIDER) private window: Window,
         private pageTitleService: PageTitleService,
         private panelUserService: PanelUserService,
-        private router: Router) { }
+        private router: Router,
+        private route: ActivatedRoute) { }
 
     public ngOnInit(): void {
         this.refresh();
@@ -70,7 +71,12 @@ export class TemplatesComponent implements OnInit {
         this.templates = null;
         this.tablets = null;
         this.panelUserService.getTemplates().subscribe(
-            templates => this.templates = templates,
+            templates => {
+                this.templates = templates;
+                this.route.params.subscribe(next => {
+                    this.onTemplateClicked(this.templates.filter(x => x.id === next['id'])[0]);
+                });
+            },
             error => this.notifyError(error)
         );
     }
