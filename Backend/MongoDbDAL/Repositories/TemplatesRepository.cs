@@ -27,7 +27,12 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
 
         public async Task<List<TemplateDTO>> GetAllTemplates()
         {
-            throw new NotImplementedException();
+            var usersCollection = _db.GetCollection<User>("users");
+            var result = await Task.Run(() => usersCollection
+                .FindAll()
+                .SetFields("templates"));
+            var flattened = result.SelectMany(x => x.Templates);
+            return flattened.Select(_mapper.Map<TemplateDTO>).ToList();
         }
 
         public async Task<List<TemplateDTO>> GetTemplatesOfUser(string userId)
