@@ -6,21 +6,22 @@ using UniversityInformationSystem.DALInterfaces.Repositories;
 
 namespace UniversityInformationSystem.WebApi.Controllers
 {
-    [RoutePrefix("api/Admin")]
-    public class AdminController : ApiControllerBase
+    [RoutePrefix("api/User")]
+    public class UserController : ApiControllerBase
     {
         private readonly ITabletsRepository _tabletsRepository;
+        private const string UserId = "584c013b5d6c683fc428c018";
 
-        public AdminController(ITabletsRepository tabletsRepository)
+        public UserController(ITabletsRepository tabletsRepository)
         {
             _tabletsRepository = tabletsRepository;
         }
 
-        // GET api/Admin/Tablets
+        // GET api/User/Tablets
         [Route("Tablets")]
         public async Task<List<TabletDTO>> GetTablets()
         {
-            var result = await _tabletsRepository.GetAllTablets();
+            var result = await _tabletsRepository.GetTabletsOfUser(UserId);
             return result;
         }
     }

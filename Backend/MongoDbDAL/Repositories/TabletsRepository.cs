@@ -29,11 +29,6 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
             return result.Select(_mapper.Map<TabletDTO>).ToList();
         }
 
-        public Task<List<ExtendedTabletDTO>> GetTabletExtendedInfo(string tabletId)
-        {
-            throw new System.NotImplementedException();
-        }
-
         public Task<List<TabletDTO>> GetTabletsOfUser(string userId)
         {
             throw new System.NotImplementedException();
