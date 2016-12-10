@@ -14,5 +14,9 @@ namespace UniversityInformationSystem.MongoDbDAL.Models
 
         [BsonElement("description")]
         public string Description { get; set; }
+
+        [BsonElement("entries")]
+        [BsonRepresentation(BsonType.Array)]
+        public Entry[] Entries { get; set; }
     }
 }

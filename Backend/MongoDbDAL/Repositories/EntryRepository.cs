@@ -6,29 +6,24 @@ using UniversityInformationSystem.DALInterfaces.Repositories;
 namespace UniversityInformationSystem.MongoDbDAL.Repositories
 {
     [UsedImplicitly]
-    internal class ContentRepository : IContentRepository
+    internal class EntryRepository : IEntryRepository
     {
-        public Task<ContentDTO> SetContentOfTablet(string tabletId, ContentDTO contentToAdd)
+        public async Task<EntryDTO> SetContentOfTablet(string tabletId, EntryDTO contentToAdd)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<ContentDTO> SetContentOfTabletUsingExisting(string tabletId, string existingContentId)
+        public async Task<EntryDTO> AddPreviewContent(EntryDTO previewContentToAdd)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<ContentDTO> AddPreviewContent(ContentDTO previewContentToAdd)
+        public async Task<EntryDTO> GetCurrentContentOfTablet(string tabletId)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<ContentDTO> GetCurrentContentOfTablet(string tabletId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task<ContentDTO> GetContentsOfTablet(string tabletId)
+        public async Task<EntryDTO> GetContentsOfTablet(string tabletId)
         {
             throw new System.NotImplementedException();
         }

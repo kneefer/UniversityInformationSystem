@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using JetBrains.Annotations;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using UniversityInformationSystem.DALInterfaces.Models;
 using UniversityInformationSystem.DALInterfaces.Repositories;
@@ -25,26 +26,34 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
         public async Task<List<TabletDTO>> GetAllTablets()
         {
             var tabletsCollection = _db.GetCollection<Tablet>("tablets");
-            var result = await Task.Run(() => tabletsCollection.FindAll().ToList());
+            var result = await Task.Run(() => tabletsCollection
+                .FindAll()
+                .SetFields("name", "description")
+                .ToList());
             return result.Select(_mapper.Map<TabletDTO>).ToList();
         }
 
-        public Task<List<TabletDTO>> GetTabletsOfUser(string userId)
+        public async Task<List<TabletDTO>> GetTabletsOfUser(string userId)
+        {
+            var tabletsCollection = _db.GetCollection<Tablet>("tablets");
+            var result = await Task.Run(() => tabletsCollection
+                .Find(new QueryDocument("allowedUsers", ObjectId.Parse(userId)))
+                .SetFields("name", "description")
+                .ToList());
+            return result.Select(_mapper.Map<TabletDTO>).ToList();
+        }
+
+        public async Task<TabletDTO> AddTablet(TabletDTO tabletToAdd)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<TabletDTO> AddTablet(TabletDTO tabletToAdd)
+        public async Task<TabletDTO> UpdateTablet(string tabletId, TabletDTO updatedTablet)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task<TabletDTO> UpdateTablet(string tabletId, TabletDTO updatedTablet)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Task DeleteTablet(string tabletIdToDelete)
+        public async Task DeleteTablet(string tabletIdToDelete)
         {
             throw new System.NotImplementedException();
         }
