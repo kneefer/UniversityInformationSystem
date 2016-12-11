@@ -11,7 +11,7 @@ import { TabletsPage } from '../pages/tablets/tablets';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = TabletsPage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -38,5 +38,9 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  logout() {
+     this.nav.setRoot(LoginPage);
   }
 }

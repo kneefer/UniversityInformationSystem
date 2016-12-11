@@ -7,12 +7,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>tablet</ion-title>
+    <ion-title>Tablet: {{ tablet.name }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <!--<ion-list>
+    <ion-item *ngFor='let template of templates' (click)="showTemplate($event, template)">
+      <h2>{{ template.name }}</h2>
+      <h3>{{ template.template }}</h3>
+    </ion-item>
+  </ion-list>-->
+
+  <ion-card *ngFor='let template of templates' (click)="showTemplate($event, template)">
+    <ion-card-header>
+      {{ template.name }}
+    </ion-card-header>
+    <ion-card-content>
+      {{ template.description }}
+    </ion-card-content>
+  </ion-card>
 
 </ion-content>

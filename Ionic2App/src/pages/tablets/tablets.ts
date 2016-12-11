@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { TabletPage } from '../tablet/tablet'
+
 /*
   Generated class for the Tablets page.
 
@@ -13,10 +15,26 @@ import { NavController } from 'ionic-angular';
 })
 export class TabletsPage {
 
-  constructor(public navCtrl: NavController) {}
+  tablets: Array<{id:number, name: string, description: string}>
+
+  constructor(public navCtrl: NavController) {
+    this.tablets = []
+    for(var i=0; i<10 ; i++) 
+      this.tablets.push({
+        id: i,
+        name: (400+i).toString(),
+        description: "short description of tablet"
+      })
+  }
 
   ionViewDidLoad() {
     console.log('Hello TabletsPage Page');
+  }
+
+  showTablet(event, tablet) {
+    this.navCtrl.push(TabletPage, {
+      tablet: tablet
+    });
   }
 
 }

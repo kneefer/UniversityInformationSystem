@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import {TabletsPage} from '../tablets/tablets';
+
 /*
   Generated class for the Login page.
 
@@ -17,6 +19,10 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('Hello LoginPage Page');
+  }
+
+  login() {
+    this.navCtrl.setRoot(TabletsPage);
   }
 
 }

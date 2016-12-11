@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 /*
   Generated class for the Template page.
@@ -13,10 +13,26 @@ import { NavController } from 'ionic-angular';
 })
 export class TemplatePage {
 
-  constructor(public navCtrl: NavController) {}
+  template: any
+  tokens: Array<{id:number, name: string, value: string}>
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.template = navParams.get('template');
+    this.tokens = []
+    for(var i=0; i<5 ; i++) 
+      this.tokens.push({
+        id: i,
+        name: "token_name" + i,
+        value: "default_value" + i
+      })
+  }
 
   ionViewDidLoad() {
     console.log('Hello TemplatePage Page');
+  }
+
+  save() {
+    
   }
 
 }

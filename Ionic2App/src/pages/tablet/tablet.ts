@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+
+import { TemplatePage } from '../template/template'
 
 /*
   Generated class for the Tablet page.
@@ -13,10 +15,27 @@ import { NavController } from 'ionic-angular';
 })
 export class TabletPage {
 
-  constructor(public navCtrl: NavController) {}
+  tablet: any
+  templates: Array<{id: number, name: string, description: string}>
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.tablet = navParams.get('tablet');
+    this.templates = []
+    for(var i=0; i<5 ; i++) 
+      this.templates.push({
+        id: i,
+        name: "Example " + i,
+        description: "short description of template"
+      })
+  }
 
   ionViewDidLoad() {
     console.log('Hello TabletPage Page');
+  }
+
+  showTemplate(event, template) {
+    this.navCtrl.push(TemplatePage, {
+      template: template
+    });
   }
 
 }

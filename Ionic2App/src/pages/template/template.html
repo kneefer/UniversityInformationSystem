@@ -7,12 +7,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>template</ion-title>
+    <ion-title>Template: {{ template.name }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content>
 
-<ion-content padding>
+  <ion-list>
+
+    <ion-list-header>
+      Tokens
+    </ion-list-header>
+
+    <ion-item *ngFor="let token of tokens">
+      <ion-label>{{ token.name }}</ion-label>
+      <ion-input type="text" [(ngModel)]="token.value"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <button ion-button block (click)="save()">Save</button>
+  </div>
 
 </ion-content>
