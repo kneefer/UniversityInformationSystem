@@ -28,11 +28,9 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
         {
             var tabletsCollection = _db.GetCollection<Tablet>("tablets");
             var result = await Task.Run(() => tabletsCollection
-                .Find(new QueryDocument
-                {
-                    { "_id", ObjectId.Parse(tabletId)},
-                    { "allowedUsers", ObjectId.Parse(userId) }
-                })
+                .Find(Query.And(
+                    Query.EQ("_id", ObjectId.Parse(tabletId)),
+                    Query.EQ("allowedUsers", ObjectId.Parse(userId))))
                 .SetFields("entries")
                 .First());
             return result.Entries.Select(_mapper.Map<EntryDTO>).ToList();
@@ -50,13 +48,15 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
             return _mapper.Map<EntryDTO>(entry);
         }
 
-        public async Task<EntryDTO> AddEntryToTablet(string tabletId, EntryDTO entryToAdd)
+        public async Task<EntryDTO> AddEntryToTablet(string userId, string tabletId, EntryDTO entryToAdd)
         {
             var mapped = _mapper.Map<Entry>(entryToAdd);
             mapped.Id = ObjectId.GenerateNewId().ToString();
-            var tabletsCollection = _db.GetCollection<Entry>("tablets");
+            var tabletsCollection = _db.GetCollection<Tablet>("tablets");
             var result = await Task.Run(() => tabletsCollection.Update(
-                new QueryDocument("_id", ObjectId.Parse(tabletId)), 
+                Query.And(
+                    Query.EQ("_id", ObjectId.Parse(tabletId)),
+                    Query.EQ("allowedUsers", ObjectId.Parse(userId))),
                 Update.PushWrapped("entries", mapped)
             ));
 

@@ -10,20 +10,31 @@ namespace UniversityInformationSystem.WebApi.Controllers
     [RoutePrefix("api/User")]
     public class UserController : ApiControllerBase
     {
+        private readonly IEntriesRepository _entriesRepository;
         private readonly ITabletsRepository _tabletsRepository;
         private readonly ITemplatesRepository _templatesRepository;
-        private readonly IEntriesRepository _entriesRepository;
+        private readonly IUsersRepository _usersRepository;
 
         private const string UserId = "584c42c090dc88ce7d9bc190";
 
         public UserController(
+            IEntriesRepository entriesRepository,
             ITabletsRepository tabletsRepository,
             ITemplatesRepository templatesRepository,
-            IEntriesRepository entriesRepository)
+            IUsersRepository usersRepository)
         {
+            _entriesRepository = entriesRepository;
             _tabletsRepository = tabletsRepository;
             _templatesRepository = templatesRepository;
-            _entriesRepository = entriesRepository;
+            _usersRepository = usersRepository;
+        }
+
+        // GET api/User/SelfInfo
+        [Route("SelfInfo")]
+        public async Task<UserDTO> GetSelfUserInfo()
+        {
+            var result = await _usersRepository.GetUserById(UserId);
+            return result;
         }
 
         // GET api/User/Tablets
@@ -64,7 +75,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
         [HttpPost]
         public async Task<EntryDTO> AddEntryToTablet([FromUri]string tabletId, [FromBody]EntryDTO previewEntry)
         {
-            var result = await _entriesRepository.AddEntryToTablet(tabletId, previewEntry);
+            var result = await _entriesRepository.AddEntryToTablet(UserId, tabletId, previewEntry);
             return result;
         }
 

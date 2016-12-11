@@ -9,7 +9,7 @@ namespace UniversityInformationSystem.DALInterfaces.Repositories
         Task<List<TabletDTO>> GetAllTablets();
         Task<List<TabletDTO>> GetTabletsOfUser(string userId);
         Task<TabletDTO> AddTablet(TabletDTO tabletToAdd);
-        Task<TabletDTO> UpdateTablet(string tabletId, TabletDTO updatedTablet);
+        Task<TabletDTO> UpdateTablet(TabletDTO updatedTablet);
         Task DeleteTablet(string tabletIdToDelete);
     }
 }

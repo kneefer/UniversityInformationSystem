@@ -40,6 +40,14 @@ namespace UniversityInformationSystem.WebApi.Controllers
             return result;
         }
 
+        // GET api/Admin/Users
+        [Route("Tablets")]
+        public async Task<List<UserDTO>> GetAllUsers()
+        {
+            var result = await _usersRepository.GetAllUsers();
+            return result;
+        }
+
         // GET api/Admin/Tablet/{tabletId}/Users
         [Route("Tablets/{tabletId}/Users")]
         public async Task<List<UserDTO>> GetUsersOfTablet(string tabletId)

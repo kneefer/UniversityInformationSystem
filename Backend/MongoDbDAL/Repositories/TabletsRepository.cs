@@ -5,6 +5,7 @@ using AutoMapper;
 using JetBrains.Annotations;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using UniversityInformationSystem.DALInterfaces.Models;
 using UniversityInformationSystem.DALInterfaces.Repositories;
 using UniversityInformationSystem.MongoDbDAL.Models;
@@ -45,17 +46,32 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
 
         public async Task<TabletDTO> AddTablet(TabletDTO tabletToAdd)
         {
-            throw new System.NotImplementedException();
+            var mapped = _mapper.Map<Tablet>(tabletToAdd);
+            var tabletsCollection = _db.GetCollection<Tablet>("tablets");
+            var result = await Task.Run(() => tabletsCollection
+                .Insert(mapped));
+            return _mapper.Map<TabletDTO>(mapped);
         }
 
-        public async Task<TabletDTO> UpdateTablet(string tabletId, TabletDTO updatedTablet)
+        public async Task<TabletDTO> UpdateTablet(TabletDTO updatedTablet)
         {
-            throw new System.NotImplementedException();
+            var tabletsCollection = _db.GetCollection<Tablet>("tablets");
+            var result = await Task.Run(() => tabletsCollection
+                .Update(Query.EQ("_id", ObjectId.Parse(updatedTablet.Id)), Update
+                    .Set("name", updatedTablet.Name)
+                    .Set("description", updatedTablet.Description)
+            ));
+            return updatedTablet;
         }
 
         public async Task DeleteTablet(string tabletIdToDelete)
         {
-            throw new System.NotImplementedException();
+            var tabletsCollection = _db.GetCollection<Tablet>("tablets");
+
+
+
+            var result = await Task.Run(() => tabletsCollection
+                .Remove(Query.EQ("_id", ObjectId.Parse(tabletIdToDelete))));
         }
     }
 }

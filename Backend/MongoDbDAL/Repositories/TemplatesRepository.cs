@@ -6,6 +6,7 @@ using AutoMapper;
 using JetBrains.Annotations;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
 using UniversityInformationSystem.DALInterfaces.Models;
 using UniversityInformationSystem.DALInterfaces.Repositories;
@@ -45,17 +46,33 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
             return result.Templates.Select(_mapper.Map<TemplateDTO>).ToList();
         }
 
-        public async Task<TemplateDTO> AddTemplate(TemplateDTO templateToAdd)
+        public async Task<TemplateDTO> AddTemplateForUser(string userId, TemplateDTO templateToAdd)
         {
-            throw new NotImplementedException();
+            var mapped = _mapper.Map<Template>(templateToAdd);
+            mapped.Id = ObjectId.GenerateNewId().ToString();
+            var usersCollection = _db.GetCollection<User>("users");
+            var result = await Task.Run(() => usersCollection.Update(
+                Query.EQ("_id", ObjectId.Parse(userId)),
+                Update.PushWrapped("templates", mapped)
+            ));
+
+            return _mapper.Map<TemplateDTO>(mapped);
         }
 
-        public async Task<TemplateDTO> UpdateTemplate(string templateId, TemplateDTO updatedTemplate)
+        public async Task<TemplateDTO> UpdateTemplateOfUser(string userId, TemplateDTO updatedTemplate)
         {
-            throw new NotImplementedException();
+            var usersCollection = _db.GetCollection<User>("users");
+            var result = await Task.Run(() => usersCollection
+                .Update(Query.EQ("_id", ObjectId.Parse(userId)), Update
+                    .Set("name", updatedTemplate.Name)
+                    .Set("htmlContent", updatedTemplate.HtmlContent)
+                    .Set("description", updatedTemplate.Description)
+                    .SetWrapped("tokens", updatedTemplate.Tokens)
+            ));
+            return updatedTemplate;
         }
 
-        public async Task DeleteTemplate(TemplateDTO templateToDelete)
+        public async Task DeleteTemplateOfUser(string userId, TemplateDTO templateToDelete)
         {
             throw new NotImplementedException();
         }

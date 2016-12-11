@@ -8,8 +8,8 @@ namespace UniversityInformationSystem.DALInterfaces.Repositories
     {
         Task<List<TemplateDTO>> GetAllTemplates();
         Task<List<TemplateDTO>> GetTemplatesOfUser(string userId);
-        Task<TemplateDTO> AddTemplate(TemplateDTO templateToAdd);
-        Task<TemplateDTO> UpdateTemplate(string templateId, TemplateDTO updatedTemplate);
-        Task DeleteTemplate(TemplateDTO templateToDelete);
+        Task<TemplateDTO> AddTemplateForUser(string userId, TemplateDTO templateToAdd);
+        Task<TemplateDTO> UpdateTemplateOfUser(string userId, TemplateDTO updatedTemplate);
+        Task DeleteTemplateOfUser(string userId, TemplateDTO templateToDelete);
     }
 }

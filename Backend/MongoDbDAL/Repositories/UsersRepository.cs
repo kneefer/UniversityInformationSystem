@@ -6,6 +6,7 @@ using AutoMapper;
 using JetBrains.Annotations;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 using UniversityInformationSystem.DALInterfaces.Models;
 using UniversityInformationSystem.DALInterfaces.Repositories;
 using UniversityInformationSystem.MongoDbDAL.Models;
@@ -22,6 +23,14 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
         {
             _db = db;
             _mapper = mapper;
+        }
+
+        public async Task<UserDTO> GetUserById(string userId)
+        {
+            var usersCollection = _db.GetCollection<User>("users");
+            var result = await Task.Run(() => usersCollection
+                .FindOneById(ObjectId.Parse(userId)));
+            return _mapper.Map<UserDTO>(result);
         }
 
         public async Task<List<UserDTO>> GetAllUsers()
@@ -46,12 +55,40 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
 
         public async Task<UserDTO> AddUser(UserDTO userToAdd)
         {
-            throw new NotImplementedException();
+            var mapped = _mapper.Map<User>(userToAdd);
+            var usersCollection = _db.GetCollection<User>("users");
+            var result = await Task.Run(() => usersCollection
+                .Insert(mapped));
+            return _mapper.Map<UserDTO>(mapped);
         }
 
         public async Task<UserDTO> UpdateUser(UserDTO updatedUser)
         {
-            throw new NotImplementedException();
+            var usersCollection = _db.GetCollection<User>("users");
+            var result = await Task.Run(() => usersCollection
+                .Update(Query.EQ("_id", ObjectId.Parse(updatedUser.Id)), Update
+                    .Set("firstName", updatedUser.FirstName)
+                    .Set("lastName", updatedUser.LastName)
+                    .Set("userName", updatedUser.UserName)
+                    .Set("email", updatedUser.Email)
+                    .Set("description", updatedUser.Description)
+            ));
+            return _mapper.Map<UserDTO>(updatedUser);
+        }
+
+        public async Task BindUserWithTablet(UserDTO userToBind, TabletDTO tabletToBind)
+        {
+            var usersCollection = _db.GetCollection<User>("users");
+            var tabletsCollection = _db.GetCollection<Tablet>("tablets");
+
+            await Task.Run(() =>
+            {
+                usersCollection.Update(Query.EQ("_id", ObjectId.Parse(userToBind.Id)), Update
+                    .Push("allowedTablets", ObjectId.Parse(tabletToBind.Id)));
+
+                tabletsCollection.Update(Query.EQ("_id", ObjectId.Parse(tabletToBind.Id)), Update
+                    .Push("allowedUsers", ObjectId.Parse(userToBind.Id)));
+            });
         }
 
         public async Task DeleteUser(UserDTO userToDelete)
