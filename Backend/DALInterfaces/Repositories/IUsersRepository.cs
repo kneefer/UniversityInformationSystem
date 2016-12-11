@@ -11,7 +11,7 @@ namespace UniversityInformationSystem.DALInterfaces.Repositories
         Task<List<UserDTO>> GetUsersOfTablet(string tabletId);
         Task<UserDTO> AddUser(UserDTO userToAdd);
         Task<UserDTO> UpdateUser(UserDTO updatedUser);
-        Task BindUserWithTablet(UserDTO userToBind, TabletDTO tabletToBind);
-        Task DeleteUser(UserDTO userToDelete);
+        Task BindUserWithTablet(string userIdToBind, string tabletIdToBind);
+        Task DeleteUser(string userIdToDelete);
     }
 }

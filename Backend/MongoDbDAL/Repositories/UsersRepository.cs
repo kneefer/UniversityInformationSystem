@@ -76,22 +76,22 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
             return _mapper.Map<UserDTO>(updatedUser);
         }
 
-        public async Task BindUserWithTablet(UserDTO userToBind, TabletDTO tabletToBind)
+        public async Task BindUserWithTablet(string userIdToBind, string tabletToBind)
         {
             var usersCollection = _db.GetCollection<User>("users");
             var tabletsCollection = _db.GetCollection<Tablet>("tablets");
 
             await Task.Run(() =>
             {
-                usersCollection.Update(Query.EQ("_id", ObjectId.Parse(userToBind.Id)), Update
-                    .Push("allowedTablets", ObjectId.Parse(tabletToBind.Id)));
+                usersCollection.Update(Query.EQ("_id", ObjectId.Parse(userIdToBind)), Update
+                    .Push("allowedTablets", ObjectId.Parse(tabletToBind)));
 
-                tabletsCollection.Update(Query.EQ("_id", ObjectId.Parse(tabletToBind.Id)), Update
-                    .Push("allowedUsers", ObjectId.Parse(userToBind.Id)));
+                tabletsCollection.Update(Query.EQ("_id", ObjectId.Parse(tabletToBind)), Update
+                    .Push("allowedUsers", ObjectId.Parse(userIdToBind)));
             });
         }
 
-        public async Task DeleteUser(UserDTO userToDelete)
+        public Task DeleteUser(string userIdToDelete)
         {
             throw new NotImplementedException();
         }

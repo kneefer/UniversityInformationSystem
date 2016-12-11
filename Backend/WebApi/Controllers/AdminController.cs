@@ -40,8 +40,34 @@ namespace UniversityInformationSystem.WebApi.Controllers
             return result;
         }
 
-        // GET api/Admin/Users
+        // POST api/Admin/Tablets
         [Route("Tablets")]
+        [HttpPost]
+        public async Task<TabletDTO> AddTablet(TabletDTO tabletToAdd)
+        {
+            var result = await _tabletsRepository.AddTablet(tabletToAdd);
+            return result;
+        }
+
+        // POST api/Admin/Tablets
+        [Route("Tablets")]
+        [HttpPut]
+        public async Task<TabletDTO> UpdateTablet(TabletDTO tabletToUpdate)
+        {
+            var result = await _tabletsRepository.UpdateTablet(tabletToUpdate);
+            return result;
+        }
+
+        // POST api/Admin/Tablets
+        [Route("Tablets")]
+        [HttpDelete]
+        public async Task DeleteTablet(string idOfTabletToDelete)
+        {
+            await _tabletsRepository.DeleteTablet(idOfTabletToDelete);
+        }
+
+        // GET api/Admin/Users
+        [Route("Users")]
         public async Task<List<UserDTO>> GetAllUsers()
         {
             var result = await _usersRepository.GetAllUsers();
@@ -56,12 +82,46 @@ namespace UniversityInformationSystem.WebApi.Controllers
             return result;
         }
 
+        // POST api/Admin/Users
+        [Route("Users")]
+        [HttpPost]
+        public async Task<UserDTO> AddUser(UserDTO userToAdd)
+        {
+            var result = await _usersRepository.AddUser(userToAdd);
+            return result;
+        }
+
+        // POST api/Admin/Tablets
+        [Route("Users")]
+        [HttpPut]
+        public async Task<UserDTO> UpdateTablet(UserDTO userToUpdate)
+        {
+            var result = await _usersRepository.UpdateUser(userToUpdate);
+            return result;
+        }
+
+        // POST api/Admin/Tablets
+        [Route("Users")]
+        [HttpDelete]
+        public async Task DeleteUser(string idOfUserToDelete)
+        {
+            await _usersRepository.DeleteUser(idOfUserToDelete);
+        }
+
         // GET api/Admin/Templates
         [Route("Templates")]
         public async Task<List<TemplateDTO>> GetAllTemplates()
         {
             var result = await _templatesRepository.GetAllTemplates();
             return result;
+        }
+
+        // GET api/Admin/Users/{userId}/Tablets/{tabletId}/Bind
+        [Route("Users/{userId}/Tablets/{tabletId}/Bind")]
+        [HttpPost]
+        public async Task BindUserWithTablet(string userId, string tabletId)
+        {
+            await _usersRepository.BindUserWithTablet(userId, tabletId);
         }
     }
 }

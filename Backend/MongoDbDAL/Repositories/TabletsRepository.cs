@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -66,12 +67,7 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
 
         public async Task DeleteTablet(string tabletIdToDelete)
         {
-            var tabletsCollection = _db.GetCollection<Tablet>("tablets");
-
-
-
-            var result = await Task.Run(() => tabletsCollection
-                .Remove(Query.EQ("_id", ObjectId.Parse(tabletIdToDelete))));
+            throw new NotImplementedException();
         }
     }
 }
