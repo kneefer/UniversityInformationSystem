@@ -4,9 +4,9 @@ using UniversityInformationSystem.DALInterfaces.Models;
 
 namespace UniversityInformationSystem.DALInterfaces.Repositories
 {
-    public interface IEntryRepository
+    public interface IEntriesRepository
     {
-        Task<List<EntryDTO>> GetEntriesOfTablet(string tabletId);
+        Task<List<EntryDTO>> GetEntriesOfTablet(string userId, string tabletId);
         Task<EntryDTO> GetCurrentEntryOfTablet(string tabletId);
         Task<EntryDTO> AddEntryToTablet(string tabletId, EntryDTO entryToAdd);
         Task<EntryDTO> GetPreviewEntryById(string previewId);

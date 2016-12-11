@@ -33,7 +33,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
         }
 
         // GET api/Admin/User/{userId}/Tablets
-        [Route("User/{userId}/tablets")]
+        [Route("User/{userId}/Tablets")]
         public async Task<List<TabletDTO>> GetTabletsOfUser(string userId)
         {
             var result = await _tabletsRepository.GetTabletsOfUser(userId);
@@ -41,7 +41,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
         }
 
         // GET api/Admin/Tablet/{tabletId}/Users
-        [Route("Tablets/{tabletId}/users")]
+        [Route("Tablets/{tabletId}/Users")]
         public async Task<List<UserDTO>> GetUsersOfTablet(string tabletId)
         {
             var result = await _usersRepository.GetUsersOfTablet(tabletId);

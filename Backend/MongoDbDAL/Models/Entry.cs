@@ -7,8 +7,11 @@ namespace UniversityInformationSystem.MongoDbDAL.Models
 {
     internal class Entry
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+
         [BsonElement("date")]
-        [BsonRepresentation(BsonType.DateTime)]
         public DateTime Date { get; set; }
 
         [BsonElement("htmlContent")]

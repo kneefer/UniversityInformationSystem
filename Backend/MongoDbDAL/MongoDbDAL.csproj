@@ -117,7 +117,7 @@
     <Compile Include="Models\Token.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\EntryRepository.cs" />
+    <Compile Include="Repositories\EntriesRepository.cs" />
     <Compile Include="Repositories\TabletsRepository.cs" />
     <Compile Include="Repositories\TemplatesRepository.cs" />
     <Compile Include="Repositories\UsersRepository.cs" />
