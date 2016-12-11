@@ -76,12 +76,12 @@
     <Compile Include="Helpers\IInitializeDB.cs" />
     <Compile Include="Identity\Factories.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
-    <Compile Include="Models\ContentDTO.cs" />
-    <Compile Include="Models\ExtendedTabletDTO.cs" />
+    <Compile Include="Models\EntryDTO.cs" />
+    <Compile Include="Models\TokenDTO.cs" />
     <Compile Include="Models\TabletDTO.cs" />
     <Compile Include="Models\TemplateDTO.cs" />
     <Compile Include="Models\UserDTO.cs" />
-    <Compile Include="Repositories\IContentRepository.cs" />
+    <Compile Include="Repositories\IEntryRepository.cs" />
     <Compile Include="Repositories\ITemplatesRepository.cs" />
     <Compile Include="Repositories\ITabletsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

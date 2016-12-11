@@ -110,13 +110,14 @@
     <Compile Include="Configs\AutoMapperConfiguration.cs" />
     <Compile Include="Identity\MongoApplicationUser.cs" />
     <Compile Include="Identity\MongoUserStore.cs" />
-    <Compile Include="Models\Content.cs" />
+    <Compile Include="Models\Entry.cs" />
     <Compile Include="Models\Tablet.cs" />
     <Compile Include="Configs\MongoDbDALNinjectModule.cs" />
     <Compile Include="Models\Template.cs" />
+    <Compile Include="Models\Token.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\ContentRepository.cs" />
+    <Compile Include="Repositories\EntriesRepository.cs" />
     <Compile Include="Repositories\TabletsRepository.cs" />
     <Compile Include="Repositories\TemplatesRepository.cs" />
     <Compile Include="Repositories\UsersRepository.cs" />

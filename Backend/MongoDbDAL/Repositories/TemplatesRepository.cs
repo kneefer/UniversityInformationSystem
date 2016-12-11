@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using JetBrains.Annotations;
+using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using UniversityInformationSystem.DALInterfaces.Models;
 using UniversityInformationSystem.DALInterfaces.Repositories;
+using UniversityInformationSystem.MongoDbDAL.Models;
 
 namespace UniversityInformationSystem.MongoDbDAL.Repositories
 {
     [UsedImplicitly]
-    internal class TemplatesRepository : ITabletsRepository
+    internal class TemplatesRepository : ITemplatesRepository
     {
         private readonly MongoDatabase _db;
         private readonly IMapper _mapper;
@@ -21,32 +25,37 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
             _mapper = mapper;
         }
 
-        public Task<List<TabletDTO>> GetAllTablets()
+        public async Task<List<TemplateDTO>> GetAllTemplates()
+        {
+            var usersCollection = _db.GetCollection<User>("users");
+            var result = await Task.Run(() => usersCollection
+                .FindAll()
+                .SetFields("templates"));
+            var flattened = result.SelectMany(x => x.Templates);
+            return flattened.Select(_mapper.Map<TemplateDTO>).ToList();
+        }
+
+        public async Task<List<TemplateDTO>> GetTemplatesOfUser(string userId)
+        {
+            var usersCollection = _db.GetCollection<User>("users");
+            var result = await Task.Run(() => usersCollection
+                .Find(new QueryDocument("_id", ObjectId.Parse(userId)))
+                .SetFields("templates")
+                .First());
+            return result.Templates.Select(_mapper.Map<TemplateDTO>).ToList();
+        }
+
+        public async Task<TemplateDTO> AddTemplate(TemplateDTO templateToAdd)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<ExtendedTabletDTO>> GetTabletExtendedInfo(string tabletId)
+        public async Task<TemplateDTO> UpdateTemplate(string templateId, TemplateDTO updatedTemplate)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<TabletDTO>> GetTabletsOfUser(string userId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<TabletDTO> AddTablet(TabletDTO tabletToAdd)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<TabletDTO> UpdateTablet(string tabletId, TabletDTO updatedTablet)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteTablet(string tabletIdToDelete)
+        public async Task DeleteTemplate(TemplateDTO templateToDelete)
         {
             throw new NotImplementedException();
         }

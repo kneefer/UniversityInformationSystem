@@ -32,7 +32,10 @@ namespace UniversityInformationSystem.MongoDbDAL.Configs
             Bind<IInitializeDB>().To<InitializeDB>().InRequestScope();
 
             // Repositories
+            Bind<IEntriesRepository>().To<EntriesRepository>();
             Bind<ITabletsRepository>().To<TabletsRepository>();
+            Bind<ITemplatesRepository>().To<TemplatesRepository>();
+            Bind<IUsersRepository>().To<UsersRepository>();
         }
     }
 }

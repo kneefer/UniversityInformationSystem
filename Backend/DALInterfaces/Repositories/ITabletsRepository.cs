@@ -7,7 +7,6 @@ namespace UniversityInformationSystem.DALInterfaces.Repositories
     public interface ITabletsRepository
     {
         Task<List<TabletDTO>> GetAllTablets();
-        Task<List<ExtendedTabletDTO>> GetTabletExtendedInfo(string tabletId);
         Task<List<TabletDTO>> GetTabletsOfUser(string userId);
         Task<TabletDTO> AddTablet(TabletDTO tabletToAdd);
         Task<TabletDTO> UpdateTablet(string tabletId, TabletDTO updatedTablet);

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using JetBrains.Annotations;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using UniversityInformationSystem.DALInterfaces.Models;
 using UniversityInformationSystem.DALInterfaces.Repositories;
+using UniversityInformationSystem.MongoDbDAL.Models;
 
 namespace UniversityInformationSystem.MongoDbDAL.Repositories
 {
@@ -21,27 +24,37 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
             _mapper = mapper;
         }
 
-        public Task<List<UserDTO>> GetAllUsers()
+        public async Task<List<UserDTO>> GetAllUsers()
+        {
+            var usersCollection = _db.GetCollection<User>("users");
+            var result = await Task.Run(() => usersCollection
+                .FindAll()
+                .SetFields("firstName", "lastName", "userName", "email", "description")
+                .ToList());
+            return result.Select(_mapper.Map<UserDTO>).ToList();
+        }
+
+        public async Task<List<UserDTO>> GetUsersOfTablet(string tabletId)
+        {
+            var usersCollection = _db.GetCollection<User>("users");
+            var result = await Task.Run(() => usersCollection
+                .Find(new QueryDocument("allowedTablets", ObjectId.Parse(tabletId)))
+                .SetFields("firstName", "lastName", "userName", "email", "description")
+                .ToList());
+            return result.Select(_mapper.Map<UserDTO>).ToList();
+        }
+
+        public async Task<UserDTO> AddUser(UserDTO userToAdd)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<UserDTO>> GetUsersOfTablet(string tabletId)
+        public async Task<UserDTO> UpdateUser(UserDTO updatedUser)
         {
             throw new NotImplementedException();
         }
 
-        public Task<UserDTO> AddUser(UserDTO userToAdd)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<UserDTO> UpdateUser(UserDTO updatedUser)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteUser(UserDTO userToDelete)
+        public async Task DeleteUser(UserDTO userToDelete)
         {
             throw new NotImplementedException();
         }

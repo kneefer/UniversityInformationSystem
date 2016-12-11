@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using System.Collections.Generic;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace UniversityInformationSystem.MongoDbDAL.Models
@@ -14,5 +15,8 @@ namespace UniversityInformationSystem.MongoDbDAL.Models
 
         [BsonElement("description")]
         public string Description { get; set; }
+
+        [BsonElement("entries")]
+        public List<Entry> Entries { get; set; }
     }
 }

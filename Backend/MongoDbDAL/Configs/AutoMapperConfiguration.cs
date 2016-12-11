@@ -12,6 +12,18 @@ namespace UniversityInformationSystem.MongoDbDAL.Configs
             {
                 cfg.CreateMap<Tablet, TabletDTO>();
                 cfg.CreateMap<TabletDTO, Tablet>();
+
+                cfg.CreateMap<User, UserDTO>();
+                cfg.CreateMap<UserDTO, User>();
+
+                cfg.CreateMap<Template, TemplateDTO>();
+                cfg.CreateMap<TemplateDTO, Template>();
+
+                cfg.CreateMap<Token, TokenDTO>();
+                cfg.CreateMap<TokenDTO, Token>();
+
+                cfg.CreateMap<Entry, EntryDTO>();
+                cfg.CreateMap<EntryDTO, Entry>();
             });
 
             var mapper = config.CreateMapper();
