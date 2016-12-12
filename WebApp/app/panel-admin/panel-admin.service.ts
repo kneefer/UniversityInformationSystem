@@ -74,15 +74,24 @@ export class PanelAdminService {
     }
 
     public addUser(user: UserViewModel): Observable<any> {
-        return Observable.from([1]);
+        const addUserPromise = this.http.post(this.adminApiUrl + 'Users', JSON.stringify(user))
+            .map((resp: Response) => this.log(`Create user response: ${JSON.stringify(resp.json())}`));
+
+        return addUserPromise;
     }
 
     public editUser(user: UserViewModel): Observable<any> {
-        return Observable.from([1]);
+        const updateUserPromise = this.http.put(this.adminApiUrl + 'Users', JSON.stringify(user))
+            .map((resp: Response) => this.log(`Update user response: ${JSON.stringify(resp.json())}`));
+
+        return updateUserPromise;
     }
 
     public deleteUser(user: UserViewModel): Observable<any> {
-        return Observable.from([1]);
+        const deleteUserPromise = this.http.delete(this.adminApiUrl + `Users/${user.id}`)
+            .map((resp: Response) => this.log(`Delete user status: ${resp.statusText}`));
+
+        return deleteUserPromise;
     }
 
     ///////////////////////////////////////
@@ -129,22 +138,37 @@ export class PanelAdminService {
     }
 
     public addTablet(tablet: TabletViewModel): Observable<any> {
-        return Observable.from([1]);
+        const addTabletPromise = this.http.post(this.adminApiUrl + 'Tablets', JSON.stringify(tablet))
+            .map((resp: Response) => this.log(`Create tablet response: ${JSON.stringify(resp.json())}`));
+
+        return addTabletPromise;
     }
 
     public editTablet(tablet: TabletViewModel): Observable<any> {
-        return Observable.from([1]);
+        const updateTabletPromise = this.http.put(this.adminApiUrl + 'Tablets', JSON.stringify(tablet))
+            .map((resp: Response) => this.log(`Update tablet response: ${JSON.stringify(resp.json())}`));
+
+        return updateTabletPromise;
     }
 
     public deleteTablet(tablet: TabletViewModel): Observable<any> {
-        return Observable.from([1]);
+        const deleteTabletPromise = this.http.delete(this.adminApiUrl + `Tablets/${tablet.id}`)
+            .map((resp: Response) => this.log(`Delete tablet status: ${resp.statusText}`));
+
+        return deleteTabletPromise;
     }
 
     public bindTabletWithUser(tablet: TabletViewModel, user: UserViewModel): Observable<any> {
-        return Observable.from([1]);
+        const bindTabletWithUserPromise = this.http.post(this.adminApiUrl + `Users/${user.id}/Bind`, JSON.stringify({ tabletId: tablet.id}))
+            .map((resp: Response) => this.log(`Bind user ${user.id} with tablet ${tablet.id} status: ${resp.statusText}`));
+
+        return bindTabletWithUserPromise;
     }
 
     public unbindTabletFromUser(tablet: TabletViewModel, user: UserViewModel): Observable<any> {
-        return Observable.from([1]);
+        const unbindTabletFromUserPromise = this.http.delete(this.adminApiUrl + `Users/${user.id}/UnbindTablet/${tablet.id}`)
+            .map((resp: Response) => this.log(`Unbind user ${user.id} from tablet ${tablet.id} status: ${resp.statusText}`));
+
+        return unbindTabletFromUserPromise;
     }
 }

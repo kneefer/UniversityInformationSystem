@@ -72,7 +72,7 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
             return updatedTemplate;
         }
 
-        public async Task DeleteTemplateOfUser(string userId, TemplateDTO templateToDelete)
+        public async Task DeleteTemplateOfUser(string userId, string idOfTemplateToDelete)
         {
             throw new NotImplementedException();
         }

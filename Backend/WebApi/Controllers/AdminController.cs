@@ -49,7 +49,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
             return result;
         }
 
-        // POST api/Admin/Tablets
+        // PUT api/Admin/Tablets
         [Route("Tablets")]
         [HttpPut]
         public async Task<TabletDTO> UpdateTablet(TabletDTO tabletToUpdate)
@@ -58,8 +58,8 @@ namespace UniversityInformationSystem.WebApi.Controllers
             return result;
         }
 
-        // POST api/Admin/Tablets
-        [Route("Tablets")]
+        // DELETE api/Admin/Tablets
+        [Route("Tablets/{idOfTabletToDelete}")]
         [HttpDelete]
         public async Task DeleteTablet(string idOfTabletToDelete)
         {
@@ -74,7 +74,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
             return result;
         }
 
-        // GET api/Admin/Tablet/{tabletId}/Users
+        // GET api/Admin/Tablets/{tabletId}/Users
         [Route("Tablets/{tabletId}/Users")]
         public async Task<List<UserDTO>> GetUsersOfTablet(string tabletId)
         {
@@ -91,17 +91,17 @@ namespace UniversityInformationSystem.WebApi.Controllers
             return result;
         }
 
-        // POST api/Admin/Tablets
+        // PUT api/Admin/Users
         [Route("Users")]
         [HttpPut]
-        public async Task<UserDTO> UpdateTablet(UserDTO userToUpdate)
+        public async Task<UserDTO> UpdateUser(UserDTO userToUpdate)
         {
             var result = await _usersRepository.UpdateUser(userToUpdate);
             return result;
         }
 
-        // POST api/Admin/Tablets
-        [Route("Users")]
+        // DELETE api/Admin/Users
+        [Route("Users/{idOfUserToDelete}")]
         [HttpDelete]
         public async Task DeleteUser(string idOfUserToDelete)
         {
@@ -116,12 +116,20 @@ namespace UniversityInformationSystem.WebApi.Controllers
             return result;
         }
 
-        // GET api/Admin/Users/{userId}/Tablets/{tabletId}/Bind
-        [Route("Users/{userId}/Tablets/{tabletId}/Bind")]
+        // POST api/Admin/Users/{userId}/Bind
+        [Route("Users/{userId}/Bind")]
         [HttpPost]
-        public async Task BindUserWithTablet(string userId, string tabletId)
+        public async Task BindUserWithTablet([FromUri]string userId, [FromBody]string tabletId)
         {
             await _usersRepository.BindUserWithTablet(userId, tabletId);
+        }
+
+        // DELETE api/Admin/Users/{userId}/UnbindTablet/{tabletId}
+        [Route("Users/{userId}/UnbindTablet/{tabletId}")]
+        [HttpDelete]
+        public async Task UnindUserFromTablet(string userId, string tabletId)
+        {
+            await _usersRepository.UnbindUserFromTablet(userId, tabletId);
         }
     }
 }

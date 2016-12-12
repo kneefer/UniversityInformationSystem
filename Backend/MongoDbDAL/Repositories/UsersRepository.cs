@@ -91,7 +91,12 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
             });
         }
 
-        public Task DeleteUser(string userIdToDelete)
+        public async Task UnbindUserFromTablet(string userIdToUnbind, string tabletIdToUnbind)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task DeleteUser(string userIdToDelete)
         {
             throw new NotImplementedException();
         }

@@ -79,7 +79,11 @@ export class PanelUserService {
     }
 
     public addEntryToTablet(entry: EntryViewModel, tablet: TabletViewModel): Observable<any> {
-        return Observable.from([1]);
+        const addEntryToTabletPromise = this.http.post(this.userApiUrl + `Tablets/${tablet.id}/Entries`, JSON.stringify(entry))
+            .map((resp: Response) => EntryViewModel.deserialize(resp.json()))
+            .do<EntryViewModel>(data => this.log(`Create entry response: ${JSON.stringify(data)}`));
+
+        return addEntryToTabletPromise;
     }
 
     ///////////////////////////////////////
@@ -87,7 +91,11 @@ export class PanelUserService {
     ///////////////////////////////////////
 
     public addPreviewEntry(entry: EntryViewModel): Observable<string> {
-        return Observable.from(['guidSample']);
+        const addPreviewPromise = this.http.post(this.userApiUrl + 'Previews', JSON.stringify(entry))
+            .map((resp: Response) => EntryViewModel.deserialize(resp.json()).id)
+            .do<string>(data => this.log(`Create preview response: ${JSON.stringify(data)}`));
+
+        return addPreviewPromise;
     }
 
     public getPreviewEntry(entryGuid: string): Observable<EntryViewModel> {
@@ -132,14 +140,23 @@ export class PanelUserService {
     }
 
     public addTemplate(template: TemplateViewModel): Observable<any> {
-        return Observable.from([1]);
+        const addTemplatePromise = this.http.post(this.userApiUrl + 'Templates', JSON.stringify(template))
+            .map((resp: Response) => this.log(`Create template response: ${JSON.stringify(resp.json())}`));
+
+        return addTemplatePromise;
     }
 
     public editTemplate(template: TemplateViewModel): Observable<any> {
-        return Observable.from([1]);
+        const updateTemplatePromise = this.http.put(this.userApiUrl + 'Templates', JSON.stringify(template))
+            .map((resp: Response) => this.log(`Update template response: ${JSON.stringify(resp.json())}`));
+
+        return updateTemplatePromise;
     }
 
     public deleteTemplate(template: TemplateViewModel): Observable<any> {
-        return Observable.from([1]);
+        const deleteTemplatePromise = this.http.delete(this.userApiUrl + `Templates/${template.id}`)
+            .map((resp: Response) => this.log(`Delete template status: ${resp.statusText}`));
+
+        return deleteTemplatePromise;
     }
 }

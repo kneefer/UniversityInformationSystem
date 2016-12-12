@@ -53,6 +53,32 @@ namespace UniversityInformationSystem.WebApi.Controllers
             return result;
         }
 
+        // POST api/Admin/Templates
+        [Route("Templates")]
+        [HttpPost]
+        public async Task<TemplateDTO> AddTemplate(TemplateDTO templateToAdd)
+        {
+            var result = await _templatesRepository.AddTemplateForUser(UserId, templateToAdd);
+            return result;
+        }
+
+        // PUT api/Admin/Templates
+        [Route("Templates")]
+        [HttpPut]
+        public async Task<TemplateDTO> UpdateTemplate(TemplateDTO templateToUpdate)
+        {
+            var result = await _templatesRepository.UpdateTemplateOfUser(UserId, templateToUpdate);
+            return result;
+        }
+
+        // DELETE api/Admin/Templates
+        [Route("Templates/{idOfTemplateToDelete}")]
+        [HttpDelete]
+        public async Task DeleteTemplate(string idOfTemplateToDelete)
+        {
+            await _templatesRepository.DeleteTemplateOfUser(UserId, idOfTemplateToDelete);
+        }
+
         // GET api/User/Tablets/{tabletId}/Entries
         [Route("Tablets/{tabletId}/Entries")]
         public async Task<List<EntryDTO>> GetEntriesOfTablet(string tabletId)
