@@ -11,4 +11,16 @@
     public getFullName(): string {
         return `${this.firstName} ${this.lastName}`;
     }
+
+    public static deserialize(json: any): UserViewModel {
+        const toReturn = new UserViewModel(
+            json.Id,
+            json.FirstName,
+            json.LastName,
+            json.UserName,
+            json.Email,
+            json.Description);
+
+        return toReturn;
+    }
 }

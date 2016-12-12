@@ -19,11 +19,20 @@ export class EntryViewModel {
             new Date(),
             template.htmlContent,
             template.tokens.map(token => new TokenViewModel(
-                '',
                 token.name,
                 token.defaultValue,
                 token.defaultValue
             )),
         );
+    }
+
+    public static deserialize(json: any): EntryViewModel {
+        const toReturn = new EntryViewModel(
+            json.Id,
+            json.Date,
+            json.HtmlContent,
+            json.Tokens.map(TokenViewModel.deserialize));
+
+        return toReturn;
     }
 }

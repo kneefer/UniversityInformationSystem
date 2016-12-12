@@ -32,8 +32,8 @@ namespace UniversityInformationSystem.WebApi.Controllers
             return result;
         }
 
-        // GET api/Admin/User/{userId}/Tablets
-        [Route("User/{userId}/Tablets")]
+        // GET api/Admin/Users/{userId}/Tablets
+        [Route("Users/{userId}/Tablets")]
         public async Task<List<TabletDTO>> GetTabletsOfUser(string userId)
         {
             var result = await _tabletsRepository.GetTabletsOfUser(userId);

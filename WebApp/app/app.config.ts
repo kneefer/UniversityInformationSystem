@@ -8,7 +8,8 @@ export let APP_CONFIG = new OpaqueToken('app.config');
 export let WINDOW_PROVIDER = new OpaqueToken('Window');
 
 export interface IAppConfig {
-    apiEndpoint: string;
+    adminApiEndpoint: string;
+    userApiEndpoint: string;
 	tokenEndpoint: string;
 	localStorageToken: string,
     headers: Headers;
@@ -16,7 +17,8 @@ export interface IAppConfig {
 
 // ReSharper disable once InconsistentNaming
 export const AppConfig: IAppConfig = {
-    apiEndpoint: 'http://localhost:39843/api/',
+    adminApiEndpoint: 'http://localhost:39843/api/Admin/',
+    userApiEndpoint: 'http://localhost:39843/api/User/',
 	tokenEndpoint: 'http://localhost:39843/Token',
 	localStorageToken: 'id_token',
     headers: contentHeaders

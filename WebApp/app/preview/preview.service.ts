@@ -20,15 +20,15 @@ export class PreviewService {
 
     public getTabletContent(tabletId: string): Observable<EntryViewModel> {
         const entry = new EntryViewModel('2', new Date(2016, 11, 4), '<h1>$(Communicate)</h1><h2>$(OtherToken)</h2>', [
-            new TokenViewModel('1', 'Communicate', 'fill the token', 'Nikt nie zdał'),
-            new TokenViewModel('2', 'OtherToken', 'other default', 'Naprawdę hehe')
+            new TokenViewModel('Communicate', 'fill the token', 'Nikt nie zdał'),
+            new TokenViewModel('OtherToken', 'other default', 'Naprawdę hehe')
         ]);
         return Observable.from([entry]);
     }
 
     public getPreview(guid: string): Observable<EntryViewModel> {
         const entry = new EntryViewModel('1', new Date(2016, 12, 3), '<h1>$(Communicate)</h1>', [
-            new TokenViewModel('1', 'Communicate', 'fill the token', 'Jutro mnie nie ma')
+            new TokenViewModel('Communicate', 'fill the token', 'Jutro mnie nie ma')
         ]);
         return Observable.from([entry]);
     }

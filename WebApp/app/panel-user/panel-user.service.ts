@@ -42,11 +42,11 @@ export class PanelUserService {
     public getEntriesOfTablet(tablet: TabletViewModel): Observable<EntryViewModel[]> {
         const entries = [
             new EntryViewModel('1', new Date(2016, 12, 3), '<h1>$(Communicate)</h1>', [
-                new TokenViewModel('1', 'Communicate', 'fill the token', 'Jutro mnie nie ma')
+                new TokenViewModel('Communicate', 'fill the token', 'Jutro mnie nie ma')
             ]),
             new EntryViewModel('2', new Date(2016, 11, 4), '<h1>$(Communicate)</h1><h2>$(OtherToken)</h2>', [
-                new TokenViewModel('1', 'Communicate', 'fill the token', 'Nikt nie zdał'),
-                new TokenViewModel('2', 'OtherToken', 'other default', 'Naprawdę hehe')
+                new TokenViewModel('Communicate', 'fill the token', 'Nikt nie zdał'),
+                new TokenViewModel('OtherToken', 'other default', 'Naprawdę hehe')
             ])
         ];
 
@@ -67,7 +67,7 @@ export class PanelUserService {
 
     public getPreviewEntry(entryGuid: string): Observable<EntryViewModel> {
         const entry = new EntryViewModel('1', new Date(2016, 11, 5), '<h1>$(Comm)</h1>', [
-            new TokenViewModel('1', 'Comm', 'fill the token', 'Test communicate')
+            new TokenViewModel('Comm', 'fill the token', 'Test communicate')
         ]);
         return Observable.from([entry]);
     }
