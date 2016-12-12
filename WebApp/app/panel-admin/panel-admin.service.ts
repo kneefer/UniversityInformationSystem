@@ -23,6 +23,10 @@ export class PanelAdminService {
         this.adminApiUrl = config.adminApiEndpoint;
     }
 
+    private log(toLog: string): void {
+        console.log(toLog);
+    }
+
     /////////////////////////////////////////////
     // User operations
     /////////////////////////////////////////////
@@ -30,7 +34,7 @@ export class PanelAdminService {
     public getUsers(): Observable<UserViewModel[]> {
         const usersPromise = this.http.get(this.adminApiUrl + 'Users')
             .map((resp: Response) => resp.json().map(UserViewModel.deserialize))
-            .do<UserViewModel[]>(data => console.log(`All users: ${JSON.stringify(data)}`));
+            .do<UserViewModel[]>(data => this.log(`All users: ${JSON.stringify(data)}`));
 
         return usersPromise;
 
@@ -52,10 +56,9 @@ export class PanelAdminService {
     }
 
     public getUsersOfTablet(tablet: TabletViewModel): Observable<UserViewModel[]> {
-
         const usersOfTabletPromise = this.http.get(this.adminApiUrl + `Tablets/${tablet.id}/Users`)
             .map((resp: Response) => resp.json().map(UserViewModel.deserialize))
-            .do<UserViewModel[]>(data => console.log(`Users of tablet ${tablet.id}: ${JSON.stringify(data)}`));
+            .do<UserViewModel[]>(data => this.log(`Users of tablet ${tablet.id}: ${JSON.stringify(data)}`));
 
         return usersOfTabletPromise;
 
@@ -89,7 +92,7 @@ export class PanelAdminService {
     public getTablets(): Observable<TabletViewModel[]> {
         const tabletsPromise = this.http.get(this.adminApiUrl + 'Tablets')
             .map((resp: Response) => resp.json().map(TabletViewModel.deserialize))
-            .do<TabletViewModel[]>(data => console.log(`All tablets: ${JSON.stringify(data)}`));
+            .do<TabletViewModel[]>(data => this.log(`All tablets: ${JSON.stringify(data)}`));
 
         return tabletsPromise;
 
@@ -108,10 +111,9 @@ export class PanelAdminService {
     }
 
     public getTabletsOfUser(user: UserViewModel): Observable<TabletViewModel[]> {
-
         const tabletsOfUserPromise = this.http.get(this.adminApiUrl + `Users/${user.id}/Tablets`)
             .map((resp: Response) => resp.json().map(TabletViewModel.deserialize))
-            .do<TabletViewModel[]>(data => console.log(`Tablets of user ${user.id}: ${JSON.stringify(data)}`));
+            .do<TabletViewModel[]>(data => this.log(`Tablets of user ${user.id}: ${JSON.stringify(data)}`));
 
         return tabletsOfUserPromise;
 

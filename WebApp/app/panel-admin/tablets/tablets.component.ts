@@ -109,6 +109,9 @@ export class PanelAdminTabletsComponent implements OnInit {
     }
 
     private onTabletClicked(tablet: TabletViewModel) {
+        if (tablet === undefined)
+            return;
+
         this.selectedTablet = tablet;
         this.returnToStandardMode();
         this.panelAdminService.getUsersOfTablet(tablet).subscribe(

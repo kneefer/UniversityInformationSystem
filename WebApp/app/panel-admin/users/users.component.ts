@@ -106,6 +106,9 @@ export class PanelAdminUsersComponent implements OnInit {
     }
 
     private onUserClicked(user: UserViewModel) {
+        if (user === undefined)
+            return;
+
         this.selectedUser = user;
         this.returnToStandardMode();
         this.panelAdminService.getTabletsOfUser(user).subscribe(

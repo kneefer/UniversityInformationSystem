@@ -10,7 +10,7 @@ export class EntryViewModel {
         public tokens: TokenViewModel[] = new Array<TokenViewModel>()) { }
 
     public getFullName(): string {
-        return `${this.date.toDateString()}`;
+        return `${this.date.toLocaleDateString()} ${this.date.toLocaleTimeString()}`;
     }
 
     public static generateFromTemplate(template: TemplateViewModel): EntryViewModel {
@@ -29,7 +29,7 @@ export class EntryViewModel {
     public static deserialize(json: any): EntryViewModel {
         const toReturn = new EntryViewModel(
             json.Id,
-            json.Date,
+            new Date(json.Date),
             json.HtmlContent,
             json.Tokens.map(TokenViewModel.deserialize));
 
