@@ -1,6 +1,6 @@
 ﻿<!-- Tablets part -->
 <div class="col-sm-6 col-md-4">
-    <masonry [options]="masonryOptions">
+    <masonry [options]="masonryOptions" #tabletsMasonry>
 
         <!-- Add new tablet -->
         <masonry-brick class="col-xs-12 col-sm-12 col-md-12 col-lg-12 stamp">
@@ -52,7 +52,7 @@
         </div>
 
         <h3 class="heading-no-margin">Users of tablet</h3>
-        <masonry [options]="masonryOptions">
+        <masonry [options]="masonryOptions" #usersMasonry>
 
             <!-- Bind user with current tablet -->
             <masonry-brick class="col-xs-12 col-sm-12 col-md-6 col-lg-4 stamp">

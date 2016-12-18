@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Inject } from '@angular/core';
+﻿import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { PageTitleService } from '../../core/page-title.service';
@@ -9,6 +9,8 @@ import { TabletViewModel } from '../../models/tablet.model';
 
 import { WINDOW_PROVIDER } from '../../app.config'
 
+import { AngularMasonry } from 'angular2-masonry';
+
 declare var module: { id: string; }
 
 @Component({
@@ -17,6 +19,9 @@ declare var module: { id: string; }
     styleUrls: ['tablets.css']
 })
 export class PanelAdminTabletsComponent implements OnInit {
+
+    @ViewChild('tabletsMasonry') private tabletsMasonry: AngularMasonry;
+    @ViewChild('usersMasonry') private usersMasonry: AngularMasonry;
 
     public masonryOptions = {
         itemSelector: '.masonry-brick',
@@ -47,29 +52,45 @@ export class PanelAdminTabletsComponent implements OnInit {
 
     //#region Toggles
 
+    private reloadTabletsMasonry() {
+        this.tabletsMasonry.ngOnDestroy();
+        setTimeout(() => this.tabletsMasonry.ngOnInit(), 50);
+    }
+
+    private reloadUsersMasonry() {
+        this.usersMasonry.ngOnDestroy();
+        setTimeout(() => this.usersMasonry.ngOnInit(), 50);
+    }
+
     private toggleAddMode(event?: Event) {
         if (event) {
             event.preventDefault();
         }
         this.isAddMode = !this.isAddMode;
+        this.reloadTabletsMasonry();
     }
 
     private toggleEditMode() {
         this.isEditMode = !this.isEditMode;
     }
 
-    private toggleBindMode() {
+    private toggleBindMode(event?: Event) {
+        if (!event) // Workaround (not known issue)
+            return;
+
         if (!this.isBindMode) {
             this.panelAdminService.getUsers()
                 .subscribe(
                 users => {
                     this.allUsers = users;
                     this.isBindMode = !this.isBindMode;
+                    this.reloadUsersMasonry();
                 },
                 error => this.notifyError(error)
                 );
         } else {
             this.isBindMode = !this.isBindMode;
+            this.reloadUsersMasonry();
         }
     }
 

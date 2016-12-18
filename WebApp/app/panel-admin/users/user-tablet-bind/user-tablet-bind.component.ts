@@ -28,7 +28,7 @@ export class UserTabletBindComponent {
 
     private onCancelClick(event: Event): void {
         event.preventDefault();
-        this.cancelClicked.emit();
+        this.cancelClicked.emit(event);
     }
 
     private onTabletOptionClick(event: Event, selectedTablet: TabletViewModel) {

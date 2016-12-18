@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { PageTitleService } from '../../core/page-title.service';
@@ -6,6 +6,8 @@ import { PanelAdminService } from '../panel-admin.service';
 
 import { UserViewModel } from '../../models/user.model';
 import { TabletViewModel } from '../../models/tablet.model';
+
+import { AngularMasonry } from 'angular2-masonry';
 
 declare var module: { id: string; }
 
@@ -15,6 +17,9 @@ declare var module: { id: string; }
     styleUrls: ['users.css']
 })
 export class PanelAdminUsersComponent implements OnInit {
+
+    @ViewChild('tabletsMasonry') private tabletsMasonry: AngularMasonry;
+    @ViewChild('usersMasonry') private usersMasonry: AngularMasonry;
 
     public masonryOptions = {
         itemSelector: '.masonry-brick',
@@ -44,29 +49,45 @@ export class PanelAdminUsersComponent implements OnInit {
 
     //#region Toggles
 
+    private reloadTabletsMasonry() {
+        this.tabletsMasonry.ngOnDestroy();
+        setTimeout(() => this.tabletsMasonry.ngOnInit(), 50);
+    }
+
+    private reloadUsersMasonry() {
+        this.usersMasonry.ngOnDestroy();
+        setTimeout(() => this.usersMasonry.ngOnInit(), 50);
+    }
+
     private toggleAddMode(event?: Event) {
         if (event) {
             event.preventDefault();
         }
         this.isAddMode = !this.isAddMode;
+        this.reloadUsersMasonry();
     }
 
     private toggleEditMode() {
         this.isEditMode = !this.isEditMode;
     }
 
-    private toggleBindMode() {
+    private toggleBindMode(event?: Event) {
+        if (!event) // Workaround (not known issue)
+            return;
+
         if (!this.isBindMode) {
             this.panelAdminService.getTablets()
                 .subscribe(
                     tablets => {
                         this.allTablets = tablets;
                         this.isBindMode = !this.isBindMode;
+                        this.reloadTabletsMasonry();
                     },
                     error => this.notifyError(error)
                 );
         } else {
             this.isBindMode = !this.isBindMode;
+            this.reloadTabletsMasonry();
         }
     }
 

@@ -28,7 +28,7 @@ export class TabletUserBindComponent implements OnInit {
 
     private onCancelClick(event: Event): void {
         event.preventDefault();
-        this.cancelClicked.emit();
+        this.cancelClicked.emit(event);
     }
 
     private onUserOptionClick(event: Event, selectedUser: UserViewModel) {
