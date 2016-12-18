@@ -120,6 +120,7 @@
     <TypeScriptCompile Include="app\preview\preview.module.ts" />
     <TypeScriptCompile Include="app\preview\preview.service.ts" />
     <TypeScriptCompile Include="app\shared\entry-tile\entry-tile.component.ts" />
+    <TypeScriptCompile Include="app\common\MyHttp.ts" />
     <TypeScriptCompile Include="app\shared\plus-button\plus-button.component.ts" />
     <TypeScriptCompile Include="app\shared\shared.module.ts" />
     <TypeScriptCompile Include="app\panel-admin\tablets\tablet-add-edit\tablet-add-edit.component.ts" />

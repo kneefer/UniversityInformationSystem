@@ -1,6 +1,6 @@
 ﻿import { NgModule, ValueProvider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
+import { HttpModule, RequestOptions, Http, XHRBackend } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -11,6 +11,8 @@ import { PreviewModule } from './preview/preview.module'
 
 import { CoreModule } from './core/core.module';
 import { APP_CONFIG, WINDOW_PROVIDER, AppConfig } from './app.config';
+
+import { MyHttp } from './common/MyHttp';
 
 @NgModule({
     imports: [
@@ -32,8 +34,20 @@ import { APP_CONFIG, WINDOW_PROVIDER, AppConfig } from './app.config';
         AppComponent
     ],
     providers: [
-        { provide: APP_CONFIG, useValue: AppConfig },
-        { provide: WINDOW_PROVIDER, useValue: window }
+        {
+            provide: APP_CONFIG,
+            useValue: AppConfig
+        },
+        {
+            provide: WINDOW_PROVIDER,
+            useValue: window
+        },
+        {
+            provide: Http,
+            useFactory: (xhr: XHRBackend, req: RequestOptions) =>
+                new MyHttp(xhr, req),
+            deps: [XHRBackend, RequestOptions]
+        }
     ],
     bootstrap: [AppComponent]
 })

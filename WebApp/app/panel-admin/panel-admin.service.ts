@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 import { UserViewModel } from '../models/user.model';
 import { TabletViewModel } from '../models/tablet.model';
 
-import { APP_CONFIG, IAppConfig } from '../app.config'
+import { APP_CONFIG, IAppConfig } from '../app.config';
 
 @Injectable()
 export class PanelAdminService {
@@ -159,7 +159,7 @@ export class PanelAdminService {
     }
 
     public bindTabletWithUser(tablet: TabletViewModel, user: UserViewModel): Observable<any> {
-        const bindTabletWithUserPromise = this.http.post(this.adminApiUrl + `Users/${user.id}/Bind`, JSON.stringify({ tabletId: tablet.id}))
+        const bindTabletWithUserPromise = this.http.post(this.adminApiUrl + `Users/${user.id}/BindTablet/${tablet.id}`, null)
             .map((resp: Response) => this.log(`Bind user ${user.id} with tablet ${tablet.id} status: ${resp.statusText}`));
 
         return bindTabletWithUserPromise;

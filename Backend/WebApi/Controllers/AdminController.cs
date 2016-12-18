@@ -117,9 +117,9 @@ namespace UniversityInformationSystem.WebApi.Controllers
         }
 
         // POST api/Admin/Users/{userId}/Bind
-        [Route("Users/{userId}/Bind")]
+        [Route("Users/{userId}/BindTablet/{tabletId}")]
         [HttpPost]
-        public async Task BindUserWithTablet([FromUri]string userId, [FromBody]string tabletId)
+        public async Task BindUserWithTablet(string userId, string tabletId)
         {
             await _usersRepository.BindUserWithTablet(userId, tabletId);
         }
