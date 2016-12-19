@@ -67,7 +67,15 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
 
         public async Task DeleteTablet(string tabletIdToDelete)
         {
-            throw new NotImplementedException();
+            var usersCollection = _db.GetCollection<User>("users");
+            var tabletsCollection = _db.GetCollection<Tablet>("tablets");
+
+            await Task.Run(() =>
+            {
+                tabletsCollection.Remove(Query.EQ("_id", ObjectId.Parse(tabletIdToDelete)));
+                usersCollection.Update(Query.EQ("allowedTablets", ObjectId.Parse(tabletIdToDelete)), Update
+                    .Pull("allowedTablets", ObjectId.Parse(tabletIdToDelete)), UpdateFlags.Multi);
+            });
         }
     }
 }

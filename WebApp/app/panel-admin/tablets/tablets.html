@@ -59,7 +59,7 @@
                 <tablet-user-bind *ngIf="isBindMode"
                                   [tablet]="tablet"
                                   [users]="allUsers"
-                                  (addClicked)="onBindUserWithTablet($event)"
+                                  (addClicked)="onBindTabletWithUser($event)"
                                   (cancelClicked)="toggleBindMode($event)">
                 </tablet-user-bind>
                 <plus-button *ngIf="!isBindMode"

@@ -93,12 +93,30 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
 
         public async Task UnbindUserFromTablet(string userIdToUnbind, string tabletIdToUnbind)
         {
-            throw new NotImplementedException();
+            var tabletsCollection = _db.GetCollection<Tablet>("tablets");
+            var usersCollection = _db.GetCollection<User>("users");
+
+            await Task.Run(() =>
+            {
+                tabletsCollection.Update(Query.EQ("allowedUsers", ObjectId.Parse(userIdToUnbind)), Update
+                    .Pull("allowedUsers", ObjectId.Parse(userIdToUnbind)), UpdateFlags.Multi);
+
+                usersCollection.Update(Query.EQ("allowedTablets", ObjectId.Parse(tabletIdToUnbind)), Update
+                    .Pull("allowedTablets", ObjectId.Parse(tabletIdToUnbind)), UpdateFlags.Multi);
+            });
         }
 
         public async Task DeleteUser(string userIdToDelete)
         {
-            throw new NotImplementedException();
+            var usersCollection = _db.GetCollection<User>("users");
+            var tabletsCollection = _db.GetCollection<Tablet>("tablets");
+
+            await Task.Run(() =>
+            {
+                usersCollection.Remove(Query.EQ("_id", ObjectId.Parse(userIdToDelete)));
+                tabletsCollection.Update(Query.EQ("allowedUsers", ObjectId.Parse(userIdToDelete)), Update
+                    .Pull("allowedUsers", ObjectId.Parse(userIdToDelete)), UpdateFlags.Multi);
+            });
         }
     }
 }
