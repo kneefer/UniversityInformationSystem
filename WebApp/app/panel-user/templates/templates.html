@@ -23,12 +23,17 @@
         <div>
             <h2>{{ selectedTemplate.getFullName() }}</h2>
             <h4>{{ selectedTemplate.description }}</h4>
-
+            
             <p class="btn-toolbar text-center">
                 <button class="btn btn-primary btn-warning"
                         (click)="onSelectedTemplateEdit($event)">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    Edit template
+                </button>
+                <button class="btn btn-primary btn-danger"
+                        (click)="onSelectedTemplateDelete($event)">
                     <span class="glyphicon glyphicon-remove"></span>
-                    Edit
+                    Delete template
                 </button>
             </p>
         </div>

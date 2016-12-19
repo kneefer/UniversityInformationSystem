@@ -17,4 +17,13 @@
 
         return toReturn;
     };
+
+    public static clone(token: TokenViewModel): TokenViewModel {
+        const toReturn = new TokenViewModel(
+            token.name,
+            token.defaultValue,
+            token.value);
+
+        return toReturn;
+    }
 }

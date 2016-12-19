@@ -21,7 +21,7 @@ export class UserAddEditComponent implements OnInit {
 
     public ngOnInit(): void {
         this.processedUser = this.user
-            ? JSON.parse(JSON.stringify(this.user)) as UserViewModel
+            ? UserViewModel.clone(this.user)
             : new UserViewModel();
     }
 

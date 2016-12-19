@@ -76,6 +76,8 @@ export class PanelUserTabletsComponent implements OnInit {
     }
 
     private onEntryClicked(entry: EntryViewModel) {
+        entry.date = new Date(Date.now());
+
         this.panelUserService.addEntryToTablet(entry, this.selectedTablet).subscribe(
             data => {
                 this.notifyInfo(`Entry based on ${entry.id} added`);

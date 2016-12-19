@@ -53,7 +53,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
             return result;
         }
 
-        // POST api/Admin/Templates
+        // POST api/User/Templates
         [Route("Templates")]
         [HttpPost]
         public async Task<TemplateDTO> AddTemplate(TemplateDTO templateToAdd)
@@ -62,7 +62,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
             return result;
         }
 
-        // PUT api/Admin/Templates
+        // PUT api/User/Templates
         [Route("Templates")]
         [HttpPut]
         public async Task<TemplateDTO> UpdateTemplate(TemplateDTO templateToUpdate)
@@ -71,7 +71,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
             return result;
         }
 
-        // DELETE api/Admin/Templates
+        // DELETE api/User/Templates
         [Route("Templates/{idOfTemplateToDelete}")]
         [HttpDelete]
         public async Task DeleteTemplate(string idOfTemplateToDelete)

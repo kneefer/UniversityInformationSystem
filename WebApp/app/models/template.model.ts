@@ -23,4 +23,15 @@ export class TemplateViewModel {
 
         return toReturn;
     };
+
+    public static clone(token: TemplateViewModel): TemplateViewModel {
+        const toReturn = new TemplateViewModel(
+            token.id,
+            token.name,
+            token.description,
+            token.htmlContent,
+            token.tokens.map(TokenViewModel.clone));
+
+        return toReturn;
+    }
 }

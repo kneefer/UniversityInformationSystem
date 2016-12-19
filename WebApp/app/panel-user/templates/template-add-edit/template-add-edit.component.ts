@@ -30,7 +30,7 @@ export class TemplateAddEditComponent implements OnInit {
     public ngOnInit(): void {
         this.pageTitleService.name.next(`${this.template ? 'Edit' : 'Add'} template`);
         this.processedTemplate = this.template
-            ? JSON.parse(JSON.stringify(this.template)) as TemplateViewModel
+            ? TemplateViewModel.clone(this.template)
             : new TemplateViewModel();
         this.processedTemplateTokens = this.processedTemplate.tokens;
     }

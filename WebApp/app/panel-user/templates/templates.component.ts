@@ -117,6 +117,16 @@ export class TemplatesComponent implements OnInit {
         );
     }
 
+    private onSelectedTemplateDelete() {
+        this.panelUserService.deleteTemplate(this.selectedTemplate).subscribe(
+            data => {
+                this.notifyInfo(`Template ${this.selectedTemplate.id} deleted`);
+                this.refresh();
+            },
+            error => this.notifyError(error)
+        );
+    }
+
     private onTemplateSave(template: TemplateViewModel) {
         this.panelUserService.editTemplate(template).subscribe(
             data => {

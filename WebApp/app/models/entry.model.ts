@@ -35,4 +35,14 @@ export class EntryViewModel {
 
         return toReturn;
     }
+
+    public static clone(token: EntryViewModel): EntryViewModel {
+        const toReturn = new EntryViewModel(
+            token.id,
+            new Date(token.date),
+            token.htmlContent,
+            token.tokens.map(TokenViewModel.clone));
+
+        return toReturn;
+    }
 }

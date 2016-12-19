@@ -33,7 +33,7 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
                 .FindAll()
                 .SetFields("templates"));
             var flattened = result.SelectMany(x => x.Templates);
-            return flattened.Select(_mapper.Map<TemplateDTO>).ToList();
+            return flattened.Select(_mapper.Map<TemplateDTO>).Reverse().ToList();
         }
 
         public async Task<List<TemplateDTO>> GetTemplatesOfUser(string userId)
@@ -43,7 +43,7 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
                 .Find(new QueryDocument("_id", ObjectId.Parse(userId)))
                 .SetFields("templates")
                 .First());
-            return result.Templates.Select(_mapper.Map<TemplateDTO>).ToList();
+            return result.Templates.Select(_mapper.Map<TemplateDTO>).Reverse().ToList();
         }
 
         public async Task<TemplateDTO> AddTemplateForUser(string userId, TemplateDTO templateToAdd)
@@ -61,20 +61,17 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
 
         public async Task<TemplateDTO> UpdateTemplateOfUser(string userId, TemplateDTO updatedTemplate)
         {
-            var usersCollection = _db.GetCollection<User>("users");
-            var result = await Task.Run(() => usersCollection
-                .Update(Query.EQ("_id", ObjectId.Parse(userId)), Update
-                    .Set("name", updatedTemplate.Name)
-                    .Set("htmlContent", updatedTemplate.HtmlContent)
-                    .Set("description", updatedTemplate.Description)
-                    .SetWrapped("tokens", updatedTemplate.Tokens)
-            ));
-            return updatedTemplate;
+            await DeleteTemplateOfUser(userId, updatedTemplate.Id);
+            var toReturn = await AddTemplateForUser(userId, updatedTemplate);
+            return toReturn;
         }
 
         public async Task DeleteTemplateOfUser(string userId, string idOfTemplateToDelete)
         {
-            throw new NotImplementedException();
+            var usersCollection = _db.GetCollection<User>("users");
+            var result = await Task.Run(() => usersCollection
+                .Update(Query.EQ("_id", ObjectId.Parse(userId)), Update
+                    .Pull("templates", Query.EQ("_id", ObjectId.Parse(idOfTemplateToDelete)))));
         }
     }
 }

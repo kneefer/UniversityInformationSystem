@@ -17,4 +17,13 @@
 
         return toReturn;
     }
+
+    public static clone(token: TabletViewModel): TabletViewModel {
+        const toReturn = new TabletViewModel(
+            token.id,
+            token.name,
+            token.description);
+
+        return toReturn;
+    }
 }

@@ -21,7 +21,7 @@ export class TabletAddEditComponent implements OnInit {
 
     public ngOnInit(): void {
         this.processedTablet = this.tablet
-            ? JSON.parse(JSON.stringify(this.tablet)) as TabletViewModel
+            ? TabletViewModel.clone(this.tablet)
             : new TabletViewModel();
     }
 
