@@ -91,7 +91,6 @@
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.config.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
-    <TypeScriptCompile Include="app\common\headers.ts" />
     <TypeScriptCompile Include="app\core\core.module.ts" />
     <TypeScriptCompile Include="app\core\auth-guard.service.ts" />
     <TypeScriptCompile Include="app\core\page-title.service.ts" />

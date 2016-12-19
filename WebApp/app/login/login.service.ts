@@ -30,7 +30,7 @@ export class LoginService {
 
     public login(user: User) : Observable<Token> {
         const body = JSON.stringify({ username: user.email, password: user.password });
-        return this.http.post(this.config.tokenEndpoint, body, { headers: this.config.headers })
+        return this.http.post(this.config.tokenEndpoint, body)
             .do(data => console.log(`All: ${data}`))
             .catch(this.handleError)
             .map((response: Response) => (response.json() as Token));
