@@ -99,7 +99,9 @@
     <TypeScriptCompile Include="app\login\login\login.component.ts" />
     <TypeScriptCompile Include="app\login\logout\logout.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
+    <TypeScriptCompile Include="app\models\bearer-token.model.ts" />
     <TypeScriptCompile Include="app\models\entry.model.ts" />
+    <TypeScriptCompile Include="app\models\login.model.ts" />
     <TypeScriptCompile Include="app\models\tablet.model.ts" />
     <TypeScriptCompile Include="app\models\template.model.ts" />
     <TypeScriptCompile Include="app\models\token.model.ts" />

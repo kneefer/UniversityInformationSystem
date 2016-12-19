@@ -1,8 +1,11 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { LoginService, User } from '../login.service';
+import { LoginService } from '../login.service';
 import { PageTitleService } from '../../core/page-title.service';
+
+import { BearerToken } from '../../models/bearer-token.model';
+import { LoginModel } from '../../models/login.model';
 
 declare var module: { id: string; }
 
@@ -13,7 +16,7 @@ declare var module: { id: string; }
 })
 export class LoginComponent implements OnInit {
 
-    public user = new User('', '');
+    public user = new LoginModel('', '');
     public errorMsg = '';
 
     constructor(
@@ -28,7 +31,7 @@ export class LoginComponent implements OnInit {
     public login() {
         this.loginService.login(this.user)
             .subscribe(token => {
-                localStorage.setItem('id_token', token.accessToken);
+                localStorage.setItem('bearer-token', JSON.stringify(token));
                 this.router.navigate(['paneladmin']);
             }, error => {
                 this.errorMsg = error.text;

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
+using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.OAuth;
@@ -18,10 +19,11 @@ namespace UniversityInformationSystem.WebApi
 
         public static IDataProtectionProvider DataProtectionProvider { get; private set; }
 
-        public static string PublicClientId { get; private set; }
+        private static string PublicClientId { get; set; }
 
         private static void ConfigureAuth(IAppBuilder app, IResolutionRoot kernel)
         {
+            app.UseCors(CorsOptions.AllowAll);
             DataProtectionProvider = app.GetDataProtectionProvider();
 
             // Enable the application to use a cookie to store information for the signed in user
@@ -37,7 +39,6 @@ namespace UniversityInformationSystem.WebApi
                 Provider = kernel.Get<ApplicationOAuthProvider>(new ConstructorArgument("publicClientId", PublicClientId)),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
-                // In production mode set AllowInsecureHttp = false
                 AllowInsecureHttp = true
             };
 

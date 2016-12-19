@@ -33,6 +33,17 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
             return _mapper.Map<UserDTO>(result);
         }
 
+        public async Task<string> GetUserIdByName(string userName)
+        {
+            var usersCollection = _db.GetCollection<User>("users");
+            var result = await Task.Run(() => usersCollection
+                .Find(Query.EQ("email", userName))
+                .SetFields("email")
+                .ToList());
+
+            return result[0].Id;
+        }
+
         public async Task<List<UserDTO>> GetAllUsers()
         {
             var usersCollection = _db.GetCollection<User>("users");

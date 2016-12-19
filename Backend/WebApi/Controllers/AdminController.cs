@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
+using UniversityInformationSystem.DALInterfaces.Identity;
 using UniversityInformationSystem.DALInterfaces.Models;
 using UniversityInformationSystem.DALInterfaces.Repositories;
 
 namespace UniversityInformationSystem.WebApi.Controllers
 {
-    [AllowAnonymous]
+    [Authorize(Roles = "admin")]
     [RoutePrefix("api/Admin")]
     public class AdminController : ApiControllerBase
     {
@@ -14,14 +16,23 @@ namespace UniversityInformationSystem.WebApi.Controllers
         private readonly ITemplatesRepository _templatesRepository;
         private readonly IUsersRepository _usersRepository;
 
+        private readonly UserManager<IUser> _userManager;
+        private readonly IApplicationUserFactory _applicationUserFactory;
+
         public AdminController(
             ITabletsRepository tabletsRepository,
             ITemplatesRepository templatesRepository,
-            IUsersRepository usersRepository)
+            IUsersRepository usersRepository,
+
+            UserManager<IUser> userManager,
+            IApplicationUserFactory applicationUserFactory)
         {
             _tabletsRepository = tabletsRepository;
             _templatesRepository = templatesRepository;
             _usersRepository = usersRepository;
+
+            _userManager = userManager;
+            _applicationUserFactory = applicationUserFactory;
         }
 
         // GET api/Admin/Tablets
@@ -85,10 +96,14 @@ namespace UniversityInformationSystem.WebApi.Controllers
         // POST api/Admin/Users
         [Route("Users")]
         [HttpPost]
-        public async Task<UserDTO> AddUser(UserDTO userToAdd)
+        public async Task<IHttpActionResult> AddUser(UserDTO userToAdd)
         {
-            var result = await _usersRepository.AddUser(userToAdd);
-            return result;
+            var user = _applicationUserFactory.CreateApplicationUser(userToAdd.Email);
+            var createResult = await _userManager.CreateAsync(user, "default");
+
+            var mongoResult = await _usersRepository.AddUser(userToAdd);
+
+            return Ok();
         }
 
         // PUT api/Admin/Users
