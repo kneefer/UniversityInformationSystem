@@ -1,7 +1,7 @@
 ﻿import { NgModule, ValueProvider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule, RequestOptions, Http, XHRBackend } from '@angular/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 
 import { AppComponent } from './app.component';
 
@@ -44,9 +44,9 @@ import { MyHttp } from './common/MyHttp';
         },
         {
             provide: Http,
-            useFactory: (xhr: XHRBackend, req: RequestOptions) =>
-                new MyHttp(xhr, req),
-            deps: [XHRBackend, RequestOptions]
+            useFactory: (xhr: XHRBackend, req: RequestOptions, router: Router) =>
+                new MyHttp(xhr, req, router),
+            deps: [XHRBackend, RequestOptions, Router]
         }
     ],
     bootstrap: [AppComponent]

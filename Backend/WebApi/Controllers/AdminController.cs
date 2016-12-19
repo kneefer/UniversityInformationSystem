@@ -99,7 +99,10 @@ namespace UniversityInformationSystem.WebApi.Controllers
         public async Task<IHttpActionResult> AddUser(UserDTO userToAdd)
         {
             var user = _applicationUserFactory.CreateApplicationUser(userToAdd.Email);
+
             var createResult = await _userManager.CreateAsync(user, "default");
+            if (!createResult.Succeeded)
+                return GetErrorResult(createResult);
 
             var mongoResult = await _usersRepository.AddUser(userToAdd);
 
@@ -118,9 +121,18 @@ namespace UniversityInformationSystem.WebApi.Controllers
         // DELETE api/Admin/Users
         [Route("Users/{idOfUserToDelete}")]
         [HttpDelete]
-        public async Task DeleteUser(string idOfUserToDelete)
+        public async Task<IHttpActionResult> DeleteUser(string idOfUserToDelete)
         {
+            var userToDelete = await _usersRepository.GetUserById(idOfUserToDelete);
+            var user = _applicationUserFactory.CreateApplicationUser(userToDelete.Email);
+
+            var deleteResult = await _userManager.DeleteAsync(user);
+            if (!deleteResult.Succeeded)
+                return GetErrorResult(deleteResult);
+
             await _usersRepository.DeleteUser(idOfUserToDelete);
+
+            return Ok();
         }
 
         // GET api/Admin/Templates

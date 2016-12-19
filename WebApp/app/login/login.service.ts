@@ -26,6 +26,18 @@ export class LoginService {
             .map((response: Response) => BearerToken.deserialize(response.json()));
     }
 
+    public getIsAdmin(): Observable<boolean> {
+        return this.http.get(`${this.config.accountApiEndpoint}IsAdmin`)
+            .map((resp: Response) => resp.json())
+            .do<boolean>(data => console.log(`IsAdmin: ${data}`));
+    }
+
+    public getIsUser(): Observable<boolean> {
+        return this.http.get(`${this.config.accountApiEndpoint}IsUser`)
+            .map((resp: Response) => resp.json())
+            .do<boolean>(data => console.log(`IsUser: ${data}`));
+    }
+
     public logout() {
     }
 

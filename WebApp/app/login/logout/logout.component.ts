@@ -13,8 +13,8 @@ export class LogoutComponent implements OnInit {
 		private router: Router) { }
 
 	public ngOnInit(): void {
-		if (localStorage.getItem('id_token')) {
-			localStorage.removeItem('id_token');
+        if (localStorage.getItem('bearer-token')) {
+            localStorage.removeItem('bearer-token');
 			console.log('Logged out');
 		}
 

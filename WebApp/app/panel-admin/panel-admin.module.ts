@@ -2,7 +2,8 @@
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module';
-import { AuthGuard } from '../core/auth-guard.service';
+import { AuthGuard } from '../core/auth.guard';
+import { IsAdminGuard } from '../core/isAdmin.guard';
 
 import { PanelAdminService } from './panel-admin.service';
 
@@ -28,7 +29,7 @@ import { UserTabletBindComponent } from './users/user-tablet-bind/user-tablet-bi
 		SharedModule,
 		RouterModule.forChild([{
 			path: 'paneladmin',
-			canActivate: [ AuthGuard ],
+			canActivate: [ AuthGuard, IsAdminGuard ],
 			children: [
 				{ path: 'tablets', component: PanelAdminTabletsComponent },
 				{ path: 'tablets/:id', component: PanelAdminTabletsComponent },

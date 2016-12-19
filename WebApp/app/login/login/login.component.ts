@@ -32,7 +32,14 @@ export class LoginComponent implements OnInit {
         this.loginService.login(this.user)
             .subscribe(token => {
                 localStorage.setItem('bearer-token', JSON.stringify(token));
-                this.router.navigate(['paneladmin']);
+
+                this.loginService.getIsAdmin().subscribe(isAdmin => {
+                    localStorage.setItem('isAdmin', JSON.stringify(isAdmin));
+                    this.router.navigate(isAdmin ? ['paneladmin'] : ['paneluser']);
+                }, error => {
+                    this.errorMsg = error.text;
+                    console.log(error.text);
+                });
             }, error => {
                 this.errorMsg = error.text;
                 console.log(error.text);

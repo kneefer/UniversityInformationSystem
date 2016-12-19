@@ -7,13 +7,8 @@ export class AuthGuard implements CanActivate {
 	constructor(
 		private router: Router) { }
 
-    public canActivate() {
-        return true;
-    }
-
-    // TODO: Revert to appropriate version
-	public canActivate2() {
-		if (localStorage.getItem('id_token')) {
+	public canActivate() {
+		if (localStorage.getItem('bearer-token')) {
 			return true;
 		}
 
