@@ -109,7 +109,7 @@
     <Compile Include="Helpers\InitializeDB.cs" />
     <Compile Include="Configs\AutoMapperConfiguration.cs" />
     <Compile Include="Identity\MongoApplicationUser.cs" />
-    <Compile Include="Identity\MongoUserStore.cs" />
+    <Compile Include="Identity\MongoUserStoreWrapper.cs" />
     <Compile Include="Models\Entry.cs" />
     <Compile Include="Models\Tablet.cs" />
     <Compile Include="Configs\MongoDbDALNinjectModule.cs" />
