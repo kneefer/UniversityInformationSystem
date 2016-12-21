@@ -18,12 +18,15 @@ export class LoginService {
         @Inject(APP_CONFIG) private config: IAppConfig,
         private http: Http) { }
 
-    public login(user: LoginModel): Observable<BearerToken> {
+    public login(user: LoginModel): Observable<boolean> {
         const body = `grant_type=password&username=${user.email}&password=${user.password}`;
         return this.http.post(this.config.tokenEndpoint, body)
             .do(data => console.log(`All: ${data}`))
             .catch(this.handleError)
-            .map((response: Response) => BearerToken.deserialize(response.json()));
+            .map((response: Response) => BearerToken.deserialize(response.json()))
+            .do<BearerToken>(token => localStorage.setItem('bearer-token', JSON.stringify(token)))
+            .mergeMap(x => this.getIsAdmin())
+            .do<boolean>(isAdmin => localStorage.setItem('isAdmin', JSON.stringify(isAdmin)));
     }
 
     public getIsAdmin(): Observable<boolean> {
@@ -39,6 +42,10 @@ export class LoginService {
     }
 
     public logout() {
+        if (localStorage.getItem('bearer-token')) {
+            localStorage.removeItem('bearer-token');
+            console.log('Logged out');
+        }
     }
 
     private handleError(error: Response) {

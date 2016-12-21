@@ -25,8 +25,6 @@ import { IsNotAuthGuard } from '../core/isNotAuth.guard';
 				{ path: '', redirectTo: 'login' },
 				{ path: '**', redirectTo: 'login' }
 			]
-
-		//	
         }])
     ],
     providers: [

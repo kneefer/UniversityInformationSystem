@@ -32,15 +32,8 @@ export class LoginComponent implements OnInit {
         this.errorMsg = null;
 
         this.loginService.login(this.user)
-            .subscribe(token => {
-                localStorage.setItem('bearer-token', JSON.stringify(token));
-
-                this.loginService.getIsAdmin().subscribe(isAdmin => {
-                    localStorage.setItem('isAdmin', JSON.stringify(isAdmin));
-                    this.router.navigate(isAdmin ? ['paneladmin'] : ['paneluser']);
-                }, error => {
-                    
-                });
+            .subscribe(isAdmin => {
+                this.router.navigate(isAdmin ? ['paneladmin'] : ['paneluser']);
             }, error => {
                 this.errorMsg = error === 'invalid_grant'
                     ? 'Wrong username or password!'

@@ -5,10 +5,7 @@ import { CanActivate } from '@angular/router';
 export class IsAuthGuard implements CanActivate {
 
 	public canActivate() {
-		if (localStorage.getItem('bearer-token')) {
-			return true;
-		}
-
-        return false;
+	    const accessToken = localStorage.getItem('bearer-token');
+        return accessToken ? true : false;
 	}
 }
