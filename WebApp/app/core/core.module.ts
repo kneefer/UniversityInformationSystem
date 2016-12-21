@@ -1,7 +1,8 @@
 ﻿import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
-import { AuthGuard } from './auth.guard'
+import { IsAuthGuard } from './isAuth.guard'
+import { IsNotAuthGuard } from './isNotAuth.guard'
 import { IsAdminGuard } from './isAdmin.guard'
 import { IsUserGuard } from './isUser.guard'
 import { PageTitleService } from './page-title.service'
@@ -11,7 +12,8 @@ import { PageTitleService } from './page-title.service'
 		CommonModule
 	],
 	providers: [
-        AuthGuard,
+        IsAuthGuard,
+        IsNotAuthGuard,
         IsAdminGuard,
         IsUserGuard,
         PageTitleService
@@ -32,7 +34,8 @@ export class CoreModule {
 		return {
 			ngModule: CoreModule,
             providers: [
-                AuthGuard,
+                IsAuthGuard,
+                IsNotAuthGuard,
                 IsAdminGuard,
                 IsUserGuard,
                 PageTitleService

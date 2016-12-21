@@ -11,12 +11,12 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a [routerLink]="['login', 'login']">Login</a></li>
-                <li><a [routerLink]="['paneladmin', 'users']">Admin - users</a></li>
-                <li><a [routerLink]="['paneladmin', 'tablets']">Admin - tablets</a></li>
-                <li><a [routerLink]="['paneluser', 'tablets']">User - tablets</a></li>
-                <li><a [routerLink]="['paneluser', 'templates']">User - templates</a></li>
-                <li><a [routerLink]="['login', 'logout']">Logout</a></li>
+                <li><a [routerLink]="['login',      'login']"     *ngIf="!authGuard.canActivate()"  >Login</a></li>
+                <li><a [routerLink]="['paneladmin', 'users']"     *ngIf="isAdminGuard.canActivate()">Admin - users</a></li>
+                <li><a [routerLink]="['paneladmin', 'tablets']"   *ngIf="isAdminGuard.canActivate()">Admin - tablets</a></li>
+                <li><a [routerLink]="['paneluser',  'tablets']"   *ngIf="isUserGuard.canActivate()" >User - tablets</a></li>
+                <li><a [routerLink]="['paneluser',  'templates']" *ngIf="isUserGuard.canActivate()" >User - templates</a></li>
+                <li><a [routerLink]="['login',      'logout']"    *ngIf="authGuard.canActivate()"   >Logout</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

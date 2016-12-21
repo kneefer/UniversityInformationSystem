@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
     }
 
     public login() {
+        this.errorMsg = null;
+
         this.loginService.login(this.user)
             .subscribe(token => {
                 localStorage.setItem('bearer-token', JSON.stringify(token));
@@ -37,11 +39,12 @@ export class LoginComponent implements OnInit {
                     localStorage.setItem('isAdmin', JSON.stringify(isAdmin));
                     this.router.navigate(isAdmin ? ['paneladmin'] : ['paneluser']);
                 }, error => {
-                    this.errorMsg = error.text;
-                    console.log(error.text);
+                    
                 });
             }, error => {
-                this.errorMsg = error.text;
+                this.errorMsg = error === 'invalid_grant'
+                    ? 'Wrong username or password!'
+                    : 'Login problem';
                 console.log(error.text);
             });
     }

@@ -2,7 +2,7 @@
 import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../shared/shared.module/';
-import { AuthGuard } from '../core/auth.guard';
+import { IsAuthGuard } from '../core/isAuth.guard';
 import { IsUserGuard } from '../core/isUser.guard';
 
 import { PanelUserService } from './panel-user.service';
@@ -23,7 +23,7 @@ import { TemplateTabletSetComponent } from './templates/template-tablet-set/temp
 		SharedModule,
 		RouterModule.forChild([{
             path: 'paneluser',
-            canActivate: [AuthGuard, IsUserGuard],
+            canActivate: [IsAuthGuard, IsUserGuard],
 			children: [
 				{ path: 'tablets', component: PanelUserTabletsComponent },
 				{ path: 'templates', component: TemplatesComponent },
