@@ -1,6 +1,8 @@
-﻿using System.Web.Http;
+﻿using System.Threading.Tasks;
+using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using UniversityInformationSystem.DALInterfaces.Identity;
+using UniversityInformationSystem.WebApi.Models;
 
 namespace UniversityInformationSystem.WebApi.Controllers
 {
@@ -29,6 +31,21 @@ namespace UniversityInformationSystem.WebApi.Controllers
         public bool GetIsUser()
         {
             return User.IsInRole("user");
+        }
+
+        [Authorize(Roles = "DenyAll")] // Replace with [AllowAnonymouse] attribute if needed
+        [Route("Register")]
+        public async Task<IHttpActionResult> Register(RegisterBindingModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var user = _applicationUserFactory.CreateApplicationUser(model.Email);
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            return !result.Succeeded 
+                ? GetErrorResult(result) 
+                : Ok();
         }
     }
 }

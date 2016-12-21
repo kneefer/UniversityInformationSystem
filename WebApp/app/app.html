@@ -18,10 +18,10 @@
             </div>
 
             <ul class="nav navbar-nav">
-                <li><a [routerLink]="['paneladmin', 'users']" *ngIf="isAdminGuard.canActivate()">Admin - users</a></li>
-                <li><a [routerLink]="['paneladmin', 'tablets']" *ngIf="isAdminGuard.canActivate()">Admin - tablets</a></li>
-                <li><a [routerLink]="['paneluser',  'tablets']" *ngIf="isUserGuard.canActivate()">User - tablets</a></li>
-                <li><a [routerLink]="['paneluser',  'templates']" *ngIf="isUserGuard.canActivate()">User - templates</a></li>
+                <li><a [routerLink]="['paneladmin', 'users']" *ngIf="isAdminGuard.canActivate()">Users Management</a></li>
+                <li><a [routerLink]="['paneladmin', 'tablets']" *ngIf="isAdminGuard.canActivate()">Tablets Management</a></li>
+                <li><a [routerLink]="['paneluser',  'tablets']" *ngIf="isUserGuard.canActivate()">My Tablets</a></li>
+                <li><a [routerLink]="['paneluser',  'templates']" *ngIf="isUserGuard.canActivate()">My Templates</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

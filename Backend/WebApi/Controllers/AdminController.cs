@@ -100,7 +100,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
         {
             var user = _applicationUserFactory.CreateApplicationUser(userToAdd.Email);
 
-            var createResult = await _userManager.CreateAsync(user, "default");
+            var createResult = await _userManager.CreateAsync(user, "default123");
             if (!createResult.Succeeded)
                 return GetErrorResult(createResult);
 

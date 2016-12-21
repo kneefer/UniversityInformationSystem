@@ -46,7 +46,7 @@ export class PanelAdminTabletsComponent implements OnInit {
         private route: ActivatedRoute) { }
 
     public ngOnInit(): void {
-        this.pageTitleService.name.next('Panel Admin - Tablets');
+        this.pageTitleService.name.next('Tablets Management');
         this.refresh();
     }
 
