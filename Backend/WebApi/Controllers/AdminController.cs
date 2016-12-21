@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using UniversityInformationSystem.DALInterfaces.Identity;
@@ -96,17 +97,17 @@ namespace UniversityInformationSystem.WebApi.Controllers
         // POST api/Admin/Users
         [Route("Users")]
         [HttpPost]
-        public async Task<IHttpActionResult> AddUser(UserDTO userToAdd)
+        public async Task<UserDTO> AddUser(UserDTO userToAdd)
         {
             var user = _applicationUserFactory.CreateApplicationUser(userToAdd.Email);
 
             var createResult = await _userManager.CreateAsync(user, "default123");
             if (!createResult.Succeeded)
-                return GetErrorResult(createResult);
+                throw new HttpException(500, "Problem with creating new user");
 
             var mongoResult = await _usersRepository.AddUser(userToAdd);
 
-            return Ok();
+            return mongoResult;
         }
 
         // PUT api/Admin/Users
