@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { UserViewModel } from '../../../models/user.model';
 import { TabletViewModel } from '../../../models/tablet.model';
@@ -11,7 +11,7 @@ declare var module: { id: string; }
     templateUrl: 'tablet-user-bind.html',
     styleUrls: ['tablet-user-bind.css']
 })
-export class TabletUserBindComponent implements OnInit {
+export class TabletUserBindComponent {
 
     @Input() public users : Array<UserViewModel>;
     @Input() public tablet : TabletViewModel;
@@ -31,12 +31,7 @@ export class TabletUserBindComponent implements OnInit {
         this.cancelClicked.emit(event);
     }
 
-    private onUserOptionClick(event: Event, selectedUser: UserViewModel) {
-        event.preventDefault();
-        this.selectedUserToBind = selectedUser;
-    }
-
-    public ngOnInit(): void {
-
+    private onUserOptionClick(event: string) {
+        this.selectedUserToBind = UserViewModel.clone(JSON.parse(event));
     }
 }

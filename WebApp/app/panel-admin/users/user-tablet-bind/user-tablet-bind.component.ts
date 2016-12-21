@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { UserViewModel } from '../../../models/user.model';
 import { TabletViewModel } from '../../../models/tablet.model';
@@ -31,8 +31,7 @@ export class UserTabletBindComponent {
         this.cancelClicked.emit(event);
     }
 
-    private onTabletOptionClick(event: Event, selectedTablet: TabletViewModel) {
-        event.preventDefault();
-        this.selectedTabletToBind = selectedTablet;
+    private onTabletOptionClick(event: string) {
+        this.selectedTabletToBind = TabletViewModel.clone(JSON.parse(event));
     }
 }

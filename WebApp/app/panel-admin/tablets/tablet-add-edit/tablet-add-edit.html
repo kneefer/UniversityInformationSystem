@@ -1,7 +1,7 @@
 ﻿<div class="panel panel-success">
     <div class="panel-heading text-center">{{ processedTablet.id === '' ? 'Add' : 'Edit' }} tablet</div>
     <div class="panel-body">
-        <form class="form-horizontal form-group-sm">
+        <form class="form-horizontal form-group-sm" (ngSubmit)="onSaveClick($event)" #addEditTabletForm="ngForm">
             <div class="form-group">
                 <label htmlFor="name-{{ processedTablet.id }}" class="col-sm-4 control-label">Name</label>
                 <div class="col-sm-8">
@@ -17,8 +17,8 @@
                 </div>
             </div>
             <div class="text-center">
-                <button type="submit" (click)="onSaveClick($event)"
-                        class="btn btn-lg btn-success">
+                <button type="submit" class="btn btn-lg btn-success"
+                        [disabled]="!addEditTabletForm.form.valid">
                     <span class="glyphicon glyphicon-ok"></span>
                     Save
                 </button>
