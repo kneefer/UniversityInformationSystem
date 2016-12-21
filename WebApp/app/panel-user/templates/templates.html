@@ -63,6 +63,12 @@
         <!-- Set template on tablet -->
         <div class="row template-block">
             <h3>Set template on tablet</h3>
+            <!-- Empty info -->
+            <blockquote class="col-md-12" *ngIf="!(tablets && tablets.length > 0)">
+                You don't have any tablets you can control.<br />
+                Ask system administrator to provide you with one.
+            </blockquote><!-- / Empty info -->
+
             <masonry [options]="masonryOptions">
                 <masonry-brick *ngFor="let tablet of tablets"
                                class="col-xs-12 col-sm-12 col-md-6 col-lg-4 masonry-brick">

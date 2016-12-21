@@ -7,6 +7,9 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { LoginService } from './login.service';
 
+import { IsAuthGuard } from '../core/isAuth.guard';
+import { IsNotAuthGuard } from '../core/isNotAuth.guard';
+
 @NgModule({
 	declarations: [
 		LoginComponent,
@@ -15,15 +18,13 @@ import { LoginService } from './login.service';
 	imports: [
 		SharedModule,
 		RouterModule.forChild([{
-			path: '',
+            path: '',
 			children: [
-				{ path: 'logout', component: LogoutComponent },
-				{ path: 'login', component: LoginComponent },
+				{ path: 'logout', component: LogoutComponent, canActivate: [IsAuthGuard] },
+				{ path: 'login', component: LoginComponent, canActivate: [IsNotAuthGuard] },
 				{ path: '', redirectTo: 'login' },
 				{ path: '**', redirectTo: 'login' }
 			]
-
-		//	
         }])
     ],
     providers: [

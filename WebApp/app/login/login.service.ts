@@ -8,18 +8,8 @@ import 'rxjs/add/operator/map';
 
 import { APP_CONFIG, IAppConfig } from '../app.config'
 
-export class User {
-    constructor(
-        public email: string,
-        public password: string) { }
-}
-
-export class Token {
-    public accessToken: string;
-    public token_type: string;
-    public expires_in: number;
-    public userName: string;
-}
+import { BearerToken } from '../models/bearer-token.model'
+import { LoginModel } from '../models/login.model'
 
 @Injectable()
 export class LoginService {
@@ -28,15 +18,34 @@ export class LoginService {
         @Inject(APP_CONFIG) private config: IAppConfig,
         private http: Http) { }
 
-    public login(user: User) : Observable<Token> {
-        const body = JSON.stringify({ username: user.email, password: user.password });
+    public login(user: LoginModel): Observable<boolean> {
+        const body = `grant_type=password&username=${user.email}&password=${user.password}`;
         return this.http.post(this.config.tokenEndpoint, body)
             .do(data => console.log(`All: ${data}`))
             .catch(this.handleError)
-            .map((response: Response) => (response.json() as Token));
+            .map((response: Response) => BearerToken.deserialize(response.json()))
+            .do<BearerToken>(token => localStorage.setItem('bearer-token', JSON.stringify(token)))
+            .mergeMap(x => this.getIsAdmin())
+            .do<boolean>(isAdmin => localStorage.setItem('isAdmin', JSON.stringify(isAdmin)));
+    }
+
+    public getIsAdmin(): Observable<boolean> {
+        return this.http.get(`${this.config.accountApiEndpoint}IsAdmin`)
+            .map((resp: Response) => resp.json())
+            .do<boolean>(data => console.log(`IsAdmin: ${data}`));
+    }
+
+    public getIsUser(): Observable<boolean> {
+        return this.http.get(`${this.config.accountApiEndpoint}IsUser`)
+            .map((resp: Response) => resp.json())
+            .do<boolean>(data => console.log(`IsUser: ${data}`));
     }
 
     public logout() {
+        if (localStorage.getItem('bearer-token')) {
+            localStorage.removeItem('bearer-token');
+            console.log('Logged out');
+        }
     }
 
     private handleError(error: Response) {

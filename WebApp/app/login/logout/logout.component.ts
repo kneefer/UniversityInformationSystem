@@ -1,6 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
+import { LoginService } from '../login.service';
+
 declare var module: { id: string; }
 
 @Component({
@@ -9,15 +11,12 @@ declare var module: { id: string; }
 })
 export class LogoutComponent implements OnInit {
 
-	constructor(
+    constructor(
+        private loginService: LoginService,
 		private router: Router) { }
 
 	public ngOnInit(): void {
-		if (localStorage.getItem('id_token')) {
-			localStorage.removeItem('id_token');
-			console.log('Logged out');
-		}
-
+	    this.loginService.logout();
 		this.router.navigate(['login']);
 	}
 }

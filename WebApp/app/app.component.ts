@@ -3,6 +3,10 @@ import { Title } from '@angular/platform-browser';
 
 import { PageTitleService } from './core/page-title.service';
 
+import { IsAdminGuard } from './core/isAdmin.guard';
+import { IsUserGuard } from './core/isUser.guard';
+import { IsAuthGuard } from './core/isAuth.guard';
+
 declare var module: { id: string; }
 
 @Component({
@@ -13,12 +17,15 @@ declare var module: { id: string; }
 })
 export class AppComponent implements OnInit {
 
-    public title : string = '';
-    public currentYear: number = 0;
+    public title = '';
+    public currentYear = 0;
 
     constructor(
         private pageTitleService: PageTitleService,
-        private titleService: Title) { }
+        private titleService: Title,
+        private isAdminGuard: IsAdminGuard,
+        private isUserGuard: IsUserGuard,
+        private authGuard: IsAuthGuard) { }
 
     public ngOnInit(): void {
         this.pageTitleService.name.subscribe(newTitle => {

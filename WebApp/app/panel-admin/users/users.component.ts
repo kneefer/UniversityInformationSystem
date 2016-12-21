@@ -43,7 +43,7 @@ export class PanelAdminUsersComponent implements OnInit {
         private route: ActivatedRoute) { }
 
     public ngOnInit(): void {
-        this.pageTitleService.name.next('Panel Admin - Users');
+        this.pageTitleService.name.next('Users Management');
         this.refresh();
     }
 

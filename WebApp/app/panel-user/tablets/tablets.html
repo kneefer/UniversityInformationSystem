@@ -1,5 +1,11 @@
 ﻿<!-- List of users's tablets -->
 <div class="col-sm-6 col-md-4">
+    <!-- Empty info -->
+    <blockquote class="col-md-12" *ngIf="!(tablets && tablets.length > 0)">
+        You don't have any tablets you can manage.<br />
+        Ask system administrator to provide you with one.
+    </blockquote><!-- / Empty info -->
+
     <masonry>
         <masonry-brick *ngFor="let tablet of tablets"
                        class="col-xs-12 col-sm-6 col-md-6 col-lg-6 masonry-brick">
@@ -9,7 +15,6 @@
         </masonry-brick>
     </masonry>
 </div> <!-- / List of users's tablets -->
-
 <!-- Selected tablet's entities part -->
 <div class="col-sm-6 col-md-8" *ngIf="selectedTablet">
     <div class="heading-no-margin">
@@ -24,7 +29,7 @@
             </button>
         </p>
     </div>
-    
+
     <!-- List of latest entries -->
     <h3 class="heading-no-margin">Latest entries</h3>
     <masonry>
@@ -35,14 +40,13 @@
             </entry-tile>
         </masonry-brick>
     </masonry><!-- / List of latest entries -->
-    
     <!-- List of templates -->
     <h3 class="heading-no-margin">My templates</h3>
     <masonry>
         <masonry-brick *ngFor="let template of templates"
                        class="col-xs-12 col-sm-12 col-md-6 col-lg-4 masonry-brick">
             <template-tile [template]="template"
-                        (templateClicked)="onTemplateClicked($event)">
+                           (templateClicked)="onTemplateClicked($event)">
             </template-tile>
         </masonry-brick>
     </masonry><!-- / List of templates -->

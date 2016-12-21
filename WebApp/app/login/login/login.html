@@ -5,22 +5,18 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Please sign in</h3>
                 </div>
-                <div class="panel-body">
-                    <form accept-charset="UTF-8" role="form">
+                <div class="panel-body" [class.has-error]="errorMsg">
+                    <form (ngSubmit)="login()" #loginForm="ngForm">
                         <fieldset>
                             <div class="form-group">
-                                <input [(ngModel)]="user.email" class="form-control validate" placeholder="E-mail" name="email" id="email" type="email">
+                                <input [(ngModel)]="user.email" class="form-control validate" required placeholder="E-mail" name="email" id="email" type="email" >
                             </div>
                             <div class="form-group">
-                                <input [(ngModel)]="user.password" class="form-control validate" placeholder="Password" id="password" name="password" type="password" value="">
+                                <input [(ngModel)]="user.password" class="form-control validate" required placeholder="Password" id="password" name="password" type="password" value="">
                             </div>
-                            <!--<div class="checkbox">
-                                <label>
-                                    <input name="remember" type="checkbox" value="Remember Me"> Remember Me
-                                </label>
-                            </div>-->
-                            <span>{{errorMsg}}</span>
-                            <input (click)="login()" class="btn btn-lg btn-success btn-block" name="submit" id="submit" type="submit" value="Login">
+                            <h5 class="text-danger form-group">{{errorMsg}}</h5>
+                            <input class="btn btn-lg btn-success btn-block form-group" [disabled]="!loginForm.form.valid"
+                                   name="submit" id="submit" type="submit" value="Login">
                         </fieldset>
                     </form>
                 </div>

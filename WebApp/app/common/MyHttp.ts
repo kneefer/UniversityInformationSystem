@@ -4,12 +4,17 @@ import {
     RequestOptionsArgs, Response, ConnectionBackend
 } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router'
+
+import { BearerToken } from '../models/bearer-token.model';
 
 @Injectable()
 export class MyHttp extends Http {
 
-
-    constructor(backend: ConnectionBackend, defaultOptions: RequestOptions) {
+    constructor(
+        backend: ConnectionBackend,
+        defaultOptions: RequestOptions,
+        private router: Router) {
         super(backend, defaultOptions);
     }
 
@@ -19,6 +24,13 @@ export class MyHttp extends Http {
         if (request) {
             request.headers.append('Accept', 'application/json');
             request.headers.append('Content-Type', 'application/json');
+
+            const rawToken = localStorage.getItem('bearer-token');
+            if (rawToken) {
+                const token = BearerToken.deserialize(JSON.parse(rawToken)).access_token;
+                request.headers.append('Authorization', `Bearer ${token}`);
+            } 
+            
             req = request;
         }
         return super.request(req, options);

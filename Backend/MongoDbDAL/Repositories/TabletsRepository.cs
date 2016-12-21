@@ -48,9 +48,15 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
         public async Task<TabletDTO> AddTablet(TabletDTO tabletToAdd)
         {
             var mapped = _mapper.Map<Tablet>(tabletToAdd);
+            mapped.Entries = new List<Entry>();
             var tabletsCollection = _db.GetCollection<Tablet>("tablets");
             var result = await Task.Run(() => tabletsCollection
                 .Insert(mapped));
+
+            await Task.Run(() => tabletsCollection.Update(
+                Query.EQ("_id", ObjectId.Parse(mapped.Id)),
+                Update.Set("allowedUsers", new BsonArray())));
+
             return _mapper.Map<TabletDTO>(mapped);
         }
 

@@ -1,27 +1,21 @@
 ﻿<div class="panel panel-success">
     <div class="panel-heading text-center">Bind user to tablet</div>
     <div class="panel-body">
-        <form class="form form-group-sm" id="editForm">
+        <form class="form form-group-sm" (ngSubmit)="onAddClick($event)" #tabletUserBindForm="ngForm">
             <div class="form-group">
                 <label for="userName">User name</label>
-                <div class="dropdown">
-                    <button class="btn btn-default dropdown-toggle" type="button" 
-                            id="userName" data-toggle="dropdown" 
-                            aria-haspopup="true" aria-expanded="true">
-                        {{ selectedUserToBind ? selectedUserToBind.getFullName() : 'Select user' }}
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="userName">
-                        <li *ngFor="let user of users" 
-                            (click)="onUserOptionClick($event, user)">
-                            <a href="#">{{ user.getFullName() }}</a>
-                        </li>
-                    </ul>
-                </div>
+                <select class="form-control" required
+                        id="userName" name="userName"
+                        [ngModel]="selectedUserToBind | json"
+                        (ngModelChange)="onUserOptionClick($event)">
+                    <option *ngFor="let user of users" (ngModel)="user" [value]="user | json">
+                        {{user.getFullName()}}
+                    </option>
+                </select>
             </div>
             <div class="text-center">
-                <button type="submit" (click)="onAddClick($event)"
-                        class="btn btn-md btn-success btn-space" id="addBindingButton">
+                <button type="submit" class="btn btn-md btn-success btn-space"
+                        [disabled]="!tabletUserBindForm.form.valid">
                     <span class="glyphicon glyphicon-ok"></span>
                     Save
                 </button>

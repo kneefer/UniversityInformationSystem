@@ -43,7 +43,7 @@ namespace UniversityInformationSystem.MongoDbDAL.Repositories
                 .Find(new QueryDocument("_id", ObjectId.Parse(userId)))
                 .SetFields("templates")
                 .First());
-            return result.Templates.Select(_mapper.Map<TemplateDTO>).Reverse().ToList();
+            return result.Templates?.Select(_mapper.Map<TemplateDTO>).Reverse().ToList();
         }
 
         public async Task<TemplateDTO> AddTemplateForUser(string userId, TemplateDTO templateToAdd)

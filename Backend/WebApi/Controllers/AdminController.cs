@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
+using UniversityInformationSystem.DALInterfaces.Identity;
 using UniversityInformationSystem.DALInterfaces.Models;
 using UniversityInformationSystem.DALInterfaces.Repositories;
 
 namespace UniversityInformationSystem.WebApi.Controllers
 {
-    [AllowAnonymous]
+    [Authorize(Roles = "admin")]
     [RoutePrefix("api/Admin")]
     public class AdminController : ApiControllerBase
     {
@@ -14,14 +17,23 @@ namespace UniversityInformationSystem.WebApi.Controllers
         private readonly ITemplatesRepository _templatesRepository;
         private readonly IUsersRepository _usersRepository;
 
+        private readonly UserManager<IUser> _userManager;
+        private readonly IApplicationUserFactory _applicationUserFactory;
+
         public AdminController(
             ITabletsRepository tabletsRepository,
             ITemplatesRepository templatesRepository,
-            IUsersRepository usersRepository)
+            IUsersRepository usersRepository,
+
+            UserManager<IUser> userManager,
+            IApplicationUserFactory applicationUserFactory)
         {
             _tabletsRepository = tabletsRepository;
             _templatesRepository = templatesRepository;
             _usersRepository = usersRepository;
+
+            _userManager = userManager;
+            _applicationUserFactory = applicationUserFactory;
         }
 
         // GET api/Admin/Tablets
@@ -87,8 +99,15 @@ namespace UniversityInformationSystem.WebApi.Controllers
         [HttpPost]
         public async Task<UserDTO> AddUser(UserDTO userToAdd)
         {
-            var result = await _usersRepository.AddUser(userToAdd);
-            return result;
+            var user = _applicationUserFactory.CreateApplicationUser(userToAdd.Email);
+
+            var createResult = await _userManager.CreateAsync(user, "default123");
+            if (!createResult.Succeeded)
+                throw new HttpException(500, "Problem with creating new user");
+
+            var mongoResult = await _usersRepository.AddUser(userToAdd);
+
+            return mongoResult;
         }
 
         // PUT api/Admin/Users
@@ -103,9 +122,18 @@ namespace UniversityInformationSystem.WebApi.Controllers
         // DELETE api/Admin/Users
         [Route("Users/{idOfUserToDelete}")]
         [HttpDelete]
-        public async Task DeleteUser(string idOfUserToDelete)
+        public async Task<IHttpActionResult> DeleteUser(string idOfUserToDelete)
         {
+            var userToDelete = await _usersRepository.GetUserById(idOfUserToDelete);
+            var user = _applicationUserFactory.CreateApplicationUser(userToDelete.Email);
+
+            var deleteResult = await _userManager.DeleteAsync(user);
+            if (!deleteResult.Succeeded)
+                return GetErrorResult(deleteResult);
+
             await _usersRepository.DeleteUser(idOfUserToDelete);
+
+            return Ok();
         }
 
         // GET api/Admin/Templates

@@ -6,7 +6,7 @@ using UniversityInformationSystem.DALInterfaces.Repositories;
 
 namespace UniversityInformationSystem.WebApi.Controllers
 {
-    [AllowAnonymous]
+    [Authorize]
     [RoutePrefix("api/User")]
     public class UserController : ApiControllerBase
     {
@@ -15,7 +15,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
         private readonly ITemplatesRepository _templatesRepository;
         private readonly IUsersRepository _usersRepository;
 
-        private const string UserId = "584c42c090dc88ce7d9bc190";
+        private Task<string> UserId => _usersRepository.GetUserIdByName(User.Identity.Name);
 
         public UserController(
             IEntriesRepository entriesRepository,
@@ -33,7 +33,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
         [Route("SelfInfo")]
         public async Task<UserDTO> GetSelfUserInfo()
         {
-            var result = await _usersRepository.GetUserById(UserId);
+            var result = await _usersRepository.GetUserById(await UserId);
             return result;
         }
 
@@ -41,7 +41,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
         [Route("Tablets")]
         public async Task<List<TabletDTO>> GetTablets()
         {
-            var result = await _tabletsRepository.GetTabletsOfUser(UserId);
+            var result = await _tabletsRepository.GetTabletsOfUser(await UserId);
             return result;
         }
 
@@ -49,7 +49,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
         [Route("Templates")]
         public async Task<List<TemplateDTO>> GetTemplates()
         {
-            var result = await _templatesRepository.GetTemplatesOfUser(UserId);
+            var result = await _templatesRepository.GetTemplatesOfUser(await UserId);
             return result;
         }
 
@@ -58,7 +58,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
         [HttpPost]
         public async Task<TemplateDTO> AddTemplate(TemplateDTO templateToAdd)
         {
-            var result = await _templatesRepository.AddTemplateForUser(UserId, templateToAdd);
+            var result = await _templatesRepository.AddTemplateForUser(await UserId, templateToAdd);
             return result;
         }
 
@@ -67,7 +67,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
         [HttpPut]
         public async Task<TemplateDTO> UpdateTemplate(TemplateDTO templateToUpdate)
         {
-            var result = await _templatesRepository.UpdateTemplateOfUser(UserId, templateToUpdate);
+            var result = await _templatesRepository.UpdateTemplateOfUser(await UserId, templateToUpdate);
             return result;
         }
 
@@ -76,14 +76,14 @@ namespace UniversityInformationSystem.WebApi.Controllers
         [HttpDelete]
         public async Task DeleteTemplate(string idOfTemplateToDelete)
         {
-            await _templatesRepository.DeleteTemplateOfUser(UserId, idOfTemplateToDelete);
+            await _templatesRepository.DeleteTemplateOfUser(await UserId, idOfTemplateToDelete);
         }
 
         // GET api/User/Tablets/{tabletId}/Entries
         [Route("Tablets/{tabletId}/Entries")]
         public async Task<List<EntryDTO>> GetEntriesOfTablet(string tabletId)
         {
-            var result = await _entriesRepository.GetEntriesOfTablet(UserId, tabletId);
+            var result = await _entriesRepository.GetEntriesOfTablet(await UserId, tabletId);
             return result;
         }
 
@@ -101,7 +101,7 @@ namespace UniversityInformationSystem.WebApi.Controllers
         [HttpPost]
         public async Task<EntryDTO> AddEntryToTablet([FromUri]string tabletId, [FromBody]EntryDTO previewEntry)
         {
-            var result = await _entriesRepository.AddEntryToTablet(UserId, tabletId, previewEntry);
+            var result = await _entriesRepository.AddEntryToTablet(await UserId, tabletId, previewEntry);
             return result;
         }
 
