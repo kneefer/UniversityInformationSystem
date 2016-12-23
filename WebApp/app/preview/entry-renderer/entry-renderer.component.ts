@@ -1,4 +1,5 @@
-﻿import { Component, OnInit, Input, OnChanges } from '@angular/core';
+﻿import { Component, OnInit, Input, OnChanges, ViewEncapsulation } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { EntryViewModel } from '../../models/entry.model';
 import { TokenViewModel } from '../../models/token.model';
@@ -8,7 +9,8 @@ declare var module: { id: string; }
 @Component({
     selector: 'entry-renderer',
     moduleId: module.id,
-    template: `<div [innerHTML]="htmlContent"></div>`
+	template: `<div [innerHTML]="sanitizedHtmlContent"></div>`,
+	encapsulation: ViewEncapsulation.None
 })
 export class EntryRendererComponent implements OnInit, OnChanges {
 
@@ -16,7 +18,13 @@ export class EntryRendererComponent implements OnInit, OnChanges {
 
     private tokenFindRegex = /\$\((.*?)\)/g;
 
-    public htmlContent: string;
+	constructor(
+		private _sanitizer: DomSanitizer) { }
+
+	public htmlContent: string;
+	public get sanitizedHtmlContent(): SafeHtml {
+		return this._sanitizer.bypassSecurityTrustHtml(this.htmlContent);
+	}
     
     public ngOnInit(): void {
         this.htmlContent = '';

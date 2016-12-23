@@ -13,11 +13,15 @@ declare var module: { id: string; }
 
 @Component({
     moduleId: module.id,
-    template: `<entry-renderer [entry]="entry"></entry-renderer>`
+	template: `
+		<entry-renderer [entry]="entry"></entry-renderer>
+		<h6 class="text-center">Time of latest refresh: {{lastUpdateDate | date: 'HH:mm:ss'}}</h6>
+	`
 })
 export class PreviewComponent implements OnInit {
 
-    public entry: EntryViewModel;
+	public entry: EntryViewModel;
+	public lastUpdateDate: Date;
 
     constructor(
         private pageTitleService: PageTitleService,
@@ -46,7 +50,8 @@ export class PreviewComponent implements OnInit {
 
     private initialize(params: Params) {
         const id: string = params['id'];
-        const guid: string = params['guid'];
+		const guid: string = params['guid'];
+
         let func: Observable<EntryViewModel>;
 
         if (id) {
@@ -55,11 +60,15 @@ export class PreviewComponent implements OnInit {
             func = this.previewService.getPreview(guid);
         } else {
             throw 'Not definied both id and guid as route parameters';
-        }
+		}
 
-        func.subscribe(
-            entry => this.entry = entry,
-            error => this.notifyError(error)
-        );
+		Observable.timer(0, 30000) // Refresh every 30 seconds
+			.mergeMap(x => func)
+			.subscribe(entry => {
+				this.entry = entry;
+				this.lastUpdateDate = new Date(Date.now());
+			}, error => {
+				this.notifyError(error);
+			});
     }
 }
