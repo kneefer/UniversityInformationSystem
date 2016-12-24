@@ -41,11 +41,13 @@ export class LoginService {
             .do<boolean>(data => console.log(`IsUser: ${data}`));
     }
 
-    public logout() {
-        if (localStorage.getItem('bearer-token')) {
-            localStorage.removeItem('bearer-token');
-            console.log('Logged out');
-        }
+	public logout() {
+		for (let itemToDelete of ['bearer-token', 'isAdmin']) {
+			if (localStorage.getItem(itemToDelete)) {
+				localStorage.removeItem(itemToDelete);
+			}
+		}
+        console.log('Logged out');
     }
 
     private handleError(error: Response) {
