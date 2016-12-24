@@ -13,15 +13,12 @@ declare var module: { id: string; }
 
 @Component({
     moduleId: module.id,
-	template: `
-		<entry-renderer [entry]="entry"></entry-renderer>
-		<h6 class="text-center">Time of latest refresh: {{lastUpdateDate | date: 'HH:mm:ss'}}</h6>
-	`
+	templateUrl: 'preview.html'
 })
 export class PreviewComponent implements OnInit {
 
 	public entry: EntryViewModel;
-	public lastUpdateDate: Date;
+	public lastUpdateDate: Date = null;
 
     constructor(
         private pageTitleService: PageTitleService,
