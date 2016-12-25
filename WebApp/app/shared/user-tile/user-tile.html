@@ -6,15 +6,15 @@
                 <table class="table table-condensed">
                     <tbody>
                         <tr>
-                            <td>Username</td>
+                            <td class="vert-align"><span class="glyphicon glyphicon-user"></span></td>
                             <td>{{ user.userName }}</td>
                         </tr>
                         <tr>
-                            <td>Email</td>
+                            <td class="vert-align"><span class="glyphicon glyphicon-envelope"></span></td>
                             <td>{{ user.email }}</td>
                         </tr>
-                        <tr *ngIf="user.description">
-                            <td>Description</td>
+                        <tr class="vert-align" *ngIf="user.description">
+                            <td><span class="glyphicon glyphicon-pencil"></span></td>
                             <td>{{ user.description }}</td>
                         </tr>
                     </tbody>

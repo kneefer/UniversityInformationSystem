@@ -32,6 +32,11 @@
 
     <!-- List of latest entries -->
     <h3 class="heading-no-margin">Latest entries</h3>
+	<!-- Empty info -->
+	<blockquote class="col-md-12" *ngIf="!(entries && entries.length > 0)">
+		The selected tablet has no content set yet. <br/>
+		Do it by clicking one of the templates below or on <strong>My templates</strong> tab.
+	</blockquote><!-- / Empty info -->
     <masonry>
         <masonry-brick *ngFor="let entry of entries"
                        class="col-xs-12 col-sm-12 col-md-6 col-lg-4 masonry-brick">
@@ -42,6 +47,11 @@
     </masonry><!-- / List of latest entries -->
     <!-- List of templates -->
     <h3 class="heading-no-margin">My templates</h3>
+	<!-- Empty info -->
+	<blockquote class="col-md-12" *ngIf="!(templates && templates.length > 0)">
+		You don't have any templates you can set on this tablet.<br />
+		Add one on <strong>My templates</strong> tab.
+	</blockquote><!-- / Empty info -->
     <masonry>
         <masonry-brick *ngFor="let template of templates"
                        class="col-xs-12 col-sm-12 col-md-6 col-lg-4 masonry-brick">

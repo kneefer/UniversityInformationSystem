@@ -3,9 +3,10 @@
         <div class="panel panel-info">
             <div class="panel-heading">{{ tablet.getFullName() }}</div>
             <div class="panel-body">
-                <table class="table table-condensed" *ngIf="tablet.description">
+                <table class="table table-condensed">
                     <tbody>
-                        <tr>
+                        <tr *ngIf="tablet.description">
+							<td class="vert-align"><span class="glyphicon glyphicon-pencil"></span></td>
                             <td>{{ tablet.description }}</td>
                         </tr>
                     </tbody>
