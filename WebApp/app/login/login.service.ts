@@ -24,9 +24,9 @@ export class LoginService {
             .do(data => console.log(`All: ${data}`))
             .catch(this.handleError)
             .map((response: Response) => BearerToken.deserialize(response.json()))
-            .do<BearerToken>(token => localStorage.setItem('bearer-token', JSON.stringify(token)))
+            .do<BearerToken>(token => localStorage.setItem(this.config.localStorageTokenName, JSON.stringify(token)))
             .mergeMap(x => this.getIsAdmin())
-            .do<boolean>(isAdmin => localStorage.setItem('isAdmin', JSON.stringify(isAdmin)));
+            .do<boolean>(isAdmin => localStorage.setItem(this.config.localStorageIsAdminName, JSON.stringify(isAdmin)));
     }
 
     public getIsAdmin(): Observable<boolean> {
@@ -42,7 +42,7 @@ export class LoginService {
     }
 
 	public logout() {
-		for (let itemToDelete of ['bearer-token', 'isAdmin']) {
+		for (let itemToDelete of [this.config.localStorageTokenName, this.config.localStorageIsAdminName]) {
 			if (localStorage.getItem(itemToDelete)) {
 				localStorage.removeItem(itemToDelete);
 			}
