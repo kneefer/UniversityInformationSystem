@@ -31,7 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <FilesToIncludeForPublish>AllFilesInProjectFolder</FilesToIncludeForPublish>
-    <IncludeIisSettings>true</IncludeIisSettings>
+    <IncludeIisSettings>false</IncludeIisSettings>
     <PublishDatabases>false</PublishDatabases>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -83,7 +83,7 @@
     <Content Include="tsconfig.json" />
     <Content Include="typings.json" />
     <Content Include="packages.config" />
-    <None Include="uiswebapp - Web Deploy.pubxml" />
+    <None Include="Standard_deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
