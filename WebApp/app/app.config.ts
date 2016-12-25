@@ -10,14 +10,16 @@ export interface IAppConfig {
     adminApiEndpoint: string;
     userApiEndpoint: string;
 	tokenEndpoint: string;
-	localStorageToken: string;
+	localStorageTokenName: string;
+	localStorageIsAdminName: string;
 }
 
 // ReSharper disable once InconsistentNaming
 export const AppConfig: IAppConfig = {
-    accountApiEndpoint: 'http://localhost:39843/api/Account/',
-    adminApiEndpoint: 'http://localhost:39843/api/Admin/',
-    userApiEndpoint: 'http://localhost:39843/api/User/',
+	accountApiEndpoint: 'http://localhost:39843/api/Account/',
+	adminApiEndpoint: 'http://localhost:39843/api/Admin/',
+	userApiEndpoint: 'http://localhost:39843/api/User/',
 	tokenEndpoint: 'http://localhost:39843/Token',
-	localStorageToken: 'id_token'
+	localStorageTokenName: 'bearer-token',
+	localStorageIsAdminName: 'isAdmin'
 };
