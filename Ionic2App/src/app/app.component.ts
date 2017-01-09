@@ -1,9 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-
+import { Storage } from '@ionic/storage';
 import { LoginPage } from '../pages/login/login';
 import { TabletsPage } from '../pages/tablets/tablets';
+import { AuthService } from '../providers/auth-service';
+import { SessionData } from '../providers/session-data';
+
+import { BearerToken } from '../models/bearer-token-model';
 
 @Component({
   templateUrl: 'app.html'
@@ -11,17 +15,21 @@ import { TabletsPage } from '../pages/tablets/tablets';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = LoginPage;
+  rootPage: any;
 
-  pages: Array<{title: string, component: any}>;
-
-  constructor(public platform: Platform) {
+  constructor(public platform: Platform, public authService: AuthService, public storage: Storage, public session: SessionData) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Tablets', component: TabletsPage }
-    ];
+    storage.get('bearer-token').then((rawToken) => {
+      if (rawToken) {
+        const token = BearerToken.deserialize(JSON.parse(rawToken));
+        session.setToken(token);
+        this.rootPage = TabletsPage;
+      }
+      else {
+        this.rootPage = LoginPage;
+      }
+    })
 
   }
 
@@ -40,7 +48,14 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
+  getUserName(): string {
+    const userName = this.session.getLoggedUserName();
+    if(userName) return userName;
+    return null;
+  }
+
   logout() {
-     this.nav.setRoot(LoginPage);
+    this.authService.logout();
+    this.nav.setRoot(LoginPage);
   }
 }

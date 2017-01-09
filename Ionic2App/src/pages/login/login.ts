@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
 
-import {TabletsPage} from '../tablets/tablets';
+import { TabletsPage } from '../tablets/tablets';
+import { LoginModel } from '../../models/login-model';
+import { AuthService } from '../../providers/auth-service';
 
 /*
   Generated class for the Login page.
@@ -15,14 +17,30 @@ import {TabletsPage} from '../tablets/tablets';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController) {}
+  user = new LoginModel('', '');
+  errorMsg = '';
+
+  constructor(public navCtrl: NavController, public authService: AuthService, public loadingCtrl: LoadingController) { }
 
   ionViewDidLoad() {
     console.log('Hello LoginPage Page');
   }
 
   login() {
-    this.navCtrl.setRoot(TabletsPage);
+    this.errorMsg = null;
+    let loader = this.loadingCtrl.create({ content: "Please wait..." });
+    loader.present();
+    this.authService.login(this.user)
+      .subscribe(token => {
+        this.navCtrl.setRoot(TabletsPage);
+        loader.dismiss();
+      }, error => {
+        this.errorMsg = error === 'invalid_grant'
+          ? 'Wrong username or password!'
+          : 'Login problem';
+        loader.dismiss();
+        console.log(error.text);
+      });
   }
 
 }

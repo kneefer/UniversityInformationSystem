@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { ApiService } from '../../providers/api-service';
 
-import { TabletPage } from '../tablet/tablet'
+import { TabletViewModel } from '../../models/tablet-model';
+import { TemplatesPage } from '../templates/templates'
 
 /*
   Generated class for the Tablets page.
@@ -15,24 +17,22 @@ import { TabletPage } from '../tablet/tablet'
 })
 export class TabletsPage {
 
-  tablets: Array<{id:number, name: string, description: string}>
+  tablets: Array<TabletViewModel>;
 
-  constructor(public navCtrl: NavController) {
-    this.tablets = []
-    for(var i=0; i<10 ; i++) 
-      this.tablets.push({
-        id: i,
-        name: (400+i).toString(),
-        description: "short description of tablet"
-      })
+  constructor(public navCtrl: NavController, public api: ApiService) {
+    this.api.getTablets().subscribe(
+      tablets => { this.tablets = tablets; console.log(this.tablets) },
+      error => console.log(error)
+    );
+    console.log(this.tablets);
   }
 
   ionViewDidLoad() {
     console.log('Hello TabletsPage Page');
   }
 
-  showTablet(event, tablet) {
-    this.navCtrl.push(TabletPage, {
+  showTemplates(event, tablet) {
+    this.navCtrl.push(TemplatesPage, {
       tablet: tablet
     });
   }

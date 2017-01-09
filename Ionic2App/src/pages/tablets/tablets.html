@@ -18,12 +18,19 @@
 
 <ion-content padding>
 
-  <ion-card *ngFor='let tablet of tablets' (click)="showTablet($event, tablet)">
+  <ion-card *ngFor='let tablet of tablets' (click)="showTemplates($event, tablet)">
     <ion-card-header>
       {{ tablet.name }}
     </ion-card-header>
     <ion-card-content>
       {{ tablet.description }}
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content *ngIf="!(tablets && tablets.length > 0)">
+      You don't have any tablets you can manage.
+      Ask system administrator to provide you with one.
     </ion-card-content>
   </ion-card>
   
