@@ -1,0 +1,1 @@
+"C:\Program Files\MongoDB\Server\3.2\bin\mongo" uisdb.westeurope.cloudapp.azure.com:27017/UISDB default_data.js

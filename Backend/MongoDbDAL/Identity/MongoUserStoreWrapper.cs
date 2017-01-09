@@ -18,9 +18,9 @@ namespace UniversityInformationSystem.MongoDbDAL.Identity
     {
         private readonly UserStore<MongoApplicationUser> _userStore;
 
-        public MongoUserStoreWrapper(string connectionString)
+        public MongoUserStoreWrapper(string connectionUrl, string dbName)
         {
-            _userStore = new UserStore<MongoApplicationUser>(connectionString);
+            _userStore = new UserStore<MongoApplicationUser>(connectionUrl, dbName);
         }
 
         public Task CreateAsync(IUser user)

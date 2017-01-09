@@ -5,8 +5,8 @@
             <div class="panel-body">
                 <table class="table table-condensed">
                     <tbody>
-                        <tr>
-                            <td>Description</td>
+                        <tr *ngIf="template.description">
+                            <td class="vert-align"><span class="glyphicon glyphicon-pencil"></span></td>
                             <td>{{ template.description }}</td>
                         </tr>
                     </tbody>

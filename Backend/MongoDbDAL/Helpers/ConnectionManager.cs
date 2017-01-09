@@ -1,30 +1,17 @@
 ﻿
+using System;
 using MongoDB.Driver;
+using System.Configuration;
 
 namespace UniversityInformationSystem.MongoDbDAL.Helpers
 {
     internal class ConnectionManager
     {
-        private static ConnectionManager _instance;
-
-        public MongoDatabase Database { get; }
-
-        private ConnectionManager()
-        {
-            var client = new MongoClient();
-            Database = client.GetServer().GetDatabase("UISDB");
-        }
-
-        public static ConnectionManager Instance
-        {
-            get
-            {
-                if (_instance != null)
-                    return _instance;
-
-                _instance = new ConnectionManager();
-                return _instance;
-            }
-        }
-    }
+		internal static MongoDatabase GetDbConnection(string connectionUrl, string dbName)
+		{
+			var mongoClient = new MongoClient(connectionUrl);
+			var mongoDatabase = mongoClient.GetServer().GetDatabase(dbName);
+			return mongoDatabase;
+		}
+	}
 }

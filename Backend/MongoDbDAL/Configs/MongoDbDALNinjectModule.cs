@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using Ninject.Extensions.Factory;
 using Ninject.Modules;
 using Ninject.Web.Common;
+using System.Configuration;
 using UniversityInformationSystem.DALInterfaces.Helpers;
 using UniversityInformationSystem.DALInterfaces.Identity;
 using UniversityInformationSystem.DALInterfaces.Repositories;
@@ -17,6 +18,15 @@ namespace UniversityInformationSystem.MongoDbDAL.Configs
     [UsedImplicitly]
     public class MongoDbDALNinjectModule : NinjectModule
     {
+		private readonly string _connectionUrl;
+		private readonly string _dbName;
+
+		public MongoDbDALNinjectModule()
+		{
+			_connectionUrl = ConfigurationManager.ConnectionStrings["Mongo"].ConnectionString;
+			_dbName = ConfigurationManager.AppSettings["DbName"];
+		}
+
         public override void Load()
         {
             // Identity
@@ -24,11 +34,13 @@ namespace UniversityInformationSystem.MongoDbDAL.Configs
 
             Bind<UserManager<IUser>>().To<ApplicationUserManager>().InRequestScope();
             Bind<IUser>().To<MongoApplicationUser>();
-            Bind<IUserStore<IUser>>().To<MongoUserStoreWrapper>().InRequestScope().WithConstructorArgument("Mongo");
+            Bind<IUserStore<IUser>>().To<MongoUserStoreWrapper>().InRequestScope()
+				.WithConstructorArgument("connectionUrl", _connectionUrl)
+				.WithConstructorArgument("dbName", _dbName);
 
             // Helpers
             Bind<IMapper>().ToConstant(AutoMapperConfiguration.GetAutoMapperConfiguration()).InSingletonScope();
-            Bind<MongoDatabase>().ToConstant(ConnectionManager.Instance.Database).InRequestScope();
+			Bind<MongoDatabase>().ToConstant(ConnectionManager.GetDbConnection(_connectionUrl, _dbName)).InTransientScope();
             Bind<IInitializeDB>().To<InitializeDB>().InRequestScope();
 
             // Repositories
