@@ -34,13 +34,14 @@ export class AuthService {
       .map((response: Response) => BearerToken.deserialize(response.json()))
       .do((token: BearerToken) => this.storage.set('bearer-token', JSON.stringify(token)))
       .do((token: BearerToken) => this.session.setToken(token));
-      // .do((token: BearerToken) => localStorage.setItem('bearer-token', JSON.stringify(token)));
+    // .do((token: BearerToken) => localStorage.setItem('bearer-token', JSON.stringify(token)));
   }
 
   logout() {
-    if (localStorage.getItem('bearer-token')) {
-      localStorage.removeItem('bearer-token');
-    }
+    // if (localStorage.getItem('bearer-token')) {
+    //   localStorage.removeItem('bearer-token');
+    // }
+    this.storage.clear();
     console.log('Logged out');
   }
 

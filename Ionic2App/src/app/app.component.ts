@@ -20,15 +20,17 @@ export class MyApp {
   constructor(public platform: Platform, public authService: AuthService, public storage: Storage, public session: SessionData) {
     this.initializeApp();
 
-    storage.get('bearer-token').then((rawToken) => {
-      if (rawToken) {
-        const token = BearerToken.deserialize(JSON.parse(rawToken));
-        session.setToken(token);
-        this.rootPage = TabletsPage;
-      }
-      else {
-        this.rootPage = LoginPage;
-      }
+    storage.ready().then(() => {
+      storage.get('bearer-token').then((rawToken) => {
+        if (rawToken) {
+          const token = BearerToken.deserialize(JSON.parse(rawToken));
+          session.setToken(token);
+          this.rootPage = TabletsPage;
+        }
+        else {
+          this.rootPage = LoginPage;
+        }
+      })
     })
 
   }
@@ -50,7 +52,7 @@ export class MyApp {
 
   getUserName(): string {
     const userName = this.session.getLoggedUserName();
-    if(userName) return userName;
+    if (userName) return userName;
     return null;
   }
 
