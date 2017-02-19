@@ -1,0 +1,10 @@
+#pageTitle {
+    margin-left: 27px;
+}
+
+.container-fluid, .navbar-fixed-top {
+    /* Minimum width of the page */
+    min-width:350px;
+    width: auto !important;
+    width:350px;
+}

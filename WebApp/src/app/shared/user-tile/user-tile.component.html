@@ -1,0 +1,25 @@
+<div class="form-group user-tile" (click)="onTileClick($event)">
+    <a href="#">
+        <div class="panel panel-primary">
+            <div class="panel-heading">{{ user.getFullName() }}</div>
+            <div class="panel-body">
+                <table class="table table-condensed">
+                    <tbody>
+                        <tr>
+                            <td class="vert-align"><span class="glyphicon glyphicon-user"></span></td>
+                            <td>{{ user.userName }}</td>
+                        </tr>
+                        <tr>
+                            <td class="vert-align"><span class="glyphicon glyphicon-envelope"></span></td>
+                            <td>{{ user.email }}</td>
+                        </tr>
+                        <tr class="vert-align" *ngIf="user.description">
+                            <td><span class="glyphicon glyphicon-pencil"></span></td>
+                            <td>{{ user.description }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </a>
+</div>

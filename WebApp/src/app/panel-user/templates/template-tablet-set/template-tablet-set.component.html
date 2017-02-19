@@ -1,0 +1,78 @@
+<div class="main-container">
+
+    <!-- Left column (HTML content) -->
+    <div class="col-xs-12 col-sm-6 col-md-7 col-lg-7">
+        <h2>Html content</h2>
+        <pre class="form-control" rows="10">{{ entry.htmlContent }}</pre>
+    </div><!-- / Left column (HTML content) -->
+
+    <!-- Right column -->
+    <div class="col-xs-12 col-sm-6 col-md-5 col-lg-5">
+
+        <!-- Template name -->
+        <div class="form-group">
+            <label htmlFor="templateName" class="control-label h2">Selected template</label>
+            <div>
+                <p id="templateName" name="templateName">
+                    {{ template.getFullName() }}
+                </p>
+            </div>
+        </div><!-- / Template name -->
+
+        <!-- Tablet name  -->
+        <div class="form-group">
+            <label htmlFor="tabletName" class="control-label h2">Selected tablet</label>
+            <div>
+                <p id="tabletName" name="tabletName">
+                    {{ tablet.getFullName() }}
+                </p>
+            </div>
+        </div><!-- / Tablet name -->
+
+        <!-- Tokens list -->
+        <div>
+            <h2>Tokens</h2>
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th>Token name</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let token of tokens; let i=index">
+                        <td class="col-md-5 vert-align">{{ token.getFullName() }}</td>
+                        <td class="col-md-6">
+                            <input type="text" class="form-control" name="tokenValue-{{i}}" id="tokenValue-{{i}}"
+                                   placeholder="Value" [(ngModel)]="token.value" required>
+                        </td>
+                    </tr>
+                    <tr *ngIf="tokens.length === 0">
+                        <td colspan="3" class="text-center text-muted">No tokens</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div><!-- / Tokens list -->
+
+        <!-- Buttons -->
+        <div class="text-center">
+            <div class="form-group">
+                <button type="submit" (click)="onSaveClick($event)"
+                        class="btn btn-lg btn-success">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    Save
+                </button>
+                <button type="submit" (click)="onShowPreviewClick($event)"
+                        class="btn btn-lg btn-success">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                    Show Preview
+                </button>
+                <button type="submit" (click)="onCancelClick($event)"
+                        class="btn btn-sm btn-warning">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Cancel
+                </button>
+            </div>
+        </div><!-- / Buttons -->
+    </div><!-- / Right column -->
+</div>

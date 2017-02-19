@@ -1,0 +1,86 @@
+<!-- Tablets part -->
+<div class="col-sm-6 col-md-4">
+    <masonry [options]="masonryOptions" #tabletsMasonry>
+
+        <!-- Add new tablet -->
+        <masonry-brick class="col-xs-12 col-sm-12 col-md-12 col-lg-12 stamp">
+            <tablet-add-edit *ngIf="isAddMode"
+                             (saveClicked)="onTabletAdd($event)"
+                             (cancelClicked)="toggleAddMode($event)">
+            </tablet-add-edit>
+            <plus-button *ngIf="!isAddMode"
+                         (click)="toggleAddMode($event)">
+            </plus-button>
+        </masonry-brick> <!-- / Add new tablet -->
+        <!-- List of all tablets -->
+        <masonry-brick *ngFor="let tablet of tablets"
+                       class="col-xs-12 col-sm-6 col-md-6 col-lg-6 masonry-brick">
+            <tablet-tile [tablet]="tablet"
+                         (tabletClicked)="onTabletClicked($event)">
+            </tablet-tile>
+        </masonry-brick> <!-- / List of all tablets -->
+    </masonry>
+</div> <!-- / Tablets part -->
+<!-- Users of tablet part -->
+<div class="col-sm-6 col-md-8" *ngIf="selectedTablet">
+
+    <!-- Read only mode -->
+    <div *ngIf="!isEditMode">
+        <div class="heading-no-margin">
+            <h2>{{ selectedTablet.getFullName() }}</h2>
+            <h4>{{ selectedTablet.description }}</h4>
+
+            <p class="btn-toolbar text-center">
+                <button class="btn btn-primary"
+                        (click)="onSelectedTabletGoToPage($event)">
+                    <span class="glyphicon glyphicon-play-circle"></span>
+                    Go to tablet's page
+                </button>
+            </p>
+            <p class="btn-toolbar text-center">
+                <button class="btn btn-primary btn-warning"
+                        (click)="toggleEditMode($event)">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    Edit tablet
+                </button>
+                <button class="btn btn-primary btn-danger"
+                        (click)="onSelectedTabletDelete($event)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Delete tablet
+                </button>
+            </p>
+        </div>
+
+        <h3 class="heading-no-margin">Users of tablet</h3>
+        <masonry [options]="masonryOptions" #usersMasonry>
+
+            <!-- Bind user with current tablet -->
+            <masonry-brick class="col-xs-12 col-sm-12 col-md-6 col-lg-4 stamp">
+                <tablet-user-bind *ngIf="isBindMode"
+                                  [tablet]="tablet"
+                                  [users]="allUsers"
+                                  (addClicked)="onBindTabletWithUser($event)"
+                                  (cancelClicked)="toggleBindMode($event)">
+                </tablet-user-bind>
+                <plus-button *ngIf="!isBindMode"
+                             (click)="toggleBindMode($event)">
+                </plus-button>
+            </masonry-brick> <!-- / Bind user with current tablet -->
+            <!-- List of users of tablet -->
+            <masonry-brick *ngFor="let user of users"
+                           class="col-xs-12 col-sm-12 col-md-6 col-lg-4 masonry-brick">
+                <user-tile [user]="user"
+                           (userClicked)="onUserClicked($event)">
+                </user-tile>
+            </masonry-brick> <!-- / List of users of tablet -->
+        </masonry>
+
+    </div> <!-- / Read only mode -->
+    <!-- Edit mode -->
+    <div *ngIf="isEditMode">
+        <tablet-add-edit [tablet]="selectedTablet"
+                         (saveClicked)="onTabletSave($event)"
+                         (cancelClicked)="toggleEditMode($event)">
+        </tablet-add-edit>
+    </div> <!-- / Edit mode -->
+</div> <!-- / Tablets of user part -->

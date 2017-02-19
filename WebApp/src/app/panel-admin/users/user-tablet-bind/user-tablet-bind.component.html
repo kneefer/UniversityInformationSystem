@@ -1,0 +1,30 @@
+<div class="panel panel-success">
+    <div class="panel-heading text-center">Bind tablet to user</div>
+    <div class="panel-body">
+        <form class="form form-group-sm" (ngSubmit)="onAddClick($event)" #userTabletBindForm="ngForm" id="editForm">
+            <div class="form-group">
+                <label for="tabletName">Tablet name</label>
+                <select class="form-control" required 
+                        id="tabletName" name="tabletName"
+                        [ngModel]="selectedTabletToBind | json"
+                        (ngModelChange)="onTabletOptionClick($event)">
+                    <option *ngFor="let tablet of tablets" (ngModel)="tablet" [value]="tablet | json">
+                        {{tablet.getFullName()}}
+                    </option>
+                </select>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-md btn-success btn-space"
+                        [disabled]="!userTabletBindForm.form.valid">
+                    <span class="glyphicon glyphicon-ok"></span>
+                    Save
+                </button>
+                <button type="submit" (click)="onCancelClick($event)"
+                        class="btn btn-sm btn-warning btn-space">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

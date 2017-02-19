@@ -1,0 +1,17 @@
+<div class="form-group template-tile" (click)="onTileClick($event)">
+    <a href="#">
+        <div class="panel panel-primary">
+            <div class="panel-heading">{{ template.getFullName() }}</div>
+            <div class="panel-body">
+                <table class="table table-condensed">
+                    <tbody>
+                        <tr *ngIf="template.description">
+                            <td class="vert-align"><span class="glyphicon glyphicon-pencil"></span></td>
+                            <td>{{ template.description }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </a>
+</div>
