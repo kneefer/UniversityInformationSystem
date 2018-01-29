@@ -5,6 +5,11 @@
     <UserSecretsId>aspnet-UIS.Backend.Api-303157A3-AB3C-438B-A969-1EC3BA4D1CEC</UserSecretsId>
     <ApplicationInsightsResourceId>/subscriptions/1befc1f2-e57f-4b8a-a605-a5dca982e290/resourcegroups/UIS-Resources/providers/microsoft.insights/components/UIS-Insights</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/1befc1f2-e57f-4b8a-a605-a5dca982e290/resourcegroups/UIS-Resources/providers/microsoft.insights/components/UIS-Insights</ApplicationInsightsAnnotationResourceId>
+    <AssemblyName>UIS.Backend.Api</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp2.0\UIS.Backend.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +19,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
