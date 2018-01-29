@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -12,14 +13,18 @@ namespace UIS.Backend.Api
 {
    public class Startup
    {
+      private IConfiguration Configuration { get; }
+
       public Startup(IConfiguration configuration)
       {
          Configuration = configuration;
       }
 
-      public IConfiguration Configuration { get; }
-
-      // This method gets called by the runtime. Use this method to add services to the container.
+      /// <summary>
+      /// This method gets called by the runtime. Use this method to add services to the container.
+      /// </summary>
+      /// <param name="services"></param>
+      [UsedImplicitly]
       public void ConfigureServices(IServiceCollection services)
       {
          services.AddAuthentication(authOptions =>
@@ -46,7 +51,12 @@ namespace UIS.Backend.Api
          services.AddMvc();
       }
 
-      // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+      /// <summary>
+      /// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+      /// </summary>
+      /// <param name="app"></param>
+      /// <param name="env"></param>
+      [UsedImplicitly]
       public void Configure(IApplicationBuilder app, IHostingEnvironment env)
       {
          if (env.IsDevelopment())

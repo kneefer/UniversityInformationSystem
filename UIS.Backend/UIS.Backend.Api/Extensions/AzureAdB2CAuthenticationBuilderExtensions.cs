@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,10 +9,8 @@ namespace UIS.Backend.Api.Extensions
 {
    public static class AzureAdServiceCollectionExtensions
    {
-      public static AuthenticationBuilder AddAzureAdB2CBearer(this AuthenticationBuilder builder)
-         => builder.AddAzureAdB2CBearer(_ => { });
-
-      public static AuthenticationBuilder AddAzureAdB2CBearer(this AuthenticationBuilder builder,
+      public static AuthenticationBuilder AddAzureAdB2CBearer(
+         this AuthenticationBuilder builder,
          Action<AzureAdB2COptions> configureOptions)
       {
          builder.Services.Configure(configureOptions);
@@ -20,6 +19,7 @@ namespace UIS.Backend.Api.Extensions
          return builder;
       }
 
+      [UsedImplicitly(ImplicitUseKindFlags.InstantiatedNoFixedConstructorSignature)]
       private class ConfigureAzureOptions : IConfigureNamedOptions<JwtBearerOptions>
       {
          private readonly AzureAdB2COptions _azureOptions;
