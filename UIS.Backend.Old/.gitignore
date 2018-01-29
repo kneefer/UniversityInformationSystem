@@ -240,7 +240,3 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
-
-MobileApp/[Pp]lugins
-MobileApp/[Pp]latforms/
-MobileApp/www/lib

@@ -1,29 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDbDAL", "Backend\MongoDbDAL\MongoDbDAL.csproj", "{B137E551-B48E-4C21-B93D-1AF3741FA27E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDbDAL", "MongoDbDAL\MongoDbDAL.csproj", "{B137E551-B48E-4C21-B93D-1AF3741FA27E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALInterfaces", "Backend\DALInterfaces\DALInterfaces.csproj", "{9E0A11C4-BA46-4213-B3BD-3119081C5588}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALInterfaces", "DALInterfaces\DALInterfaces.csproj", "{9E0A11C4-BA46-4213-B3BD-3119081C5588}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{44F47219-7899-4A09-8C74-8B6C5485AE3C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "Backend\WebApi\WebApi.csproj", "{A80C5DD4-41AD-4485-A3F5-45ED192789AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{A80C5DD4-41AD-4485-A3F5-45ED192789AD}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B137E551-B48E-4C21-B93D-1AF3741FA27E} = {B137E551-B48E-4C21-B93D-1AF3741FA27E}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{2E3F9486-20B2-4FDA-90F6-3DEA098FE51F}"
-	ProjectSection(SolutionItems) = preProject
-		Utils\default_data.js = Utils\default_data.js
-		Utils\init mongo.ps1 = Utils\init mongo.ps1
-		README.md = README.md
-		Utils\restore_local.bat = Utils\restore_local.bat
-		Utils\restore_remote.bat = Utils\restore_remote.bat
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Backend\Common\Common.csproj", "{4F357055-E33E-4DA7-BFD1-0C924D8F1BF4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{4F357055-E33E-4DA7-BFD1-0C924D8F1BF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -195,10 +184,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{B137E551-B48E-4C21-B93D-1AF3741FA27E} = {44F47219-7899-4A09-8C74-8B6C5485AE3C}
-		{9E0A11C4-BA46-4213-B3BD-3119081C5588} = {44F47219-7899-4A09-8C74-8B6C5485AE3C}
-		{A80C5DD4-41AD-4485-A3F5-45ED192789AD} = {44F47219-7899-4A09-8C74-8B6C5485AE3C}
-		{4F357055-E33E-4DA7-BFD1-0C924D8F1BF4} = {44F47219-7899-4A09-8C74-8B6C5485AE3C}
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3938D822-FF6E-41B0-A866-7D08DFA7B24A}
 	EndGlobalSection
 EndGlobal
