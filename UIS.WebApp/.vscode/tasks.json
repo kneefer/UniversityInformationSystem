@@ -1,0 +1,13 @@
+{
+  "version": "0.1.0",
+  "command": "powershell",
+  "isShellCommand": true,
+  "showOutput": "always",
+  "tasks": [
+    {
+      "taskName": "gen swagger proxy",
+      "command": "powershell",
+      "args": ["${workspaceRoot}/scripts/swagger/genSwaggerProxies.ps1"]
+    }
+  ]
+}
